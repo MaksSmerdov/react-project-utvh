@@ -1,3 +1,9 @@
+export const accordionTitles = {
+  schemes: 'Схемы объекта',
+  content: 'Руководства по эксплуатации',
+  reglament: 'Регламент объекта',
+};
+
 export const accordionData = {
   schemes: [
     {
@@ -5,11 +11,11 @@ export const accordionData = {
       files: [
         {
           type: 'DWG',
-          href: '/assets/docs/sushilka/schemes/DWG/common_data_sushilka.dwg',
+          href: '/assets/content/kotelnaya/schemes/common_data_kotel.dwg',
         },
         {
           type: 'PDF',
-          href: '/assets/docs/sushilka/schemes/PDF/common_data_sushilka.pdf',
+          href: '/assets/content/kotelnaya/schemes/common_data_kotel.pdf',
         },
       ],
     },
@@ -18,11 +24,11 @@ export const accordionData = {
       files: [
         {
           type: 'DWG',
-          href: '/assets/docs/sushilka/schemes/DWG/structural_sushilka.dwg',
+          href: '/assets/content/kotelnaya/schemes/structural_kotel.dwg',
         },
         {
           type: 'PDF',
-          href: '/assets/docs/sushilka/schemes/PDF/structural_sushilka.pdf',
+          href: '/assets/content/kotelnaya/schemes/structural_kotel.pdf',
         },
       ],
     },
@@ -31,11 +37,11 @@ export const accordionData = {
       files: [
         {
           type: 'DWG',
-          href: '/assets/docs/sushilka/schemes/DWG/power_sushilka.dwg',
+          href: '/assets/content/kotelnaya/schemes/power_kotel.dwg',
         },
         {
           type: 'PDF',
-          href: '/assets/docs/sushilka/schemes/PDF/power_sushilka.pdf',
+          href: '/assets/content/kotelnaya/schemes/power_kotel.pdf',
         },
       ],
     },
@@ -44,11 +50,24 @@ export const accordionData = {
       files: [
         {
           type: 'DWG',
-          href: '/assets/docs/sushilka/schemes/DWG/functional_sushilka.dwg',
+          href: '/assets/content/kotelnaya/schemes/functional_kotel.dwg',
         },
         {
           type: 'PDF',
-          href: '/assets/docs/sushilka/schemes/PDF/functional_sushilka.pdf',
+          href: '/assets/content/kotelnaya/schemes/functional_kotel.pdf',
+        },
+      ],
+    },
+    {
+      name: 'Схема соединений запально-сигнализирующего устройства',
+      files: [
+        {
+          type: 'DWG',
+          href: '/assets/content/kotelnaya/schemes/zzu_kotel.dwg',
+        },
+        {
+          type: 'PDF',
+          href: '/assets/content/kotelnaya/schemes/zzu_kotel.pdf',
         },
       ],
     },
@@ -57,11 +76,11 @@ export const accordionData = {
       files: [
         {
           type: 'DWG',
-          href: '/assets/docs/sushilka/schemes/DWG/MK-500_first_sushilka.dwg',
+          href: '/assets/content/kotelnaya/schemes/MK-500_first_kotel.dwg',
         },
         {
           type: 'PDF',
-          href: '/assets/docs/sushilka/schemes/PDF/MK-500_first_sushilka.pdf',
+          href: '/assets/content/kotelnaya/schemes/MK-500_first_kotel.pdf',
         },
       ],
     },
@@ -70,11 +89,11 @@ export const accordionData = {
       files: [
         {
           type: 'DWG',
-          href: '/assets/docs/sushilka/schemes/DWG/MK-500_second_sushilka.dwg',
+          href: '/assets/content/kotelnaya/schemes/MK-500_second_kotel.dwg',
         },
         {
           type: 'PDF',
-          href: '/assets/docs/sushilka/schemes/PDF/MK-500_second_sushilka.pdf',
+          href: '/assets/content/kotelnaya/schemes/MK-500_second_kotel.pdf',
         },
       ],
     },
@@ -83,24 +102,11 @@ export const accordionData = {
       files: [
         {
           type: 'DWG',
-          href: '/assets/docs/sushilka/schemes/DWG/external_sushilka.dwg',
+          href: '/assets/content/kotelnaya/schemes/external_kotel.dwg',
         },
         {
           type: 'PDF',
-          href: '/assets/docs/sushilka/schemes/PDF/external_sushilka.pdf',
-        },
-      ],
-    },
-    {
-      name: 'Схема электрических соединений соединений',
-      files: [
-        {
-          type: 'DWG',
-          href: '/assets/docs/sushilka/schemes/DWG/MKC_sushilka.dwg',
-        },
-        {
-          type: 'PDF',
-          href: '/assets/docs/sushilka/schemes/PDF/MKC_sushilka.pdf',
+          href: '/assets/content/kotelnaya/schemes/external_kotel.pdf',
         },
       ],
     },
@@ -109,42 +115,88 @@ export const accordionData = {
       files: [
         {
           type: 'DWG',
-          href: '/assets/docs/sushilka/schemes/DWG/assembly_sushilka.dwg',
+          href: '/assets/content/kotelnaya/schemes/assembly_kotel.dwg',
         },
         {
           type: 'PDF',
-          href: '/assets/docs/sushilka/schemes/PDF/assembly_sushilka.pdf',
+          href: '/assets/content/kotelnaya/schemes/assembly_kotel.pdf',
         },
       ],
     },
+    {
+      name: 'Схема конфигурации контроллера',
+      files: [
+        {
+          type: 'DWG',
+          href: '/assets/content/kotelnaya/schemes/configuration_MK-500_kotel.dwg',
+        },
+        {
+          type: 'PDF',
+          href: '/assets/content/kotelnaya/schemes/configuration_MK-500_kotel.pdf',
+        },
+      ],
+    },
+    {
+      name: 'План расположения оборудования и кабельных трасс',
+      files: [
+        {
+          type: 'DWG',
+          href: '/assets/content/kotelnaya/schemes/cable_track_plan_kotel.dwg',
+        },
+        {
+          type: 'PDF',
+          href: '/assets/content/kotelnaya/schemes/cable_track_plan_kotel.pdf',
+        },
+      ],
+    },
+    {
+      name: 'Схема монтажных соединений',
+      files: [
+        {
+          type: 'DWG',
+          href: '/assets/content/kotelnaya/schemes/wiring_kotel.dwg',
+        },
+        {
+          type: 'PDF',
+          href: '/assets/content/kotelnaya/schemes/wiring_kotel.pdf',
+        },
+      ],
+    },
+
     {
       name: 'Спецификация оборудования',
       files: [
         {
           type: 'DWG',
-          href: '/assets/docs/sushilka/schemes/DWG/specification_sushilka.dwg',
+          href: '/assets/content/kotelnaya/schemes/specification_kotel.dwg',
         },
         {
           type: 'PDF',
-          href: '/assets/docs/sushilka/schemes/PDF/specification_sushilka.pdf',
+          href: '/assets/content/kotelnaya/schemes/specification_kotel.pdf',
         },
       ],
     },
   ],
-  progs: [
+  content: [
     {
-      name: 'Общие данные',
+      name: 'Руководство АИР',
       files: [
         {
-          type: 'DWG',
-          href: '/assets/docs/sushilka/schemes/DWG/common_data_sushilka.dwg',
-        },
-        {
           type: 'PDF',
-          href: '/assets/docs/sushilka/schemes/PDF/common_data_sushilka.pdf',
+          href: '/assets/content/kotelnaya/docs/re_air.pdf',
         },
       ],
     },
-    
+  ],
+  reglament: [
+    {
+      name: 'Документация',
+      files: [
+        {
+          type: 'PDF',
+          href: '/assets/content/kotelnaya/docs/kotel_de-10-14.pdf',
+        },
+      ],
+    },
   ],
 };

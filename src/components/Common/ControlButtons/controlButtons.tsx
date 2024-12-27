@@ -1,5 +1,5 @@
-import React, { useEffect, useState } from "react";
-import styles from "./controlButtons.module.scss";
+import React, { useEffect, useState } from 'react';
+import styles from './controlButtons.module.scss';
 
 interface ControlButtonsProps {
   tooltipsEnabled?: boolean;
@@ -17,12 +17,12 @@ const ControlButtons: React.FC<ControlButtonsProps> = ({
   tooltipsEnabled,
   onToggleTooltips,
   onOpenModal,
-  top = "0",
-  left = "0",
-  adaptiveTop = "50px",
-  adaptiveLeft = "20px",
-  adaptiveFontSize = "12px",
-  adaptiveLineHeight = "12px",
+  top = '0',
+  left = '0',
+  adaptiveTop = '50px',
+  adaptiveLeft = '20px',
+  adaptiveFontSize = '12px',
+  adaptiveLineHeight = '12px',
 }) => {
   const [position, setPosition] = useState({ top, left });
   const [isAdaptive, setIsAdaptive] = useState(false);
@@ -35,10 +35,10 @@ const ControlButtons: React.FC<ControlButtonsProps> = ({
     };
 
     handleResize(); // Установите начальное значение
-    window.addEventListener("resize", handleResize);
+    window.addEventListener('resize', handleResize);
 
     return () => {
-      window.removeEventListener("resize", handleResize);
+      window.removeEventListener('resize', handleResize);
     };
   }, [top, left, adaptiveTop, adaptiveLeft]);
 
@@ -63,9 +63,7 @@ const ControlButtons: React.FC<ControlButtonsProps> = ({
               : undefined
           }
         >
-          {tooltipsEnabled
-            ? "Выключить всплывающие подсказки"
-            : "Включить всплывающие подсказки"}
+          {tooltipsEnabled ? 'Выключить всплывающие подсказки' : 'Включить всплывающие подсказки'}
         </button>
       )}
 
@@ -88,6 +86,5 @@ const ControlButtons: React.FC<ControlButtonsProps> = ({
     </div>
   );
 };
-
 
 export default ControlButtons;

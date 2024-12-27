@@ -1,5 +1,5 @@
-import React from "react";
-import styles from "./preloader.module.scss";
+import React from 'react';
+import styles from './preloader.module.scss';
 
 interface LoaderProps {
   loading: boolean;
@@ -11,10 +11,7 @@ const Loader: React.FC<LoaderProps> = ({ loading, size = 60 }) => {
 
   return (
     <div className={styles.loaderContainer}>
-      <div
-        className={styles.loader}
-        style={{ width: size, height: size }}
-      ></div>
+      <div className={styles.loader} style={{ width: size, height: size }}></div>
       <p className={styles.loaderText}>Идет загрузка, пожалуйста подождите</p>
     </div>
   );

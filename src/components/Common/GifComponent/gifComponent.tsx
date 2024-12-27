@@ -11,14 +11,14 @@ interface GifComponentProps {
   isAnimation?: boolean; // Флаг, указывающий, должна ли анимация быть включена (по умолчанию false)
 }
 
-const GifComponent: React.FC<GifComponentProps> = ({ 
-  src, 
-  alt, 
-  className, 
-  data, 
-  objectNumber, 
-  conditionKey, 
-  isAnimation = false 
+const GifComponent: React.FC<GifComponentProps> = ({
+  src,
+  alt,
+  className,
+  data,
+  objectNumber,
+  conditionKey,
+  isAnimation = false,
 }) => {
   const condition = data && data[conditionKey] && data[conditionKey] !== '—'; // Условие, если данные существуют и не равны "—"
 

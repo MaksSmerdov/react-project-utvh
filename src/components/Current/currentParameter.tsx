@@ -1,8 +1,8 @@
-import React, { useEffect, useState } from "react";
-import Header from "../Common/Header/header";
-import Table from "../Common/Table/table";
-import styles from "./currentParameter.module.scss";
-import { ApiConfig } from "../../configs/apiConfigKotelnaya";
+import React, { useEffect, useState } from 'react';
+import Header from '../Common/Header/header';
+import Table from '../Common/Table/table';
+import styles from './currentParameter.module.scss';
+import { ApiConfig } from '../../configs/apiConfigKotelnaya';
 
 interface CurrentParameterProps {
   config: ApiConfig;
@@ -16,15 +16,13 @@ const CurrentParameter: React.FC<CurrentParameterProps> = ({ config, title }) =>
     const fetchData = async () => {
       try {
         const response = await fetch(config.apiUrl);
-        if (!response.ok) throw new Error("Ошибка загрузки данных");
+        if (!response.ok) throw new Error('Ошибка загрузки данных');
         const result = await response.json();
 
         // Фильтрация данных для каждого типа
         const filteredData = Object.keys(config.defaultData).reduce((acc, key) => {
           acc[key] = Object.fromEntries(
-            Object.entries(result[key] || {}).filter(([param]) =>
-              param in config.defaultData[key]
-            )
+            Object.entries(result[key] || {}).filter(([param]) => param in config.defaultData[key])
           );
           return acc;
         }, {} as any);
@@ -32,7 +30,7 @@ const CurrentParameter: React.FC<CurrentParameterProps> = ({ config, title }) =>
         // Устанавливаем отфильтрованные данные
         setData(filteredData);
       } catch (error) {
-        console.error("Ошибка загрузки данных:", error);
+        console.error('Ошибка загрузки данных:', error);
       }
     };
 

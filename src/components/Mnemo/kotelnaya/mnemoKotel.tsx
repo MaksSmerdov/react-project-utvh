@@ -4,7 +4,7 @@ import { apiConfigs } from '../../../configs/apiConfigKotelnaya';
 import useMnemoKotel from './hooks/useMnemoKotel';
 import CustomModal from '../../Common/Modal/modal';
 import DocumentationAccordion from '../../Common/Accordion/accordion';
-import { accordionData } from './config/accordionItems';
+import { accordionData, accordionTitles } from './config/accordionItems';
 import Tooltip from '../../Common/Tooltip/tooltip';
 import Loader from '../../Common/Preloader/preloader';
 import ControlButtons from '../../Common/ControlButtons/controlButtons';
@@ -24,7 +24,6 @@ interface MnemoKotelProps<K extends keyof typeof apiConfigs> {
 const MnemoKotel = <K extends keyof typeof apiConfigs>({ configKey, title, objectNumber }: MnemoKotelProps<K>) => {
   const { data, isLoading, tooltipsEnabled, toggleTooltips } = useMnemoKotel({
     config: apiConfigs[configKey],
-    objectNumber,
   });
 
   const [isModalOpen, setIsModalOpen] = useState(false);
@@ -45,12 +44,12 @@ const MnemoKotel = <K extends keyof typeof apiConfigs>({ configKey, title, objec
           left="0"
           adaptiveTop="-5px"
           adaptiveLeft="0"
-          adaptiveFontSize="16px" 
+          adaptiveFontSize="16px"
           adaptiveLineHeight="23px"
         />
 
         <CustomModal isOpen={isModalOpen} title="Список документации" onClose={() => setIsModalOpen(false)}>
-          <DocumentationAccordion accordionData={accordionData} enterTimeout={300} exitTimeout={300} />
+          <DocumentationAccordion accordionData={accordionData} titles={accordionTitles} />
         </CustomModal>
 
         <img src="/assets/img/kotelnaya/kotel.png" alt="Котел" className={styles['mnemo__img']} />

@@ -9,8 +9,8 @@
   display: flex;
   flex-direction: column; /* Для разделения header и body */
   overflow: hidden;
-  transition: max-height 0.5s ease-in-out; /* Анимация изменения высоты */
-  
+  transition: max-height 1s ease-in-out; /* Анимация изменения высоты */
+
   &AfterOpen {
     transform: scale(1);
     transition: transform 0.3s ease-in-out;

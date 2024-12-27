@@ -98,10 +98,8 @@ const LevelIndicator: React.FC<LevelIndicatorProps> = ({
           backgroundColor: isValidLevel ? fillColor : 'transparent',
         }}
       />
-
     </div>
   );
 };
-
 
 export default LevelIndicator;

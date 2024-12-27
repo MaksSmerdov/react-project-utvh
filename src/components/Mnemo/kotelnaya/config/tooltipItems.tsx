@@ -1,5 +1,5 @@
 // tooltipItems.tsx
-import React from "react";
+import React from 'react';
 import styles from '../mnemoKotel.module.scss'; // Путь к стилям
 
 export interface TooltippedParam {
@@ -16,90 +16,100 @@ export interface TooltippedParam {
 
 const tooltipItems = [
   {
-    id: "davlenieGaza",
+    id: 'davlenieGaza',
     className: styles.ParamDavlenieGaza,
-    dataKey: "Давление газа котел №",
-    source: "parameters",
-    naimenov: "Давление газа",
-    unit: "кг/м²",
-    width: "225px",
-    responsiveWidth: { "max-1280": "225px" },
+    dataKey: 'Давление газа котел №',
+    source: 'parameters',
+    naimenov: 'Давление газа',
+    unit: 'кг/м²',
+    width: '225px',
+    responsiveWidth: { 'max-1280': '225px' },
     content: (
       <div>
-        Прибор: ПД-1М.1И<br />
-        Диапазон: 0...40 кПа<br />
+        Прибор: ПД-1М.1И
+        <br />
+        Диапазон: 0...40 кПа
+        <br />
         Токовый выход: 4 - 20 мА
       </div>
     ),
   },
   {
-    id: "davlenieVozduha",
+    id: 'davlenieVozduha',
     className: styles.ParamDavlenieVozduha,
-    dataKey: "Давление воздуха котел №",
-    source: "parameters",
-    naimenov: "Давление воздуха",
-    unit: "кг/м²",
-    width: "225px",
-    responsiveWidth: { "max-1280": "225px" },
+    dataKey: 'Давление воздуха котел №',
+    source: 'parameters',
+    naimenov: 'Давление воздуха',
+    unit: 'кг/м²',
+    width: '225px',
+    responsiveWidth: { 'max-1280': '225px' },
     content: (
       <div>
-        Прибор: ПД-1Н.42<br />
-        Диапазон: 0...2,5 кПа<br />
+        Прибор: ПД-1Н.42
+        <br />
+        Диапазон: 0...2,5 кПа
+        <br />
         Токовый выход: 4 - 20 мА
       </div>
     ),
   },
   {
-    id: "davleniePara",
+    id: 'davleniePara',
     className: styles.ParamDavleniePara,
-    dataKey: "Давление пара котел №",
-    source: "parameters",
-    naimenov: "Давление пара",
-    unit: "кг/см²",
-    width: "225px",
-    responsiveWidth: { "max-1280": "225px" },
+    dataKey: 'Давление пара котел №',
+    source: 'parameters',
+    naimenov: 'Давление пара',
+    unit: 'кг/см²',
+    width: '225px',
+    responsiveWidth: { 'max-1280': '225px' },
     content: (
       <div>
-        Прибор: Метран-55-ДИ<br />
-        Диапазон: 0...1,6 МПа<br />
+        Прибор: Метран-55-ДИ
+        <br />
+        Диапазон: 0...1,6 МПа
+        <br />
         Токовый выход: 4 - 20 мА
       </div>
     ),
   },
   {
-    id: "razrezhenie",
+    id: 'razrezhenie',
     className: styles.ParamRazrezhenie,
-    dataKey: "Разрежение в топке котел №",
-    source: "parameters",
-    naimenov: "Разрежение",
-    unit: "кг/м²",
-    width: "225px",
-    responsiveWidth: { "max-1280": "225px" },
+    dataKey: 'Разрежение в топке котел №',
+    source: 'parameters',
+    naimenov: 'Разрежение',
+    unit: 'кг/м²',
+    width: '225px',
+    responsiveWidth: { 'max-1280': '225px' },
     content: (
       <div>
-        Прибор: ПД-1ТН.42<br />
-        Диапазон: -0,125...+0,125 кПа<br />
+        Прибор: ПД-1ТН.42
+        <br />
+        Диапазон: -0,125...+0,125 кПа
+        <br />
         Токовый выход: 4 - 20 мА
       </div>
     ),
   },
   {
-    id: "urovenKotla",
+    id: 'urovenKotla',
     className: styles.ParamUroven,
-    dataKey: "Уровень в барабане котел №",
-    source: "parameters",
-    naimenov: "Уровень в барабане",
-    unit: "мм",
-    width: "240px",
-    responsiveWidth: { "max-1280": "225px" },
+    dataKey: 'Уровень в барабане котел №',
+    source: 'parameters',
+    naimenov: 'Уровень в барабане',
+    unit: 'мм',
+    width: '240px',
+    responsiveWidth: { 'max-1280': '225px' },
     content: (
       <div>
-        Прибор: АИР-20/М2-Н-ДД<br />
-        Диапазон: 0...6,3 кПа<br />
+        Прибор: АИР-20/М2-Н-ДД
+        <br />
+        Диапазон: 0...6,3 кПа
+        <br />
         Токовый выход: 4 - 20 мА
       </div>
     ),
-  }
+  },
 ];
 
 export default tooltipItems;

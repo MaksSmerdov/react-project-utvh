@@ -12,7 +12,7 @@
     display: flex;
     flex-direction: column;
     border: 2px solid black;
-    border-radius: 3px; 
+    border-radius: 3px;
     @include mixins.text-style(14px, 16px, 600);
     transition: box-shadow 0.5s ease;
 
@@ -20,18 +20,18 @@
       cursor: pointer;
       &:hover {
         box-shadow: 0 0 10px 4px rgba(0, 128, 0, 0.5);
-        background-color: rgba(0, 255, 0, 0.1); 
+        background-color: rgba(0, 255, 0, 0.1);
         transition: box-shadow 0.5s ease;
       }
     }
-  
+
     &-naimenov {
       background-color: green;
-      color: black; 
+      color: black;
       padding: 3px;
       border-bottom: 1px solid black;
     }
-  
+
     &-text {
       display: flex;
       justify-content: space-around;
@@ -41,13 +41,12 @@
     }
 
     &-value {
-      color: blue; 
+      color: blue;
     }
 
     &-span {
       color: black;
     }
-  
   }
 
   &__param-descr {
@@ -80,7 +79,6 @@
       text-align: center;
     }
   }
-
 }
 
 .mnemo__gif {
@@ -91,10 +89,12 @@
     top: 44.3%;
     left: 24.5%;
     width: 280px;
-    height: 101px;      
+    height: 101px;
   }
 
-  &-2, &-3, &-4 {
+  &-2,
+  &-3,
+  &-4 {
     top: 73%;
     width: 45px;
     height: 45px;
@@ -132,7 +132,6 @@
     width: 40px;
     height: 80px;
   }
-
 }
 
 .im {
@@ -159,7 +158,6 @@
     top: 46%;
     left: 11.5%;
   }
-
 }
 
 .Param {
@@ -185,11 +183,11 @@
 
   &Uroven {
     top: 28%;
-    left: 31%
+    left: 31%;
   }
 }
 
-.alarm{
+.alarm {
   &Active {
     background-color: red; // Красный фон для активного состояния
     color: black;
@@ -231,12 +229,12 @@
     left: 56.7%;
   }
   &OstanovKotla {
-    top: 5.5%; 
+    top: 5.5%;
     left: 64%;
   }
 }
 
-.info{
+.info {
   &Active {
     background-color: green;
     color: black;
@@ -268,7 +266,7 @@
   }
   &StabGorelki {
     bottom: 5.3%;
-    left: 49.3%
+    left: 49.3%;
   }
   &RabRezhim {
     bottom: 5.3%;
@@ -285,7 +283,6 @@
   top: 79.5%;
   left: 12.5%;
 }
-
 
 @keyframes rotate {
   0% {

@@ -1,16 +1,15 @@
-import { useEffect, useState } from "react";
-import { apiConfigs } from "../../../../configs/apiConfigKotelnaya";
+import { useEffect, useState } from 'react';
+import { apiConfigs } from '../../../../configs/apiConfigKotelnaya';
 
 type KotelKey = keyof typeof apiConfigs;
 
 interface Config<K extends KotelKey> {
-  config: typeof apiConfigs[K];
-  objectNumber: number;
+  config: (typeof apiConfigs)[K];
 }
 
-type Data<K extends KotelKey> = typeof apiConfigs[K]["defaultData"];
+type Data<K extends KotelKey> = (typeof apiConfigs)[K]['defaultData'];
 
-const useMnemoKotel = <K extends KotelKey>({ config, objectNumber }: Config<K>) => {
+const useMnemoKotel = <K extends KotelKey>({ config }: Config<K>) => {
   const [data, setData] = useState<Data<K>>(config.defaultData);
   const [tooltipsEnabled, setTooltipsEnabled] = useState(false);
   const [isLoading, setIsLoading] = useState(true);
@@ -28,11 +27,11 @@ const useMnemoKotel = <K extends KotelKey>({ config, objectNumber }: Config<K>) 
         setData(result);
       } catch (error: any) {
         const errorMsg =
-          error.name === "TypeError" && error.message.includes("Failed to fetch")
+          error.name === 'TypeError' && error.message.includes('Failed to fetch')
             ? `Ошибка: Не удалось подключиться к серверу. Проверьте подключение или URL: ${config.apiUrl}`
             : `Ошибка загрузки данных: ${error.message}`;
         console.error(errorMsg);
-        
+
         // Устанавливаем все значения в defaultData на "—"
         setDefaultDataToDashes(config.defaultData);
       } finally {
@@ -52,7 +51,7 @@ const useMnemoKotel = <K extends KotelKey>({ config, objectNumber }: Config<K>) 
     const updatedData = { ...defaultData };
     for (const category in updatedData) {
       for (const key in updatedData[category]) {
-        updatedData[category][key] = "—"; // Устанавливаем каждое значение на "—"
+        updatedData[category][key] = '—'; // Устанавливаем каждое значение на "—"
       }
     }
     setData(updatedData); // Обновляем состояние data

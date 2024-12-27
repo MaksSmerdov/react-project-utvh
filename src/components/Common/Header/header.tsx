@@ -1,12 +1,12 @@
-import React, { useEffect, useState } from "react";
-import styles from "./header.module.scss";
+import React, { useEffect, useState } from 'react';
+import styles from './header.module.scss';
 
 interface HeaderProps {
   title: string;
   maxWidth?: string; // Новый проп для max-width
 }
 
-const Header: React.FC<HeaderProps> = ({ title, maxWidth = "100%" }) => {
+const Header: React.FC<HeaderProps> = ({ title, maxWidth = '100%' }) => {
   const [currentTime, setCurrentTime] = useState(new Date());
 
   useEffect(() => {

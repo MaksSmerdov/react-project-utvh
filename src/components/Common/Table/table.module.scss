@@ -28,12 +28,11 @@
 
   &__th {
     text-align: center;
-    font-family: "Bitter", sans-serif;
+    font-family: 'Bitter', sans-serif;
     font-size: 18px;
     font-weight: 800;
     color: black;
     @include mixins.text-style(18px, 18px, 500, vars.$black);
-
 
     &:not(:last-child) {
       border-right: 1px solid black;
@@ -43,7 +42,7 @@
   &__td {
     letter-spacing: 1px;
     text-align: center;
-    font-family: "Bitter", sans-serif;
+    font-family: 'Bitter', sans-serif;
     font-size: 16px;
     font-weight: 500;
     color: black;
