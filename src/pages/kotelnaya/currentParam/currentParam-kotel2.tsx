@@ -1,0 +1,9 @@
+import React from "react";
+import CurrentParameter from "../../../components/Current/currentParameter";
+import { apiConfigs } from "../../../configs/apiConfigKotelnaya";
+
+const CurrentParameterKotel2: React.FC = () => {
+  return <CurrentParameter config={apiConfigs.kotel2} title="Котел №2" />;
+};
+
+export default CurrentParameterKotel2;
