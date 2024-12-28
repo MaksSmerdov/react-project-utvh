@@ -28,11 +28,12 @@ const GifComponent: React.FC<GifComponentProps> = ({
       alt={alt}
       className={`${className}`}
       style={{
-        display: condition ? 'block' : 'none',
-        animationPlayState: isAnimation && condition ? 'running' : 'paused',
+        display: isAnimation || condition ? 'block' : 'none', // Если isAnimation включено, display всегда block
+        animationPlayState: condition ? 'running' : 'paused', // Состояние анимации зависит от condition
       }}
     />
   );
 };
 
 export default GifComponent;
+

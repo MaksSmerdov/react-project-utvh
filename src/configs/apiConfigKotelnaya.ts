@@ -5,9 +5,14 @@ export interface ApiConfig {
   displayNames: Record<string, Record<string, string>>; // Сопоставление названий
 }
 
+const apiBaseUrl =
+  process.env.NODE_ENV === 'production'
+    ? `http://${process.env.REACT_APP_PRODUCTION_HOST}/api`
+    : 'http://localhost:3002/api';
+
 export const apiConfigs: Record<string, ApiConfig> = {
   kotel1: {
-    apiUrl: 'http://localhost:3003/api/kotel1-data',
+    apiUrl: `${apiBaseUrl}/kotel1-data`,
     defaultData: {
       parameters: {
         'Уровень в барабане котел №1': '—',
@@ -71,7 +76,7 @@ export const apiConfigs: Record<string, ApiConfig> = {
   },
 
   kotel2: {
-    apiUrl: 'http://localhost:3003/api/kotel2-data',
+    apiUrl: `${apiBaseUrl}/kotel2-data`,
     defaultData: {
       parameters: {
         'Уровень в барабане котел №2': '—',
@@ -135,7 +140,7 @@ export const apiConfigs: Record<string, ApiConfig> = {
   },
 
   kotel3: {
-    apiUrl: 'http://localhost:3003/api/kotel3-data',
+    apiUrl: `${apiBaseUrl}/kotel3-data`,
     defaultData: {
       parameters: {
         'Уровень в барабане котел №3': '—',

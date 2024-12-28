@@ -239,7 +239,7 @@ const MnemoKotel = <K extends keyof typeof apiConfigs>({ configKey, title, objec
                 </div>
                 <div className={styles['mnemo__param-text']}>
                   <div className={styles['mnemo__param-value']}>{value}</div>
-                  <div className={styles['mnemo__param-span']}>{value !== '—' ? param.unit : ''}</div>
+                  <div className={styles['mnemo__param-span']}>{param.unit}</div>
                 </div>
               </div>
             </Tooltip>
