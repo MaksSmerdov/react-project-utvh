@@ -1,5 +1,6 @@
 import React from 'react';
 import { Routes, Route } from 'react-router-dom';
+import HomePage from './pages/homePage';
 import CurrentParameterKotel1 from './pages/kotelnaya/currentParam/currentParam-kotel1';
 import CurrentParameterKotel2 from './pages/kotelnaya/currentParam/currentParam-kotel2';
 import CurrentParameterKotel3 from './pages/kotelnaya/currentParam/currentParam-kotel3';
@@ -11,6 +12,8 @@ const App: React.FC = () => {
   return (
     <div>
       <Routes>
+        <Route path="/" element={<HomePage />} />
+
         <Route path="/currentParam-kotel1" element={<CurrentParameterKotel1 />} />
         <Route path="/currentParam-kotel2" element={<CurrentParameterKotel2 />} />
         <Route path="/currentParam-kotel3" element={<CurrentParameterKotel3 />} />

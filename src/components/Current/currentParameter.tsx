@@ -3,6 +3,7 @@ import Header from '../Common/Header/header';
 import Table from '../Common/Table/table';
 import styles from './currentParameter.module.scss';
 import { ApiConfig } from '../../configs/apiConfigKotelnaya';
+import Loader from '../Common/Preloader/preloader';
 
 interface CurrentParameterProps {
   config: ApiConfig;
@@ -11,9 +12,12 @@ interface CurrentParameterProps {
 
 const CurrentParameter: React.FC<CurrentParameterProps> = ({ config, title }) => {
   const [data, setData] = useState(config.defaultData);
+  const [loading, setLoading] = useState(true); // Состояние для отслеживания загрузки данных
+  const [isFirstLoad, setIsFirstLoad] = useState(true); // Состояние для отслеживания первой загрузки
 
   useEffect(() => {
     const fetchData = async () => {
+      setLoading(true); // Начинаем загрузку
       try {
         const response = await fetch(config.apiUrl);
         if (!response.ok) throw new Error('Ошибка загрузки данных');
@@ -31,17 +35,26 @@ const CurrentParameter: React.FC<CurrentParameterProps> = ({ config, title }) =>
         setData(filteredData);
       } catch (error) {
         console.error('Ошибка загрузки данных:', error);
+      } finally {
+        if (isFirstLoad) {
+          setIsFirstLoad(false); // После первой загрузки меняем состояние
+        }
+        setLoading(false); // Завершаем загрузку
       }
     };
 
     fetchData();
     const interval = setInterval(fetchData, 5000);
     return () => clearInterval(interval);
-  }, [config.apiUrl, config.defaultData]);
+  }, [config.apiUrl, config.defaultData, isFirstLoad]);
 
   return (
     <div>
       <Header title={title} maxWidth="900px" />
+      
+      {/* Показываем Loader только при первой загрузке */}
+      {isFirstLoad && <Loader loading={loading} size={80} />}
+
       <div className={styles.tables}>
         {Object.entries(config.titles).map(([key, tableTitle]) => (
           <div key={key}>
