@@ -8,6 +8,9 @@
     "@mui/icons-material": "^6.2.0",
     "@mui/material": "^6.2.0",
     "@tippyjs/react": "^4.2.6",
+    "chart.js": "^4.4.7",
+    "chartjs-adapter-date-fns": "^3.0.0",
+    "chartjs-plugin-crosshair": "^2.0.0",
     "cra-template": "1.2.0",
     "react": "^18.3.1",
     "react-chartjs-2": "^5.2.0",
@@ -44,6 +47,7 @@
   },
   "devDependencies": {
     "@babel/plugin-proposal-private-property-in-object": "^7.21.11",
+    "@types/chartjs-plugin-crosshair": "^1.1.4",
     "@types/node": "^22.10.2",
     "@types/react": "^19.0.1",
     "@types/react-dom": "^19.0.2",

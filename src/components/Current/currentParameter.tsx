@@ -8,9 +8,10 @@ import Loader from '../Common/Preloader/preloader';
 interface CurrentParameterProps {
   config: ApiConfig;
   title: string;
+  showLoader?: boolean; // Новый пропс для управления отображением прелоадера
 }
 
-const CurrentParameter: React.FC<CurrentParameterProps> = ({ config, title }) => {
+const CurrentParameter: React.FC<CurrentParameterProps> = ({ config, title, showLoader = true }) => {
   const [data, setData] = useState(config.defaultData);
   const [loading, setLoading] = useState(true); // Состояние для отслеживания загрузки данных
   const [isFirstLoad, setIsFirstLoad] = useState(true); // Состояние для отслеживания первой загрузки
@@ -52,8 +53,8 @@ const CurrentParameter: React.FC<CurrentParameterProps> = ({ config, title }) =>
     <div>
       <Header title={title} maxWidth="900px" />
       
-      {/* Показываем Loader только при первой загрузке */}
-      {isFirstLoad && <Loader loading={loading} size={80} />}
+      {/* Показываем Loader только при первой загрузке и если showLoader установлен в true */}
+      {isFirstLoad && showLoader && <Loader loading={loading} size={80} />}
 
       <div className={styles.tables}>
         {Object.entries(config.titles).map(([key, tableTitle]) => (

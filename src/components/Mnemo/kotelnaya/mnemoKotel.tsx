@@ -1,4 +1,4 @@
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
 import styles from './mnemoKotel.module.scss';
 import { apiConfigs } from '../../../configs/apiConfigKotelnaya';
 import useMnemoKotel from './hooks/useMnemoKotel';
@@ -19,16 +19,23 @@ interface MnemoKotelProps<K extends keyof typeof apiConfigs> {
   configKey: K;
   title: string;
   objectNumber: number;
+  showLoader?: boolean; // Новый пропс для управления отображением прелоадера
 }
 
-const MnemoKotel = <K extends keyof typeof apiConfigs>({ configKey, title, objectNumber }: MnemoKotelProps<K>) => {
+const MnemoKotel = <K extends keyof typeof apiConfigs>({ configKey, title, objectNumber, showLoader = true }: MnemoKotelProps<K>) => {
   const { data, isLoading, tooltipsEnabled, toggleTooltips } = useMnemoKotel({
     config: apiConfigs[configKey],
   });
 
   const [isModalOpen, setIsModalOpen] = useState(false);
 
-  if (isLoading) {
+  useEffect(() => {
+    // Если showLoader истинно, показываем прелоадер во время загрузки данных
+    if (isLoading && showLoader) {
+    }
+  }, [isLoading, showLoader]);
+
+  if (showLoader && isLoading) {
     return <Loader loading={true} size={80} />;
   }
 
