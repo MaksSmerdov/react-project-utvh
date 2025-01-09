@@ -51,7 +51,8 @@ interface GenericData {
 
 const UniversalChart: React.FC<UniversalChartProps> = ({ apiUrl, title, yMin, yMax, dataKey, params }) => {
     const chartRef = useRef<ChartJS<'line'> | null>(null);
-    const [startTime, setStartTime] = useState(new Date(Date.now() - 30 * 60 * 1000));
+    const [timeInterval, setTimeInterval] = useState(10); // 10 минут по умолчанию
+    const [startTime, setStartTime] = useState(new Date(Date.now() - timeInterval * 60 * 1000));
     const [endTime, setEndTime] = useState(new Date());
     const { data, refetch } = useData(apiUrl, startTime, endTime);
     const [allHidden, setAllHidden] = useState(false);
@@ -61,15 +62,14 @@ const UniversalChart: React.FC<UniversalChartProps> = ({ apiUrl, title, yMin, yM
         const interval = setInterval(() => {
             if (isAutoScroll) {
                 setEndTime(new Date());
-                setStartTime(new Date(Date.now() - 30 * 60 * 1000));
+                setStartTime(new Date(Date.now() - timeInterval * 60 * 1000));
             } else {
                 refetch();
             }
         }, 5000);
 
         return () => clearInterval(interval);
-    }, [isAutoScroll, refetch]);
-
+    }, [isAutoScroll, timeInterval, refetch]);
 
     const processedData = data.map((item: GenericData) => ({
         time: new Date(item.lastUpdated),
@@ -84,7 +84,6 @@ const UniversalChart: React.FC<UniversalChartProps> = ({ apiUrl, title, yMin, yM
             borderColor: colors[index % colors.length],
             backgroundColor: colors[index % colors.length],
             spanGaps: false,
-            
         })),
     };
 
@@ -99,6 +98,12 @@ const UniversalChart: React.FC<UniversalChartProps> = ({ apiUrl, title, yMin, yM
             chartRef.current.update();
         }
         setAllHidden(!allHidden);
+    };
+
+    const handleIntervalChange = (newInterval: number) => {
+        setTimeInterval(newInterval);
+        setStartTime(new Date(Date.now() - newInterval * 60 * 1000));
+        setEndTime(new Date());
     };
 
     const options: ChartOptions<'line'> = getChartOptions(
@@ -131,6 +136,18 @@ const UniversalChart: React.FC<UniversalChartProps> = ({ apiUrl, title, yMin, yM
                     style={{ marginLeft: '10px' }}
                 >
                     Вернуться к текущим данным
+                </button>
+                <button
+                    onClick={() => handleIntervalChange(10)}
+                    style={{ marginLeft: '10px' }}
+                >
+                    10 минут
+                </button>
+                <button
+                    onClick={() => handleIntervalChange(30)}
+                    style={{ marginLeft: '10px' }}
+                >
+                    30 минут
                 </button>
             </div>
         </div>
