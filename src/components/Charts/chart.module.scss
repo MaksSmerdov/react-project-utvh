@@ -1,0 +1,33 @@
+.dynamic-graph__btns {
+  margin-top: 20px;
+  display: flex;
+}
+
+.dynamic-graph__btn {
+  margin-right: 10px;
+  height: 27px;
+  font-size: 16px;
+  line-height: 22px;
+  font-weight: 600;
+  color: green;
+  border: 1px solid green;
+  background-color: transparent;
+  cursor: pointer;
+  transition: color .3s ease-in-out, background-color .3s ease-in-out;
+}
+
+.dynamic-graph__btn:hover {
+  color: white;
+  background-color: green;
+}
+
+.dynamic-graph__btn:active {
+  color: white;
+  background-color: green;
+}
+
+.dynamic-graph__btn:focus-visible {
+  color: white;
+  background-color: green;
+  outline: none;
+}
