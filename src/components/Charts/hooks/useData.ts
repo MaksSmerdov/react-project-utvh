@@ -1,5 +1,14 @@
 import { useState, useEffect, useCallback } from 'react';
-import { GenericData } from '../types';
+
+export interface GenericReading {
+    [key: string]: number; // Ключ — название параметра, значение — числовое измерение
+  }
+  
+  export interface GenericData {
+    lastUpdated: string; // Временная метка
+    values: GenericReading; // Произвольные параметры
+  }
+  
 
 export const useData = (apiUrl: string, startTime: Date, endTime: Date) => {
     const [data, setData] = useState<GenericData[]>([]);

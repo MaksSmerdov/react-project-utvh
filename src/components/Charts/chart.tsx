@@ -124,6 +124,14 @@ const UniversalChart: React.FC<UniversalChartProps> = ({
 
   return (
     <div style={{ width, height, marginBottom: '50px' }}>
+      <div className={styles['dynamic-graph__btns']}>
+      <button className={styles['dynamic-graph__btn']} onClick={() => handleIntervalChange(10)}>
+          10 минут
+        </button>
+        <button className={styles['dynamic-graph__btn']} onClick={() => handleIntervalChange(30)}>
+          30 минут
+        </button>
+      </div>
       <Line ref={chartRef} data={chartData} options={options} />
       <div className={styles['dynamic-graph__btns']}>
         <button
@@ -146,12 +154,6 @@ const UniversalChart: React.FC<UniversalChartProps> = ({
           onClick={() => handleReturnToCurrent(setStartTime, setEndTime, setIsAutoScroll)}
         >
           Вернуться к текущим данным
-        </button>
-        <button className={styles['dynamic-graph__btn']} onClick={() => handleIntervalChange(10)}>
-          10 минут
-        </button>
-        <button className={styles['dynamic-graph__btn']} onClick={() => handleIntervalChange(30)}>
-          30 минут
         </button>
       </div>
     </div>
