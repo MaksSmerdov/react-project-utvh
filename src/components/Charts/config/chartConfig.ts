@@ -1,17 +1,33 @@
 import { ChartOptions } from 'chart.js';
 
+export const colors = [
+    'rgba(54, 162, 235, 1)',
+    'rgba(255, 99, 132, 1)',
+    'rgba(75, 192, 192, 1)',
+    'rgba(255, 205, 86, 1)',
+    'rgba(201, 203, 207, 1)',
+    'rgba(255, 159, 64, 1)',
+    'rgba(153, 102, 255, 1)',
+    'rgba(255, 99, 71, 1)',
+    'rgba(0, 255, 0, 1)',
+    'rgba(0, 255, 255, 1)',
+    'rgba(255, 20, 147, 1)',
+    'rgba(139, 69, 19, 1)',
+    'rgba(128, 0, 128, 1)',
+    'rgba(0, 0, 255, 1)',
+];
+
 export const getChartOptions = (
     startTime: number,
     endTime: number,
     title: string,
-    yMin?: number, // Новый аргумент для минимального значения оси Y
-    yMax?: number  // Новый аргумент для максимального значения оси Y
+    isAutoScroll: boolean,
+    yMin?: number,
+    yMax?: number
 ): ChartOptions<'line'> => ({
     responsive: true,
-    maintainAspectRatio: false, // Позволяет графику заполнять контейнер
-    animation: {
-        duration: 0, // Длительность анимации
-    },
+    maintainAspectRatio: false,
+    animation: false,
     interaction: {
         mode: 'index',
         intersect: false,
@@ -38,10 +54,10 @@ export const getChartOptions = (
                     return chart.data.datasets.map((dataset, index) => {
                         const value = dataset.data.length
                             ? dataset.data[dataset.data.length - 1]
-                            : ''; // Последнее значение
+                            : '';
                         const label = dataset.label || '';
                         return {
-                            text: `${value} | ${label}`, // Формат «Значение | Название»
+                            text: `${value} | ${label}`,
                             fillStyle: dataset.borderColor as string,
                             hidden: !chart.isDatasetVisible(index),
                             datasetIndex: index,
@@ -55,28 +71,16 @@ export const getChartOptions = (
             callbacks: {
                 title: (tooltipItems) => {
                     if (tooltipItems.length > 0) {
-                        const parsedTime = tooltipItems[0].parsed.x; // Берем исходное значение времени
-                        if (typeof parsedTime === 'number') {
-                            const date = new Date(parsedTime);
-                            const dateString = date.toLocaleDateString('ru-RU', {
-                                day: '2-digit',
-                                month: '2-digit',
-                                year: '2-digit',
-                            });
-                            const timeString = date.toLocaleTimeString('ru-RU', {
-                                hour: '2-digit',
-                                minute: '2-digit',
-                            });
-                            return `${dateString} ${timeString}`; // Форматируем в "24.12.24 16:00"
-                            
-                        }
+                        const parsedTime = tooltipItems[0].parsed.x;
+                        const date = new Date(parsedTime);
+                        return date.toLocaleString('ru-RU');
                     }
-                    return ''; // Возвращаем пустую строку, если данных нет
+                    return '';
                 },
                 label: (context) => {
                     const label = context.dataset.label || '';
                     const value = context.raw !== null ? context.raw : '—';
-                    return `${label}: ${value}°C`;
+                    return `${label}: ${value !== null ? value + '°C' : 'Нет данных'}`;
                 },
             },
         },
@@ -109,17 +113,17 @@ export const getChartOptions = (
                 maxTicksLimit: 20,
             },
             min: startTime,
-            max: endTime + 5 * 60 * 1000,
+            max: isAutoScroll ? endTime + 2 * 60 * 1000 : endTime,
         },
         y: {
             beginAtZero: false,
-            min: yMin, // Используем переданное минимальное значение
-            max: yMax, // Используем переданное максимальное значение
+            min: yMin,
+            max: yMax,
         },
     },
     elements: {
         point: {
-            radius: 2, // Убираем радиус точек, оставляя только линии
+            radius: 2,
         },
     },
 });

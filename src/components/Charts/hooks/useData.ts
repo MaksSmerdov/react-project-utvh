@@ -1,5 +1,3 @@
-// src/components/Charts/hooks/useData.ts
-
 import { useState, useEffect, useCallback } from 'react';
 import { GenericData } from '../types';
 

@@ -36,7 +36,7 @@ const HomePage: React.FC = () => {
               yMax={315}
               dataKey="parameters"
               params={[
-                { key: 'Уровень в барабане котел №1', label: 'Уровень в котле №1', color: 'rgb(99, 198, 255)' },
+                { key: 'Уровень в барабане котел №1', label: 'Уровень в котле №1'},
               ]}
             />
             <UniversalChart
@@ -46,7 +46,17 @@ const HomePage: React.FC = () => {
               yMax={315}
               dataKey="parameters"
               params={[
-                { key: 'Уровень в барабане котел №2', label: 'Уровень в котле №2', color: 'rgb(99, 198, 255)' },
+                { key: 'Уровень в барабане котел №2', label: 'Уровень в котле №2'},
+              ]}
+            />
+             <UniversalChart
+              apiUrl="http://localhost:3002/api/kotel3/data"
+              title="График параметров котла №3"
+              yMin={-315}
+              yMax={315}
+              dataKey="parameters"
+              params={[
+                { key: 'Уровень в барабане котел №3', label: 'Уровень в котле №3'},
               ]}
             />
           </>

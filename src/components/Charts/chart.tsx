@@ -15,7 +15,13 @@ import {
 import 'chartjs-adapter-date-fns';
 import CrosshairPlugin from 'chartjs-plugin-crosshair';
 import { useData } from './hooks/useData';
-import { getChartOptions } from './chartConfig';
+import { getChartOptions, colors } from './config/chartConfig';
+import {
+    handleBackward,
+    handleForward,
+    handleReturnToCurrent,
+    createDataWithGaps,
+} from './utils/chartUtils';
 
 ChartJS.register(
     LineElement,
@@ -35,7 +41,7 @@ interface UniversalChartProps {
     yMin?: number;
     yMax?: number;
     dataKey: string;
-    params: { key: string; label: string; color: string }[];
+    params: { key: string; label: string }[];
 }
 
 interface GenericData {
@@ -49,44 +55,37 @@ const UniversalChart: React.FC<UniversalChartProps> = ({ apiUrl, title, yMin, yM
     const [endTime, setEndTime] = useState(new Date());
     const { data, refetch } = useData(apiUrl, startTime, endTime);
     const [allHidden, setAllHidden] = useState(false);
+    const [isAutoScroll, setIsAutoScroll] = useState(true);
 
     useEffect(() => {
         const interval = setInterval(() => {
-            setEndTime(new Date());
-            setStartTime(new Date(Date.now() - 30 * 60 * 1000));
-        }, 5000);
-    
-        return () => clearInterval(interval);
-    }, []);
-    
-    useEffect(() => {
-        if (chartRef.current) {
-            refetch();
-        }
-    }, [startTime, endTime, refetch]);
-    
-    useEffect(() => {
-        return () => {
-            if (chartRef.current) {
-                chartRef.current.destroy();
-                chartRef.current = null;
+            if (isAutoScroll) {
+                setEndTime(new Date());
+                setStartTime(new Date(Date.now() - 30 * 60 * 1000));
+            } else {
+                refetch();
             }
-        };
-    }, []);
-    
+        }, 5000);
 
-    const handleBackward = () => {
-        const newStartTime = new Date(startTime.getTime() - 60 * 60 * 1000);
-        const newEndTime = new Date(endTime.getTime() - 60 * 60 * 1000);
-        setStartTime(newStartTime);
-        setEndTime(newEndTime);
-    };
+        return () => clearInterval(interval);
+    }, [isAutoScroll, refetch]);
 
-    const handleForward = () => {
-        const newStartTime = new Date(startTime.getTime() + 60 * 60 * 1000);
-        const newEndTime = new Date(endTime.getTime() + 60 * 60 * 1000);
-        setStartTime(newStartTime);
-        setEndTime(newEndTime);
+
+    const processedData = data.map((item: GenericData) => ({
+        time: new Date(item.lastUpdated),
+        values: item[dataKey] || {},
+    }));
+
+    const chartData = {
+        labels: processedData.map((d) => d.time),
+        datasets: params.map((param, index) => ({
+            label: param.label,
+            data: createDataWithGaps(processedData, param.key),
+            borderColor: colors[index % colors.length],
+            backgroundColor: colors[index % colors.length],
+            spanGaps: false,
+            
+        })),
     };
 
     const handleToggleAll = () => {
@@ -102,40 +101,36 @@ const UniversalChart: React.FC<UniversalChartProps> = ({ apiUrl, title, yMin, yM
         setAllHidden(!allHidden);
     };
 
-    const processedData = data.map((item: GenericData) => ({
-        time: new Date(item.lastUpdated),
-        values: item[dataKey] || {},
-    }));
-
-    const chartData = {
-        labels: processedData.map((d) => d.time),
-        datasets: params.map((param) => ({
-            label: param.label,
-            data: processedData.map((d) => d.values[param.key] ?? null),
-            borderColor: param.color,
-            backgroundColor: `${param.color}33`,
-        })),
-    };
-
     const options: ChartOptions<'line'> = getChartOptions(
         startTime.getTime(),
         endTime.getTime(),
         title,
+        isAutoScroll,
         yMin,
         yMax
     );
 
     return (
-        
-        <div style={{ width: '1200px', height:'400px', marginBottom: '50px' }}>
+        <div style={{ width: '1200px', height: '400px', marginBottom: '50px' }}>
             <Line ref={chartRef} data={chartData} options={options} />
             <div style={{ marginTop: '20px' }}>
-                <button onClick={handleBackward}>Назад</button>
-                <button onClick={handleForward} style={{ marginLeft: '10px' }}>
-                    Вперед
+                <button onClick={() => handleBackward(startTime, endTime, setStartTime, setEndTime, setIsAutoScroll)}>
+                    Назад
+                </button>
+                <button
+                    onClick={() => handleForward(startTime, endTime, setStartTime, setEndTime, setIsAutoScroll)}
+                    style={{ marginLeft: '10px' }}
+                >
+                    Вперёд
                 </button>
                 <button onClick={handleToggleAll} style={{ marginLeft: '10px' }}>
                     {allHidden ? 'Показать все' : 'Скрыть все'}
+                </button>
+                <button
+                    onClick={() => handleReturnToCurrent(setStartTime, setEndTime, setIsAutoScroll)}
+                    style={{ marginLeft: '10px' }}
+                >
+                    Вернуться к текущим данным
                 </button>
             </div>
         </div>
