@@ -74,24 +74,3 @@
   justify-content: space-between;
   align-items: center;
 }
-
-.graph-container {
-  display: flex;
-  flex-direction: column; /* Размещение элементов вертикально */
-  justify-content: flex-start;
-  align-items: center;
-}
-
-.graph-top {
-  display: flex;
-  justify-content: space-between; /* Размещение графиков 1 и 2 в одну строку */
-  width: 100%; /* Для корректного распределения пространства */
-}
-
-.graph-bottom {
-  display: flex;
-  justify-content: center; /* Центрирует график 3 */
-  margin-top: 50px; /* Отступ между верхней и нижней частью */
-  margin-bottom: 20px;
-}
-

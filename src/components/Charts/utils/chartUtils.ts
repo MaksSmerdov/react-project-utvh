@@ -39,11 +39,13 @@ export const handleForward = (
 export const handleReturnToCurrent = (
   setStartTime: (time: Date) => void,
   setEndTime: (time: Date) => void,
-  setIsAutoScroll: (autoScroll: boolean) => void
+  setIsAutoScroll: (autoScroll: boolean) => void,
+  timeInterval: number // Время интервала в минутах
 ) => {
   setIsAutoScroll(true);
-  setEndTime(new Date());
-  setStartTime(new Date(Date.now() - 30 * 60 * 1000));
+  const now = new Date();
+  setEndTime(now);
+  setStartTime(new Date(now.getTime() - timeInterval * 60 * 1000));
 };
 
 export const createDataWithGaps = (

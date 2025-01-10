@@ -28,7 +28,6 @@ export const getChartOptions = (
 ): ChartOptions<'line'> => ({
     responsive: true,
     maintainAspectRatio: false,
-    animation: false,
     interaction: {
         mode: 'index',
         intersect: false,
@@ -101,6 +100,12 @@ export const getChartOptions = (
             },
         },
     },
+    animation: {
+        duration: 1000, // Оставляем анимацию для других элементов
+        onComplete: undefined,
+        onProgress: undefined,
+    },
+
     scales: {
         x: {
             type: 'time',

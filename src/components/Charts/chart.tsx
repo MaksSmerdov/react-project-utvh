@@ -37,9 +37,10 @@ interface UniversalChartProps {
   yMin?: number;
   yMax?: number;
   dataKey: string;
-  params: { key: string; label: string; unit?: string }[]; // Добавлено свойство unit
-  width?: number | string; // Ширина графика
-  height?: number | string; // Высота графика
+  params: { key: string; label: string; unit?: string }[];
+  width?: number | string;
+  height?: number | string;
+  id: string; // Уникальный идентификатор
 }
 
 interface GenericData {
@@ -54,8 +55,9 @@ const UniversalChart: React.FC<UniversalChartProps> = ({
   yMax,
   dataKey,
   params,
-  width = 900,
-  height = 400,
+  width = '100%', // Устанавливаем ширину на 100%
+  height = '400px', // Высота по умолчанию
+  id,
 }) => {
   const chartRef = useRef<ChartJS<'line'> | null>(null);
   const [timeInterval, setTimeInterval] = useState(10);
@@ -118,13 +120,14 @@ const UniversalChart: React.FC<UniversalChartProps> = ({
     endTime.getTime(),
     title,
     isAutoScroll,
-    params, // Передаем параметры
+    params,
     yMin,
     yMax,
   );
 
   return (
-    <div style={{ width, height, marginBottom: '50px' }}>
+    <div className={styles['chart-container']}>
+      {/* Кнопки вынесены за пределы контейнера с графиком */}
       <div className={styles['dynamic-graph__btns']}>
         <button className={styles['dynamic-graph__btn']} onClick={() => handleIntervalChange(10)}>
           10 минут
@@ -133,7 +136,13 @@ const UniversalChart: React.FC<UniversalChartProps> = ({
           30 минут
         </button>
       </div>
-      <Line ref={chartRef} data={chartData} options={options} />
+
+      {/* График */}
+      <div id={id}  style={{ width, height }}>
+        <Line ref={chartRef} data={chartData} options={{ ...options, responsive: true }} />
+      </div>
+
+      {/* Внешние кнопки управления */}
       <div className={styles['dynamic-graph__btns']}>
         <button
           className={styles['dynamic-graph__btn']}
@@ -152,7 +161,7 @@ const UniversalChart: React.FC<UniversalChartProps> = ({
         </button>
         <button
           className={styles['dynamic-graph__btn']}
-          onClick={() => handleReturnToCurrent(setStartTime, setEndTime, setIsAutoScroll)}
+          onClick={() => handleReturnToCurrent(setStartTime, setEndTime, setIsAutoScroll, timeInterval)}
         >
           Вернуться к текущим данным
         </button>

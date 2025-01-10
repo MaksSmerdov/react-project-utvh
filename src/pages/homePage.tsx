@@ -35,38 +35,33 @@ const HomePage: React.FC = () => {
         label: 'Графики уровня',
         component: (
           <>
-            <div className={styles['graph-container']}>
-              <div className={styles['graph-top']}>
-                <UniversalChart
-                  apiUrl="http://localhost:3002/api/kotel1/data"
-                  title="График уровня котла №1"
-                  yMin={-315}
-                  yMax={315}
-                  dataKey="parameters"
-                  params={[{ key: 'Уровень в барабане котел №1', label: 'Уровень в котле №1', unit: 'мм' }]}
-                />
-                <UniversalChart
-                  apiUrl="http://localhost:3002/api/kotel2/data"
-                  title="График уровня котла №2"
-                  yMin={-315}
-                  yMax={315}
-                  dataKey="parameters"
-                  params={[{ key: 'Уровень в барабане котел №2', label: 'Уровень в котле №2', unit: 'мм' }]}
-                />
-              </div>
-              <div className={styles['graph-bottom']}>
-                <UniversalChart
-                  apiUrl="http://localhost:3002/api/kotel3/data"
-                  title="График уровня котла №3"
-                  yMin={-315}
-                  yMax={315}
-                  dataKey="parameters"
-                  params={[{ key: 'Уровень в барабане котел №3', label: 'Уровень в котле №3', unit: 'мм' }]}
-                  width={1600}  // Ширина графика
-                  height={400}  // Высота графика
-                />
-              </div>
-            </div>
+            <UniversalChart
+              id="chart-kotel1"
+              apiUrl="http://localhost:3002/api/kotel1/data"
+              title="График уровня котла №1"
+              yMin={-315}
+              yMax={315}
+              dataKey="parameters"
+              params={[{ key: 'Уровень в барабане котел №1', label: 'Уровень в котле №1', unit: 'мм' }]}
+            />
+            <UniversalChart
+              id="chart-kotel2"
+              apiUrl="http://localhost:3002/api/kotel2/data"
+              title="График уровня котла №2"
+              yMin={-315}
+              yMax={315}
+              dataKey="parameters"
+              params={[{ key: 'Уровень в барабане котел №2', label: 'Уровень в котле №2', unit: 'мм' }]}
+            />
+            <UniversalChart
+              id="chart-kotel3"
+              apiUrl="http://localhost:3002/api/kotel3/data"
+              title="График уровня котла №3"
+              yMin={-315}
+              yMax={315}
+              dataKey="parameters"
+              params={[{ key: 'Уровень в барабане котел №3', label: 'Уровень в котле №3', unit: 'мм' }]}
+            />
           </>
         ),
       },
