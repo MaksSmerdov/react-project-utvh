@@ -22,8 +22,9 @@ export const getChartOptions = (
     endTime: number,
     title: string,
     isAutoScroll: boolean,
+    params: { key: string; label: string; unit?: string }[],
     yMin?: number,
-    yMax?: number
+    yMax?: number,
 ): ChartOptions<'line'> => ({
     responsive: true,
     maintainAspectRatio: false,
@@ -52,12 +53,11 @@ export const getChartOptions = (
             labels: {
                 generateLabels: (chart) => {
                     return chart.data.datasets.map((dataset, index) => {
-                        const value = dataset.data.length
-                            ? dataset.data[dataset.data.length - 1]
-                            : '';
+                        const value = dataset.data.length ? dataset.data[dataset.data.length - 1] : '';
                         const label = dataset.label || '';
+                        const unit = params[index]?.unit || ''; 
                         return {
-                            text: `${value} | ${label}`,
+                            text: `${value} ${unit} | ${label}`,
                             fillStyle: dataset.borderColor as string,
                             hidden: !chart.isDatasetVisible(index),
                             datasetIndex: index,
@@ -80,7 +80,8 @@ export const getChartOptions = (
                 label: (context) => {
                     const label = context.dataset.label || '';
                     const value = context.raw !== null ? context.raw : '—';
-                    return `${label}: ${value !== null ? value + '°C' : 'Нет данных'}`;
+                    const unit = params[context.datasetIndex]?.unit || ''; 
+                    return `${label}: ${value !== null ? value + ' ' + unit : 'Нет данных'}`;
                 },
             },
         },

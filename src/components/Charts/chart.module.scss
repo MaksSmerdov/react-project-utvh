@@ -1,3 +1,11 @@
+.chart-container {
+  width: 100%; /* Занимает всю ширину родителя */
+  height: 100%; /* Занимает всю высоту родителя */
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
 .dynamic-graph__btns {
   margin-top: 20px;
   display: flex;

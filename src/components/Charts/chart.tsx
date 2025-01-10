@@ -37,7 +37,7 @@ interface UniversalChartProps {
   yMin?: number;
   yMax?: number;
   dataKey: string;
-  params: { key: string; label: string }[];
+  params: { key: string; label: string; unit?: string }[]; // Добавлено свойство unit
   width?: number | string; // Ширина графика
   height?: number | string; // Высота графика
 }
@@ -54,11 +54,11 @@ const UniversalChart: React.FC<UniversalChartProps> = ({
   yMax,
   dataKey,
   params,
-  width = 900, // Значение по умолчанию для ширины
-  height = 400, // Значение по умолчанию для высоты
+  width = 900,
+  height = 400,
 }) => {
   const chartRef = useRef<ChartJS<'line'> | null>(null);
-  const [timeInterval, setTimeInterval] = useState(10); // 10 минут по умолчанию
+  const [timeInterval, setTimeInterval] = useState(10);
   const [startTime, setStartTime] = useState(new Date(Date.now() - timeInterval * 60 * 1000));
   const [endTime, setEndTime] = useState(new Date());
   const { data, refetch } = useData(apiUrl, startTime, endTime);
@@ -118,14 +118,15 @@ const UniversalChart: React.FC<UniversalChartProps> = ({
     endTime.getTime(),
     title,
     isAutoScroll,
+    params, // Передаем параметры
     yMin,
-    yMax
+    yMax,
   );
 
   return (
     <div style={{ width, height, marginBottom: '50px' }}>
       <div className={styles['dynamic-graph__btns']}>
-      <button className={styles['dynamic-graph__btn']} onClick={() => handleIntervalChange(10)}>
+        <button className={styles['dynamic-graph__btn']} onClick={() => handleIntervalChange(10)}>
           10 минут
         </button>
         <button className={styles['dynamic-graph__btn']} onClick={() => handleIntervalChange(30)}>

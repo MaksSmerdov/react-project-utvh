@@ -43,7 +43,7 @@ const HomePage: React.FC = () => {
                   yMin={-315}
                   yMax={315}
                   dataKey="parameters"
-                  params={[{ key: 'Уровень в барабане котел №1', label: 'Уровень в котле №1' }]}
+                  params={[{ key: 'Уровень в барабане котел №1', label: 'Уровень в котле №1', unit: 'мм' }]}
                 />
                 <UniversalChart
                   apiUrl="http://localhost:3002/api/kotel2/data"
@@ -51,7 +51,7 @@ const HomePage: React.FC = () => {
                   yMin={-315}
                   yMax={315}
                   dataKey="parameters"
-                  params={[{ key: 'Уровень в барабане котел №2', label: 'Уровень в котле №2' }]}
+                  params={[{ key: 'Уровень в барабане котел №2', label: 'Уровень в котле №2', unit: 'мм' }]}
                 />
               </div>
               <div className={styles['graph-bottom']}>
@@ -61,7 +61,7 @@ const HomePage: React.FC = () => {
                   yMin={-315}
                   yMax={315}
                   dataKey="parameters"
-                  params={[{ key: 'Уровень в барабане котел №3', label: 'Уровень в котле №3' }]}
+                  params={[{ key: 'Уровень в барабане котел №3', label: 'Уровень в котле №3', unit: 'мм' }]}
                   width={1600}  // Ширина графика
                   height={400}  // Высота графика
                 />
