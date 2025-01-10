@@ -19,6 +19,8 @@ import { useData } from './hooks/useData';
 import { getChartOptions, colors } from './config/chartConfig';
 import { handleBackward, handleForward, handleReturnToCurrent, createDataWithGaps } from './utils/chartUtils';
 
+
+
 ChartJS.register(
   LineElement,
   PointElement,
@@ -40,7 +42,7 @@ interface UniversalChartProps {
   params: { key: string; label: string; unit?: string }[];
   width?: number | string;
   height?: number | string;
-  id: string; // Уникальный идентификатор
+  id: string;
 }
 
 interface GenericData {
@@ -55,8 +57,8 @@ const UniversalChart: React.FC<UniversalChartProps> = ({
   yMax,
   dataKey,
   params,
-  width = '100%', // Устанавливаем ширину на 100%
-  height = '400px', // Высота по умолчанию
+  width = '100%', 
+  height = '400px',
   id,
 }) => {
   const chartRef = useRef<ChartJS<'line'> | null>(null);
@@ -72,6 +74,7 @@ const UniversalChart: React.FC<UniversalChartProps> = ({
       if (isAutoScroll) {
         setEndTime(new Date());
         setStartTime(new Date(Date.now() - timeInterval * 60 * 1000));
+        refetch();
       } else {
         refetch();
       }
@@ -127,7 +130,7 @@ const UniversalChart: React.FC<UniversalChartProps> = ({
 
   return (
     <div className={styles['chart-container']}>
-      {/* Кнопки вынесены за пределы контейнера с графиком */}
+
       <div className={styles['dynamic-graph__btns']}>
         <button className={styles['dynamic-graph__btn']} onClick={() => handleIntervalChange(10)}>
           10 минут
@@ -142,7 +145,6 @@ const UniversalChart: React.FC<UniversalChartProps> = ({
         <Line ref={chartRef} data={chartData} options={{ ...options, responsive: true }} />
       </div>
 
-      {/* Внешние кнопки управления */}
       <div className={styles['dynamic-graph__btns']}>
         <button
           className={styles['dynamic-graph__btn']}
