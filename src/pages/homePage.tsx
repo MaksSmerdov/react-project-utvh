@@ -5,6 +5,7 @@ import CurrentParameter from '../components/Current/currentParameter';
 import { apiConfigs } from '../configs/apiConfigKotelnaya';
 import Loader from '../components/Common/Preloader/preloader'; // Импортируйте ваш Loader
 import UniversalChart from '../components/Charts/chart';
+import { IntervalProvider } from '../components/Charts/context/intervalContext';
 
 const HomePage: React.FC = () => {
   const [activeTab, setActiveTab] = useState<'kotel-1' | 'kotel-2' | 'kotel-3' | null>(null);
@@ -34,35 +35,40 @@ const HomePage: React.FC = () => {
       {
         label: 'Графики уровня',
         component: (
-          <>
-            <UniversalChart
-              id="chart-kotel1"
-              apiUrl="http://localhost:3002/api/kotel1/data"
-              title="График уровня котла №1"
-              yMin={-315}
-              yMax={315}
-              dataKey="parameters"
-              params={[{ key: 'Уровень в барабане котел №1', label: 'Уровень в котле №1', unit: 'мм' }]}
-            />
-            <UniversalChart
-              id="chart-kotel2"
-              apiUrl="http://localhost:3002/api/kotel2/data"
-              title="График уровня котла №2"
-              yMin={-315}
-              yMax={315}
-              dataKey="parameters"
-              params={[{ key: 'Уровень в барабане котел №2', label: 'Уровень в котле №2', unit: 'мм' }]}
-            />
-            <UniversalChart
-              id="chart-kotel3"
-              apiUrl="http://localhost:3002/api/kotel3/data"
-              title="График уровня котла №3"
-              yMin={-315}
-              yMax={315}
-              dataKey="parameters"
-              params={[{ key: 'Уровень в барабане котел №3', label: 'Уровень в котле №3', unit: 'мм' }]}
-            />
-          </>
+          <IntervalProvider>
+            <>
+              <UniversalChart
+                id="chart-kotel1"
+                apiUrl="http://localhost:3002/api/kotel1/data"
+                title="График уровня котла №1"
+                yMin={-315}
+                yMax={315}
+                dataKey="parameters"
+                params={[{ key: 'Уровень в барабане котел №1', label: 'Уровень в котле №1', unit: 'мм' }]}
+                showIntervalSelector={true} 
+              />
+              <UniversalChart
+                id="chart-kotel2"
+                apiUrl="http://localhost:3002/api/kotel2/data"
+                title="График уровня котла №2"
+                yMin={-315}
+                yMax={315}
+                dataKey="parameters"
+                params={[{ key: 'Уровень в барабане котел №2', label: 'Уровень в котле №2', unit: 'мм' }]}
+                showIntervalSelector={false} 
+              />
+              <UniversalChart
+                id="chart-kotel3"
+                apiUrl="http://localhost:3002/api/kotel3/data"
+                title="График уровня котла №3"
+                yMin={-315}
+                yMax={315}
+                dataKey="parameters"
+                params={[{ key: 'Уровень в барабане котел №3', label: 'Уровень в котле №3', unit: 'мм' }]}
+                showIntervalSelector={false}
+              />
+            </>
+          </IntervalProvider>
         ),
       },
     ],

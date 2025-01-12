@@ -27,12 +27,12 @@ export const handleForward = (
   // Проверяем, вернулся ли пользователь к текущим данным
   const now = new Date();
   if (
-      newEndTime.getTime() >= now.getTime() - 30 * 60 * 1000 &&
-      newStartTime.getTime() <= now.getTime()
+    newEndTime.getTime() >= now.getTime() - 30 * 60 * 1000 &&
+    newStartTime.getTime() <= now.getTime()
   ) {
-      setIsAutoScroll(true);
+    setIsAutoScroll(true);
   } else {
-      setIsAutoScroll(false);
+    setIsAutoScroll(false);
   }
 };
 
@@ -56,17 +56,17 @@ export const createDataWithGaps = (
   const timestamps: number[] = data.map((d) => d.time.getTime());
 
   for (let i = 0; i < data.length; i++) {
-      const currentValue = data[i].values[key] !== undefined ? data[i].values[key] : null;
-      result.push(currentValue);
+    const currentValue = data[i].values[key] !== undefined ? data[i].values[key] : null;
+    result.push(currentValue);
 
-      if (i < data.length - 1) {
-          const nextTimestamp = timestamps[i + 1];
-          const currentTimestamp = timestamps[i];
+    if (i < data.length - 1) {
+      const nextTimestamp = timestamps[i + 1];
+      const currentTimestamp = timestamps[i];
 
-          if (nextTimestamp - currentTimestamp > 60 * 1000) {
-              result.push(null);
-          }
+      if (nextTimestamp - currentTimestamp > 60 * 1000) {
+        result.push(null);
       }
+    }
   }
 
   return result;

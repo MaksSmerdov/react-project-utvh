@@ -18,7 +18,7 @@
   border: 1px solid green;
   background-color: transparent;
   cursor: pointer;
-  transition: color .3s ease-in-out, background-color .3s ease-in-out;
+  transition: color 0.3s ease-in-out, background-color 0.3s ease-in-out;
 }
 
 .dynamic-graph__btn:hover {
@@ -35,4 +35,51 @@
   color: white;
   background-color: green;
   outline: none;
+}
+
+.error-message {
+  color: red;
+  font-size: 26px;
+  font-weight: 600;
+  text-align: center;
+  padding: 20px;
+  border: 1px solid red;
+  background-color: #ffe6e6;
+  margin: 20px 0;
+  display: flex;
+  justify-content: center; /* Центрирование по горизонтали */
+  align-items: center; /* Центрирование по вертикали */
+}
+
+.interval-selector {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  padding-top: 20px;
+
+  &__label {
+    font-size: 18px;
+    color: #333;
+  }
+
+  &__dropdown {
+    padding: 4px 8px;
+    font-size: 14px;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+    background-color: #fff;
+    cursor: pointer;
+    transition: box-shadow 0.5s ease-in-out;
+
+    &:hover {
+      border-color: green;
+      box-shadow: 0 0 4px 2px rgba(0, 128, 0, 0.5);
+      transition: box-shadow 0.5s ease-in-out;
+    }
+
+    &:focus {
+      outline: none;
+      border-color: green;
+    }
+  }
 }

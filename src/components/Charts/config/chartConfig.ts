@@ -100,12 +100,6 @@ export const getChartOptions = (
             },
         },
     },
-    animation: {
-        duration: 1000, // Оставляем анимацию для других элементов
-        onComplete: undefined,
-        onProgress: undefined,
-    },
-
     scales: {
         x: {
             type: 'time',
