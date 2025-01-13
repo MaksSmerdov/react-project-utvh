@@ -1,6 +1,3 @@
-// chartjs-plugin-crosshair.d.ts
-
-import { ChartType, PluginOptionsByType } from 'chart.js';
 
 export interface CrosshairOptions {
   line?: {
@@ -27,7 +24,7 @@ export interface CrosshairOptions {
 
 // Расширяем интерфейс PluginOptionsByType<any> из chart.js
 declare module 'chart.js' {
-  interface PluginOptionsByType<TType extends ChartType> {
+  interface PluginOptionsByType {
     crosshair?: CrosshairOptions;
   }
 }
