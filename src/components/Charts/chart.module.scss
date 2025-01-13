@@ -1,54 +1,49 @@
+@use '../../styles/mixins' as mixins;
+@use '../../styles/variables' as vars;
+
 .chart-container {
   display: flex;
   flex-direction: column;
 }
 
-.dynamic-graph__btns {
-  margin-top: 20px;
-  display: flex;
-}
+.dynamic-graph {
+  &__btns {
+    margin-top: 20px;
+    display: flex;
+  }
 
-.dynamic-graph__btn {
-  margin-right: 10px;
-  height: 27px;
-  font-size: 16px;
-  line-height: 22px;
-  font-weight: 600;
-  color: green;
-  border: 1px solid green;
-  background-color: transparent;
-  cursor: pointer;
-  transition: color 0.3s ease-in-out, background-color 0.3s ease-in-out;
-}
+  &__btn {
+    margin-right: 10px;
+    height: 27px;
+    @include mixins.text-style(16px, 22px, 600, vars.$hulk);
+    border: 1px solid vars.$hulk;
+    background-color: transparent;
+    cursor: pointer;
+    transition: color 0.3s ease-in-out, background-color 0.3s ease-in-out;
 
-.dynamic-graph__btn:hover {
-  color: white;
-  background-color: green;
-}
+    &:hover,
+    &:active,
+    &:focus-visible {
+      color: vars.$white;
+      background-color: vars.$hulk;
+    }
 
-.dynamic-graph__btn:active {
-  color: white;
-  background-color: green;
-}
-
-.dynamic-graph__btn:focus-visible {
-  color: white;
-  background-color: green;
-  outline: none;
+    &:focus-visible {
+      outline: none;
+    }
+  }
 }
 
 .error-message {
-  color: red;
-  font-size: 26px;
-  font-weight: 600;
+  @include mixins.text-style(26px, 24px, 600, vars.$red);
   text-align: center;
   padding: 20px;
-  border: 1px solid red;
-  background-color: #ffe6e6;
+  border: 1px solid vars.$red;
+  background-color: vars.$vanilla-strawberry;
   margin: 20px 0;
   display: flex;
-  justify-content: center; /* Центрирование по горизонтали */
-  align-items: center; /* Центрирование по вертикали */
+  justify-content: center; // Центрирование по горизонтали
+  align-items: center; // Центрирование по вертикали
 }
 
 .interval-selector {
@@ -61,5 +56,4 @@
     font-size: 18px;
     color: #333;
   }
-
 }

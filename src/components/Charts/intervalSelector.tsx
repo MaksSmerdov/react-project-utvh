@@ -51,6 +51,8 @@ const IntervalSelector: React.FC = () => {
             boxShadow: 'none',
             cursor: 'pointer',
             transition: 'box-shadow 0.5s ease',
+            width: 'auto',
+            minWidth: '125px', 
             '&:hover': {
               boxShadow: '0 0 4px 2px rgba(0, 128, 0, 0.5)',
               transition: 'box-shadow 0.5s ease',
@@ -71,7 +73,7 @@ const IntervalSelector: React.FC = () => {
             ...provided,
             marginTop: '5px',
             borderRadius: '4px',
-            boxShadow: '0 2px 4px rgba(0, 0, 0, 0.1)',
+            boxShadow: '0 2px 4px rgba(0, 0, 0, 0.3)',
             opacity: menuOpacity, // Управление opacity меню
             transition: 'opacity 0.3s ease', // Анимация opacity
           }),
