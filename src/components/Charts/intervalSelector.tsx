@@ -1,29 +1,82 @@
-import React from 'react';
+import React, { useState } from 'react';
 import styles from './chart.module.scss';
 import { useInterval } from './context/intervalContext';
+import Select from 'react-select';
 
 const IntervalSelector: React.FC = () => {
   const { setInterval } = useInterval();
+  const [isMenuOpen, setIsMenuOpen] = useState(false); // Состояние для управления видимостью меню
+  const [menuOpacity, setMenuOpacity] = useState(0); // Состояние для управления opacity меню
 
-  // Обработчик изменения выбранного значения в выпадающем списке
-  const handleIntervalChange = (event: React.ChangeEvent<HTMLSelectElement>) => {
-    const selectedInterval = parseInt(event.target.value, 10); // Преобразуем значение в число
-    setInterval(selectedInterval); // Устанавливаем новый интервал
+  const options = [
+    { value: 5, label: '5 минут' },
+    { value: 10, label: '10 минут' },
+    { value: 30, label: '30 минут' },
+    { value: 60, label: '1 час' },
+  ];
+
+  const handleIntervalChange = (selectedOption: any) => {
+    setInterval(selectedOption.value);
+  };
+
+  // Обработчик открытия меню
+  const handleMenuOpen = () => {
+    setIsMenuOpen(true);
+    setTimeout(() => setMenuOpacity(1), 10); // Задержка для плавного появления
+  };
+
+  // Обработчик закрытия меню
+  const handleMenuClose = () => {
+    setMenuOpacity(0); // Сначала анимация исчезновения
+    setTimeout(() => setIsMenuOpen(false), 300); // Задержка перед скрытием меню
   };
 
   return (
     <div className={styles['interval-selector']}>
       <span className={styles['interval-selector__label']}>Выбор интервала:</span>
-      <select
-        className={styles['interval-selector__dropdown']}
+      <Select
+        options={options}
         onChange={handleIntervalChange}
-        defaultValue="10" // Значение по умолчанию
-      >
-        <option value="5">5 минут</option>
-        <option value="10">10 минут</option>
-        <option value="30">30 минут</option>
-        <option value="60">1 час</option>
-      </select>
+        defaultValue={options[1]}
+        classNamePrefix="react-select"
+        isSearchable={false}
+        onMenuOpen={handleMenuOpen} // Обработчик открытия меню
+        onMenuClose={handleMenuClose} // Обработчик закрытия меню
+        menuIsOpen={isMenuOpen} // Управление видимостью меню
+        styles={{
+          control: (provided) => ({
+            ...provided,
+            border: '1px solid #ccc',
+            borderRadius: '4px',
+            boxShadow: 'none',
+            cursor: 'pointer',
+            transition: 'box-shadow 0.5s ease',
+            '&:hover': {
+              boxShadow: '0 0 4px 2px rgba(0, 128, 0, 0.5)',
+              transition: 'box-shadow 0.5s ease',
+            },
+          }),
+          option: (provided, state) => ({
+            ...provided,
+            backgroundColor: state.isSelected ? 'green' : 'white',
+            color: state.isSelected ? 'white' : '#333',
+            cursor: 'pointer',
+            transition: 'background-color 0.5s ease, color 0.5s ease',
+            '&:hover': {
+              backgroundColor: 'lightgreen',
+              color: '#333',
+            },
+          }),
+          menu: (provided) => ({
+            ...provided,
+            marginTop: '5px',
+            borderRadius: '4px',
+            boxShadow: '0 2px 4px rgba(0, 0, 0, 0.1)',
+            opacity: menuOpacity, // Управление opacity меню
+            transition: 'opacity 0.3s ease', // Анимация opacity
+          }),
+        }}
+      />
     </div>
   );
 };

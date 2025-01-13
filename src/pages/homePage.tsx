@@ -143,7 +143,7 @@ const HomePage: React.FC = () => {
       </div>
 
       <div className={styles['component-container']}>
-        <Loader size={80} loading={loading} /> {/* Использование Loader */}
+        <Loader size={80} loading={loading} /> 
         {activeComponent}
       </div>
     </div>
