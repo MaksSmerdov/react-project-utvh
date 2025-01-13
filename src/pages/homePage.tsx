@@ -1,151 +1,178 @@
 import React, { useState } from 'react';
+import { Tab, Tabs, TabList, TabPanel } from 'react-tabs';
+import 'react-tabs/style/react-tabs.css'; // Импортируем стандартные стили
 import styles from './homePage.module.scss';
 import MnemoKotel from '../components/Mnemo/kotelnaya/mnemoKotel';
 import CurrentParameter from '../components/Current/currentParameter';
 import { apiConfigs } from '../configs/apiConfigKotelnaya';
-import Loader from '../components/Common/Preloader/preloader'; // Импортируйте ваш Loader
 import UniversalChart from '../components/Charts/chart';
 import { IntervalProvider } from '../components/Charts/context/intervalContext';
 
 const HomePage: React.FC = () => {
-  const [activeTab, setActiveTab] = useState<'kotel-1' | 'kotel-2' | 'kotel-3' | null>(null);
-  const [activeComponent, setActiveComponent] = useState<React.ReactNode>(null);
-  const [loading, setLoading] = useState<boolean>(false); // Состояние загрузки
+  const [selectedTabIndex, setSelectedTabIndex] = useState<number>(0);
+  const [selectedSubTabIndex, setSelectedSubTabIndex] = useState<number>(0);
 
-  const tabs = [
-    { id: 'kotel-1', label: 'Котел №1' },
-    { id: 'kotel-2', label: 'Котел №2' },
-    { id: 'kotel-3', label: 'Котел №3' },
-  ];
-
-  const subTabs: {
-    'kotel-1': { label: string; component: React.ReactNode }[];
-    'kotel-2': { label: string; component: React.ReactNode }[];
-    'kotel-3': { label: string; component: React.ReactNode }[];
-  } = {
-    'kotel-1': [
-      {
-        label: 'Мнемосхема',
-        component: <MnemoKotel configKey="kotel1" title="Котел №1" objectNumber={1} showLoader={false} />,
-      },
-      {
-        label: 'Текущие параметры',
-        component: <CurrentParameter config={apiConfigs.kotel1} title="Котел №1" showLoader={false} />,
-      },
-      {
-        label: 'Графики уровня',
-        component: (
-          <IntervalProvider>
-            <>
-              <UniversalChart
-                id="chart-kotel1"
-                apiUrl="http://localhost:3002/api/kotel1/data"
-                title="График уровня котла №1"
-                yMin={-315}
-                yMax={315}
-                dataKey="parameters"
-                params={[{ key: 'Уровень в барабане котел №1', label: 'Уровень в котле №1', unit: 'мм' }]}
-                showIntervalSelector={true} 
-              />
-              <UniversalChart
-                id="chart-kotel2"
-                apiUrl="http://localhost:3002/api/kotel2/data"
-                title="График уровня котла №2"
-                yMin={-315}
-                yMax={315}
-                dataKey="parameters"
-                params={[{ key: 'Уровень в барабане котел №2', label: 'Уровень в котле №2', unit: 'мм' }]}
-                showIntervalSelector={false} 
-              />
-              <UniversalChart
-                id="chart-kotel3"
-                apiUrl="http://localhost:3002/api/kotel3/data"
-                title="График уровня котла №3"
-                yMin={-315}
-                yMax={315}
-                dataKey="parameters"
-                params={[{ key: 'Уровень в барабане котел №3', label: 'Уровень в котле №3', unit: 'мм' }]}
-                showIntervalSelector={false}
-              />
-            </>
-          </IntervalProvider>
-        ),
-      },
-    ],
-    'kotel-2': [
-      {
-        label: 'Мнемосхема',
-        component: <MnemoKotel configKey="kotel2" title="Котел №2" objectNumber={2} showLoader={false} />,
-      },
-      {
-        label: 'Текущие параметры',
-        component: <CurrentParameter config={apiConfigs.kotel2} title="Котел №2" showLoader={false} />,
-      },
-    ],
-    'kotel-3': [
-      {
-        label: 'Мнемосхема',
-        component: <MnemoKotel configKey="kotel3" title="Котел №3" objectNumber={3} showLoader={false} />,
-      },
-      {
-        label: 'Текущие параметры',
-        component: <CurrentParameter config={apiConfigs.kotel3} title="Котел №3" showLoader={false} />,
-      },
-    ],
+  const handleTabChange = (index: number) => {
+    setSelectedTabIndex(index);
+    setSelectedSubTabIndex(0); // Сбрасываем саб-таб на "Мнемосхему"
   };
 
-  const handleSubTabClick = async (component: React.ReactNode) => {
-    setLoading(true); // Начинаем загрузку
-    setActiveComponent(null); // Сбрасываем активный компонент, чтобы прелоадер отображался
-
-    // Здесь вы можете добавить логику загрузки данных, если это необходимо
-    await new Promise((resolve) => setTimeout(resolve, 1500)); // Симуляция задержки загрузки
-
-    setActiveComponent(component);
-    setLoading(false); // Завершаем загрузку
+  const handleSubTabChange = (index: number) => {
+    setSelectedSubTabIndex(index);
   };
 
   return (
     <div className={styles['container']}>
-      <div className={styles['tab-container']}>
-        {tabs.map((tab) => (
-          <button
-            key={tab.id}
-            onClick={() => {
-              setActiveTab(tab.id as 'kotel-1' | 'kotel-2' | 'kotel-3');
-              handleSubTabClick(subTabs[tab.id as 'kotel-1' | 'kotel-2' | 'kotel-3'][0].component); // По умолчанию отображаем первый компонент
-            }}
-            className={`${styles['tab-container__button']} ${
-              activeTab === tab.id ? styles['tab-container__button--active'] : ''
-            }`}
+      <Tabs selectedIndex={selectedTabIndex} onSelect={handleTabChange}>
+        <TabList className={styles['tab-list']}>
+          <Tab
+            className={styles['tab']}
+            selectedClassName={styles['tab--selected']} // Класс для активного таба
           >
-            {tab.label}
-          </button>
-        ))}
-      </div>
+            Котел №1
+          </Tab>
+          <Tab className={styles['tab']} selectedClassName={styles['tab--selected']}>
+            Котел №2
+          </Tab>
+          <Tab className={styles['tab']} selectedClassName={styles['tab--selected']}>
+            Котел №3
+          </Tab>
+        </TabList>
 
-      <div className={styles['tab-content']}>
-        {activeTab && (
-          <div className={styles['tab-container-box']}>
-            <div className={styles['tab-content__sub-tab-container']}>
-              {subTabs[activeTab].map((subTab, index) => (
-                <button
-                  key={index}
-                  onClick={() => handleSubTabClick(subTab.component)}
-                  className={styles['sub-tab-button']}
+        {/* Панель для котла №1 */}
+        <TabPanel>
+          <div className={styles['tab-content']}>
+            <Tabs selectedIndex={selectedSubTabIndex} onSelect={handleSubTabChange}>
+              <TabList className={styles['sub-tab-list']}>
+                <Tab
+                  className={styles['sub-tab']}
+                  selectedClassName={styles['sub-tab--selected']} // Класс для активного саб-таба
                 >
-                  {subTab.label}
-                </button>
-              ))}
-            </div>
-          </div>
-        )}
-      </div>
+                  Мнемосхема
+                </Tab>
+                <Tab className={styles['sub-tab']} selectedClassName={styles['sub-tab--selected']}>
+                  Текущие параметры
+                </Tab>
+                <Tab className={styles['sub-tab']} selectedClassName={styles['sub-tab--selected']}>
+                  Графики уровня
+                </Tab>
+              </TabList>
 
-      <div className={styles['component-container']}>
-        <Loader size={80} loading={loading} /> 
-        {activeComponent}
-      </div>
+              {/* Панель мнемосхемы */}
+              <TabPanel>
+                <div key={`kotel1-mnemo-${selectedSubTabIndex}`} className={styles['sub-tab-content']}>
+                  <MnemoKotel configKey="kotel1" title="Котел №1" objectNumber={1} showLoader={false} />
+                </div>
+              </TabPanel>
+
+              {/* Панель текущих параметров */}
+              <TabPanel>
+                <div key={`kotel1-params-${selectedSubTabIndex}`} className={styles['sub-tab-content']}>
+                  <CurrentParameter config={apiConfigs.kotel1} title="Котел №1" showLoader={false} />
+                </div>
+              </TabPanel>
+
+              {/* Панель графиков уровня */}
+              <TabPanel>
+                <div key={`kotel1-charts-${selectedSubTabIndex}`} className={styles['sub-tab-content']}>
+                  <IntervalProvider>
+                    <UniversalChart
+                      id="chart-kotel1"
+                      apiUrl="http://localhost:3002/api/kotel1/data"
+                      title="График уровня котла №1"
+                      yMin={-315}
+                      yMax={315}
+                      dataKey="parameters"
+                      params={[{ key: 'Уровень в барабане котел №1', label: 'Уровень в котле №1', unit: 'мм' }]}
+                      showIntervalSelector={true}
+                    />
+                    <UniversalChart
+                      id="chart-kotel2"
+                      apiUrl="http://localhost:3002/api/kotel2/data"
+                      title="График уровня котла №2"
+                      yMin={-315}
+                      yMax={315}
+                      dataKey="parameters"
+                      params={[{ key: 'Уровень в барабане котел №2', label: 'Уровень в котле №2', unit: 'мм' }]}
+                      showIntervalSelector={false}
+                    />
+                    <UniversalChart
+                      id="chart-kotel3"
+                      apiUrl="http://localhost:3002/api/kotel3/data"
+                      title="График уровня котла №3"
+                      yMin={-315}
+                      yMax={315}
+                      dataKey="parameters"
+                      params={[{ key: 'Уровень в барабане котел №3', label: 'Уровень в котле №3', unit: 'мм' }]}
+                      showIntervalSelector={false}
+                    />
+                  </IntervalProvider>
+                </div>
+              </TabPanel>
+            </Tabs>
+          </div>
+        </TabPanel>
+
+        {/* Панель для котла №2 */}
+        <TabPanel>
+          <div className={styles['tab-content']}>
+            <Tabs selectedIndex={selectedSubTabIndex} onSelect={handleSubTabChange}>
+              <TabList className={styles['sub-tab-list']}>
+                <Tab className={styles['sub-tab']} selectedClassName={styles['sub-tab--selected']}>
+                  Мнемосхема
+                </Tab>
+                <Tab className={styles['sub-tab']} selectedClassName={styles['sub-tab--selected']}>
+                  Текущие параметры
+                </Tab>
+              </TabList>
+
+              {/* Панель мнемосхемы */}
+              <TabPanel>
+                <div key={`kotel2-mnemo-${selectedSubTabIndex}`} className={styles['sub-tab-content']}>
+                  <MnemoKotel configKey="kotel2" title="Котел №2" objectNumber={2} showLoader={false} />
+                </div>
+              </TabPanel>
+
+              {/* Панель текущих параметров */}
+              <TabPanel>
+                <div key={`kotel2-params-${selectedSubTabIndex}`} className={styles['sub-tab-content']}>
+                  <CurrentParameter config={apiConfigs.kotel2} title="Котел №2" showLoader={false} />
+                </div>
+              </TabPanel>
+            </Tabs>
+          </div>
+        </TabPanel>
+
+        {/* Панель для котла №3 */}
+        <TabPanel>
+          <div className={styles['tab-content']}>
+            <Tabs selectedIndex={selectedSubTabIndex} onSelect={handleSubTabChange}>
+              <TabList className={styles['sub-tab-list']}>
+                <Tab className={styles['sub-tab']} selectedClassName={styles['sub-tab--selected']}>
+                  Мнемосхема
+                </Tab>
+                <Tab className={styles['sub-tab']} selectedClassName={styles['sub-tab--selected']}>
+                  Текущие параметры
+                </Tab>
+              </TabList>
+
+              {/* Панель мнемосхемы */}
+              <TabPanel>
+                <div key={`kotel3-mnemo-${selectedSubTabIndex}`} className={styles['sub-tab-content']}>
+                  <MnemoKotel configKey="kotel3" title="Котел №3" objectNumber={3} showLoader={false} />
+                </div>
+              </TabPanel>
+
+              {/* Панель текущих параметров */}
+              <TabPanel>
+                <div key={`kotel3-params-${selectedSubTabIndex}`} className={styles['sub-tab-content']}>
+                  <CurrentParameter config={apiConfigs.kotel3} title="Котел №3" showLoader={false} />
+                </div>
+              </TabPanel>
+            </Tabs>
+          </div>
+        </TabPanel>
+      </Tabs>
     </div>
   );
 };

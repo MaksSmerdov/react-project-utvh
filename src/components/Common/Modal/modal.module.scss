@@ -1,3 +1,6 @@
+@use '../../../styles/mixins' as mixins;
+@use '../../../styles/variables' as vars;
+
 .modalOverlay {
   position: fixed;
   top: 0;
@@ -22,7 +25,7 @@
 }
 
 .modalPaper {
-  background-color: #fff;
+  background-color: vars.$white;
   padding: 5px 20px 20px 20px;
   border-radius: 8px;
   max-height: 600px; // Ограничиваем максимальную высоту
@@ -47,13 +50,12 @@
 
 .modalHeader {
   height: 50px;
-  border-bottom: 1px solid #ddd;
+  border-bottom: 1px solid vars.$steam;
   margin-bottom: 10px;
   position: relative; // Для позиционирования кнопки закрытия
 
   .modalTitle {
-    font-size: 24px;
-    font-weight: 600;
+    @include mixins.text-style(24px, null, 600);
     text-align: center;
     flex: 1; // Заголовок занимает всё доступное пространство
   }
@@ -64,8 +66,7 @@
     right: 0px; // Отступ от правого края
     background: none;
     border: none;
-    font-size: 18px;
-    color: green;
+    @include mixins.text-style(18px, null, null, vars.$hulk);
     cursor: pointer;
 
     &:hover {

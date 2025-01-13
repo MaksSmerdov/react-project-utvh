@@ -3,13 +3,13 @@
 
 // Стилизация тултипа с кастомной темой
 .tippy-box[data-theme~='custom'] {
-  background-color: white; // Белый фон
+  background-color: vars.$white; // Белый фон
   @include mixins.text-style(14px, 18px, 500, vars.$black);
   border-radius: 5px;
   padding: 8px 12px;
   text-align: center;
   white-space: pre-line;
-  border: 3px solid green; // Зелёная граница
+  border: 3px solid vars.$hulk; // Зелёная граница
   box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.15);
   position: relative;
   transition: opacity 0.5s ease, transform 0.5s ease; // Плавное скрытие
@@ -29,7 +29,7 @@
 
   /* Стилизация стрелки тултипа */
   :global(>.tippy-arrow::before) {
-    color: green;
+    color: vars.$hulk;
     width: 2px;
     height: 2px;
     bottom: -10px;

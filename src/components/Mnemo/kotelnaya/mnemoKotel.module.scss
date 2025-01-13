@@ -11,7 +11,7 @@
     position: absolute;
     display: flex;
     flex-direction: column;
-    border: 2px solid black;
+    border: 2px solid vars.$black;
     border-radius: 3px;
     @include mixins.text-style(14px, 16px, 600);
     transition: box-shadow 0.5s ease;
@@ -26,10 +26,10 @@
     }
 
     &-naimenov {
-      background-color: green;
+      background-color: vars.$hulk;
       color: black;
       padding: 3px;
-      border-bottom: 1px solid black;
+      border-bottom: 1px solid vars.$black;
     }
 
     &-text {
@@ -41,11 +41,11 @@
     }
 
     &-value {
-      color: blue;
+      color: vars.$blue;
     }
 
     &-span {
-      color: black;
+      color: vars.$black;
     }
   }
 
@@ -144,7 +144,7 @@
   &Uroven {
     top: 28.5%;
     left: 60.5%;
-    color: blue;
+    color: vars.$blue;
   }
   &Razrezhenie {
     top: 61%;
@@ -189,12 +189,12 @@
 
 .alarm {
   &Active {
-    background-color: red; // Красный фон для активного состояния
-    color: black;
+    background-color: vars.$red; // Красный фон для активного состояния
+    color: vars.$black;
   }
   &Inactive {
-    background-color: gray; // Серый фон для неактивного состояния
-    color: black;
+    background-color: vars.$grey; // Серый фон для неактивного состояния
+    color: vars.$black;
   }
   &VozduhNizko {
     top: 5.5%;
@@ -236,12 +236,12 @@
 
 .info {
   &Active {
-    background-color: green;
-    color: black;
+    background-color: vars.$hulk;
+    color: vars.$black;
   }
   &Inactive {
-    background-color: gray; // Серый фон для неактивного состояния
-    color: black;
+    background-color: vars.$grey; // Серый фон для неактивного состояния
+    color: vars.$black;
   }
 
   &OstanovKotla {
