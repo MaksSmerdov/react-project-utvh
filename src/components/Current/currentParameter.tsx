@@ -8,17 +8,14 @@ import Loader from '../Common/Preloader/preloader';
 interface CurrentParameterProps {
   config: ApiConfig;
   title: string;
-  showLoader?: boolean; // Новый пропс для управления отображением прелоадера
+  showLoading?: boolean; // Новый пропс для управления отображением прелоадера
 }
 
-const CurrentParameter: React.FC<CurrentParameterProps> = ({ config, title, showLoader = true }) => {
+const CurrentParameter: React.FC<CurrentParameterProps> = ({ config, title, showLoading = false }) => {
   const [data, setData] = useState(config.defaultData);
-  const [loading, setLoading] = useState(true); // Состояние для отслеживания загрузки данных
-  const [isFirstLoad, setIsFirstLoad] = useState(true); // Состояние для отслеживания первой загрузки
 
   useEffect(() => {
     const fetchData = async () => {
-      setLoading(true); // Начинаем загрузку
       try {
         const response = await fetch(config.apiUrl);
         if (!response.ok) throw new Error('Ошибка загрузки данных');
@@ -36,26 +33,18 @@ const CurrentParameter: React.FC<CurrentParameterProps> = ({ config, title, show
         setData(filteredData);
       } catch (error) {
         console.error('Ошибка загрузки данных:', error);
-      } finally {
-        if (isFirstLoad) {
-          setIsFirstLoad(false); // После первой загрузки меняем состояние
-        }
-        setLoading(false); // Завершаем загрузку
       }
     };
 
     fetchData();
     const interval = setInterval(fetchData, 5000);
     return () => clearInterval(interval);
-  }, [config.apiUrl, config.defaultData, isFirstLoad]);
+  }, [config.apiUrl, config.defaultData]);
 
   return (
     <div>
+      {showLoading && <Loader delay={1000} size={100} />}
       <Header title={title} maxWidth="900px" />
-      
-      {/* Показываем Loader только при первой загрузке и если showLoader установлен в true */}
-      {isFirstLoad && showLoader && <Loader loading={loading} size={80} />}
-
       <div className={styles.tables}>
         {Object.entries(config.titles).map(([key, tableTitle]) => (
           <div key={key}>

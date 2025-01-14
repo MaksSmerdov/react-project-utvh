@@ -8,6 +8,7 @@ import { apiConfigs } from '../configs/apiConfigKotelnaya';
 import UniversalChart from '../components/Charts/chart';
 import { IntervalProvider } from '../components/Charts/context/intervalContext';
 import { getApiBaseUrl } from '../utils/apiUtils'; // Импортируем функцию
+import Loader from '../components/Common/Preloader/preloader';
 
 const HomePage: React.FC = () => {
   const [selectedTabIndex, setSelectedTabIndex] = useState<number>(0);
@@ -26,6 +27,7 @@ const HomePage: React.FC = () => {
 
   return (
     <div className={styles['container']}>
+      <Loader delay={1000} size={100} />
       <Tabs selectedIndex={selectedTabIndex} onSelect={handleTabChange}>
         <TabList className={styles['tab-list']}>
           <Tab
@@ -67,14 +69,14 @@ const HomePage: React.FC = () => {
               {/* Панель мнемосхемы */}
               <TabPanel>
                 <div key={`kotel1-mnemo-${selectedSubTabIndex}`} className={styles['sub-tab-content']}>
-                  <MnemoKotel configKey="kotel1" title="Котел №1" objectNumber={1} showLoader={false} />
+                  <MnemoKotel configKey="kotel1" title="Котел №1" objectNumber={1} />
                 </div>
               </TabPanel>
 
               {/* Панель текущих параметров */}
               <TabPanel>
                 <div key={`kotel1-params-${selectedSubTabIndex}`} className={styles['sub-tab-content']}>
-                  <CurrentParameter config={apiConfigs.kotel1} title="Котел №1" showLoader={false} />
+                  <CurrentParameter config={apiConfigs.kotel1} title="Котел №1" />
                 </div>
               </TabPanel>
 
@@ -172,14 +174,14 @@ const HomePage: React.FC = () => {
               {/* Панель мнемосхемы */}
               <TabPanel>
                 <div key={`kotel2-mnemo-${selectedSubTabIndex}`} className={styles['sub-tab-content']}>
-                  <MnemoKotel configKey="kotel2" title="Котел №2" objectNumber={2} showLoader={false} />
+                  <MnemoKotel configKey="kotel2" title="Котел №2" objectNumber={2} />
                 </div>
               </TabPanel>
 
               {/* Панель текущих параметров */}
               <TabPanel>
                 <div key={`kotel2-params-${selectedSubTabIndex}`} className={styles['sub-tab-content']}>
-                  <CurrentParameter config={apiConfigs.kotel2} title="Котел №2" showLoader={false} />
+                  <CurrentParameter config={apiConfigs.kotel2} title="Котел №2" />
                 </div>
               </TabPanel>
             </Tabs>
@@ -202,14 +204,14 @@ const HomePage: React.FC = () => {
               {/* Панель мнемосхемы */}
               <TabPanel>
                 <div key={`kotel3-mnemo-${selectedSubTabIndex}`} className={styles['sub-tab-content']}>
-                  <MnemoKotel configKey="kotel3" title="Котел №3" objectNumber={3} showLoader={false} />
+                  <MnemoKotel configKey="kotel3" title="Котел №3" objectNumber={3} />
                 </div>
               </TabPanel>
 
               {/* Панель текущих параметров */}
               <TabPanel>
                 <div key={`kotel3-params-${selectedSubTabIndex}`} className={styles['sub-tab-content']}>
-                  <CurrentParameter config={apiConfigs.kotel3} title="Котел №3" showLoader={false} />
+                  <CurrentParameter config={apiConfigs.kotel3} title="Котел №3" />
                 </div>
               </TabPanel>
             </Tabs>

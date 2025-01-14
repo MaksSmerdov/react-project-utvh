@@ -1,4 +1,4 @@
-import { useState, useEffect } from 'react';
+import { useState } from 'react';
 import styles from './mnemoKotel.module.scss';
 import { apiConfigs } from '../../../configs/apiConfigKotelnaya';
 import useMnemoKotel from './hooks/useMnemoKotel';
@@ -19,28 +19,23 @@ interface MnemoKotelProps<K extends keyof typeof apiConfigs> {
   configKey: K;
   title: string;
   objectNumber: number;
-  showLoader?: boolean; // Новый пропс для управления отображением прелоадера
+  showLoading?: boolean; // Новый пропс для управления отображением прелоадера
 }
 
-const MnemoKotel = <K extends keyof typeof apiConfigs>({ configKey, title, objectNumber, showLoader = true }: MnemoKotelProps<K>) => {
-  const { data, isLoading, tooltipsEnabled, toggleTooltips } = useMnemoKotel({
+const MnemoKotel = <K extends keyof typeof apiConfigs>({
+  configKey,
+  title,
+  objectNumber,
+  showLoading = false,
+}: MnemoKotelProps<K>) => {
+  const { data, tooltipsEnabled, toggleTooltips } = useMnemoKotel({
     config: apiConfigs[configKey],
   });
-
   const [isModalOpen, setIsModalOpen] = useState(false);
-
-  useEffect(() => {
-    // Если showLoader истинно, показываем прелоадер во время загрузки данных
-    if (isLoading && showLoader) {
-    }
-  }, [isLoading, showLoader]);
-
-  if (showLoader && isLoading) {
-    return <Loader loading={true} size={80} />;
-  }
 
   return (
     <div className={styles.mnemoContainer}>
+      {showLoading && <Loader delay={1000} size={100} />}
       <Header title={title} maxWidth="1000px" />
       <div className={styles.mnemo}>
         <ControlButtons
