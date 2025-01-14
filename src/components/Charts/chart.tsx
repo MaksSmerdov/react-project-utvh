@@ -51,18 +51,18 @@ interface GenericData {
   [key: string]: any;
 }
 
-const apiBaseUrl = getApiBaseUrl(); // Получаем базовый URL
+const apiBaseUrl = getApiBaseUrl();
 
 const fetchServerTime = async (): Promise<number> => {
   try {
     const response = await fetch(`${apiBaseUrl}/api/server-time`);
     const data = await response.json();
-    const serverTime = new Date(data.time).getTime(); // Время сервера в миллисекундах
-    const clientTime = Date.now(); // Время клиента в миллисекундах
-    return serverTime - clientTime; // Разница между сервером и клиентом
+    const serverTime = new Date(data.time).getTime();
+    const clientTime = Date.now();
+    return serverTime - clientTime;
   } catch (error) {
     console.error('Ошибка при получении времени сервера:', error);
-    return 0; // Если не удалось получить время сервера, используем время клиента
+    return 0;
   }
 };
 
@@ -78,7 +78,7 @@ const UniversalChart: React.FC<UniversalChartProps> = ({
   id,
   showIntervalSelector = true,
 }) => {
-  const [timeDifference, setTimeDifference] = useState<number>(0); // Разница между сервером и клиентом
+  const [timeDifference, setTimeDifference] = useState<number>(0);
   const chartRef = useRef<ChartJS<'line'> | null>(null);
   const { interval } = useInterval();
   const [startTime, setStartTime] = useState(new Date(Date.now() - interval * 60 * 1000));
@@ -89,28 +89,23 @@ const UniversalChart: React.FC<UniversalChartProps> = ({
   const [lastInteractionTime, setLastInteractionTime] = useState(Date.now());
   const [timeOffset, setTimeOffset] = useState(0);
 
-  // Получаем разницу времени при загрузке компонента
   useEffect(() => {
     fetchServerTime().then((difference) => {
       setTimeDifference(difference);
     });
   }, []);
 
-  // Функция для получения текущего времени с учетом разницы
   const getAdjustedTime = useCallback((): Date => {
     return new Date(Date.now() + timeDifference);
-  }, [timeDifference]); 
+  }, [timeDifference]);
 
-
-  // Обновляем startTime и endTime с учетом разницы времени
   useEffect(() => {
     const newEndTime = new Date(getAdjustedTime().getTime() - timeOffset);
     const newStartTime = new Date(newEndTime.getTime() - interval * 60 * 1000);
     setEndTime(newEndTime);
     setStartTime(newStartTime);
-  }, [interval, timeOffset, timeDifference, getAdjustedTime]); // Добавляем getAdjustedTime
+  }, [interval, timeOffset, timeDifference, getAdjustedTime]);
 
-  // Мемоизация данных
   const processedData = useMemo(() => data.map((item: GenericData) => ({
     time: new Date(item.lastUpdated),
     values: item[dataKey] || {},
@@ -137,26 +132,33 @@ const UniversalChart: React.FC<UniversalChartProps> = ({
     yMax,
   ), [startTime, endTime, title, isAutoScroll, params, yMin, yMax]);
 
-  // Мемоизация обработчиков
   const handleBackwardWithInteraction = useCallback(() => {
     setLastInteractionTime(Date.now());
-    const newOffset = timeOffset + interval * 60 * 1000; // Увеличиваем смещение
+    const newOffset = timeOffset + interval * 60 * 1000;
     setTimeOffset(newOffset);
     handleBackward(startTime, endTime, setStartTime, setEndTime, setIsAutoScroll);
   }, [startTime, endTime, interval, timeOffset]);
 
   const handleForwardWithInteraction = useCallback(() => {
     setLastInteractionTime(Date.now());
-    const newOffset = Math.max(0, timeOffset - interval * 60 * 1000); // Уменьшаем смещение, но не меньше 0
+    const newOffset = Math.max(0, timeOffset - interval * 60 * 1000);
     setTimeOffset(newOffset);
     handleForward(startTime, endTime, setStartTime, setEndTime, setIsAutoScroll);
   }, [startTime, endTime, interval, timeOffset]);
 
   const handleReturnToCurrentWithInteraction = useCallback(() => {
     setLastInteractionTime(Date.now());
-    setTimeOffset(0); // Сбрасываем смещение
+    setTimeOffset(0);
     handleReturnToCurrent(setStartTime, setEndTime, setIsAutoScroll, interval);
   }, [interval]);
+
+  const handleToggleDataset = useCallback((index: number) => {
+    if (chartRef.current) {
+      const meta = chartRef.current.getDatasetMeta(index);
+      meta.hidden = !meta.hidden;
+      chartRef.current.update('none'); // Обновляем без анимации
+    }
+  }, []);
 
   const handleToggleAll = useCallback(() => {
     if (chartRef.current) {
@@ -166,12 +168,11 @@ const UniversalChart: React.FC<UniversalChartProps> = ({
           meta.hidden = !allHidden;
         }
       });
-      chartRef.current.update();
+      chartRef.current.update('none'); // Обновляем без анимации
     }
     setAllHidden(!allHidden);
   }, [allHidden]);
 
-  // Автоматическое обновление данных
   useEffect(() => {
     const intervalId = setInterval(() => {
       if (isAutoScroll) {
@@ -184,13 +185,12 @@ const UniversalChart: React.FC<UniversalChartProps> = ({
         refetch();
       }
     }, 5000);
-  
+
     return () => clearInterval(intervalId);
   }, [isAutoScroll, interval, refetch, timeOffset, timeDifference, getAdjustedTime]);
 
-  // Проверка бездействия пользователя
   useEffect(() => {
-    const inactivityTimeout = 60 * 1000; // 1 минута
+    const inactivityTimeout = 60 * 1000;
     const checkInactivity = () => {
       const currentTime = Date.now();
       if (currentTime - lastInteractionTime > inactivityTimeout && !isAutoScroll) {
@@ -198,7 +198,7 @@ const UniversalChart: React.FC<UniversalChartProps> = ({
       }
     };
 
-    const intervalId = setInterval(checkInactivity, 1000); // Проверяем каждую секунду
+    const intervalId = setInterval(checkInactivity, 1000);
 
     return () => clearInterval(intervalId);
   }, [lastInteractionTime, isAutoScroll, interval, setStartTime, setEndTime, setIsAutoScroll]);
@@ -213,7 +213,24 @@ const UniversalChart: React.FC<UniversalChartProps> = ({
         </div>
       ) : (
         <div id={id} style={{ width, height }}>
-          <Line ref={chartRef} data={chartData} options={{ ...options, responsive: true }} />
+          <Line
+            ref={chartRef}
+            data={chartData}
+            options={{
+              ...options,
+              plugins: {
+                ...options.plugins,
+                legend: {
+                  ...options.plugins?.legend,
+                  onClick: (e, legendItem) => {
+                    if (legendItem.datasetIndex !== undefined) {
+                      handleToggleDataset(legendItem.datasetIndex);
+                    }
+                  },
+                },
+              },
+            }}
+          />
         </div>
       )}
 
