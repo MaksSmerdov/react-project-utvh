@@ -7,10 +7,13 @@ import CurrentParameter from '../components/Current/currentParameter';
 import { apiConfigs } from '../configs/apiConfigKotelnaya';
 import UniversalChart from '../components/Charts/chart';
 import { IntervalProvider } from '../components/Charts/context/intervalContext';
+import { getApiBaseUrl } from '../utils/apiUtils'; // Импортируем функцию
 
 const HomePage: React.FC = () => {
   const [selectedTabIndex, setSelectedTabIndex] = useState<number>(0);
   const [selectedSubTabIndex, setSelectedSubTabIndex] = useState<number>(0);
+
+  const apiBaseUrl = getApiBaseUrl(); // Получаем базовый URL
 
   const handleTabChange = (index: number) => {
     setSelectedTabIndex(index);
@@ -56,6 +59,9 @@ const HomePage: React.FC = () => {
                 <Tab className={styles['sub-tab']} selectedClassName={styles['sub-tab--selected']}>
                   Графики уровня
                 </Tab>
+                <Tab className={styles['sub-tab']} selectedClassName={styles['sub-tab--selected']}>
+                  Графики пара
+                </Tab>
               </TabList>
 
               {/* Панель мнемосхемы */}
@@ -78,7 +84,7 @@ const HomePage: React.FC = () => {
                   <IntervalProvider>
                     <UniversalChart
                       id="chart-kotel1"
-                      apiUrl="http://localhost:3002/api/kotel1/data"
+                      apiUrl={`${apiBaseUrl}/api/kotel1/data`} // Используем базовый URL
                       title="График уровня котла №1"
                       yMin={-315}
                       yMax={315}
@@ -88,7 +94,7 @@ const HomePage: React.FC = () => {
                     />
                     <UniversalChart
                       id="chart-kotel2"
-                      apiUrl="http://localhost:3002/api/kotel2/data"
+                      apiUrl={`${apiBaseUrl}/api/kotel2/data`} // Используем базовый URL
                       title="График уровня котла №2"
                       yMin={-315}
                       yMax={315}
@@ -98,12 +104,49 @@ const HomePage: React.FC = () => {
                     />
                     <UniversalChart
                       id="chart-kotel3"
-                      apiUrl="http://localhost:3002/api/kotel3/data"
+                      apiUrl={`${apiBaseUrl}/api/kotel3/data`} // Используем базовый URL
                       title="График уровня котла №3"
                       yMin={-315}
                       yMax={315}
                       dataKey="parameters"
                       params={[{ key: 'Уровень в барабане котел №3', label: 'Уровень в котле №3', unit: 'мм' }]}
+                      showIntervalSelector={false}
+                    />
+                  </IntervalProvider>
+                </div>
+              </TabPanel>
+
+              <TabPanel>
+                <div key={`kotel1-charts-${selectedSubTabIndex}`} className={styles['sub-tab-content']}>
+                  <IntervalProvider>
+                    <UniversalChart
+                      id="chart-kotel1"
+                      apiUrl={`${apiBaseUrl}/api/kotel1/data`} // Используем базовый URL
+                      title="График давления пара котел №1"
+                      yMin={-1}
+                      yMax={10}
+                      dataKey="parameters"
+                      params={[{ key: 'Давление пара котел №1', label: 'Давление пара', unit: 'кгс/см2' }]}
+                      showIntervalSelector={true}
+                    />
+                    <UniversalChart
+                      id="chart-kotel2"
+                      apiUrl={`${apiBaseUrl}/api/kotel2/data`} // Используем базовый URL
+                      title="График давления пара котел №2"
+                      yMin={-1}
+                      yMax={10}
+                      dataKey="parameters"
+                      params={[{ key: 'Давление пара котел №2', label: 'Давление пара', unit: 'кгс/см2' }]}
+                      showIntervalSelector={false}
+                    />
+                    <UniversalChart
+                      id="chart-kotel3"
+                      apiUrl={`${apiBaseUrl}/api/kotel3/data`} // Используем базовый URL
+                      title="График давления пара котел №3"
+                      yMin={-1}
+                      yMax={10}
+                      dataKey="parameters"
+                      params={[{ key: 'Давление пара котел №3', label: 'Давление пара', unit: 'кгс/см2' }]}
                       showIntervalSelector={false}
                     />
                   </IntervalProvider>

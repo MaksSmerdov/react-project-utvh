@@ -1,3 +1,5 @@
+import { getApiBaseUrl } from "../utils/apiUtils";
+
 export interface ApiConfig {
   apiUrl: string; // URL для API
   defaultData: Record<string, Record<string, string | number>>; // Дефолтные данные
@@ -5,14 +7,11 @@ export interface ApiConfig {
   displayNames: Record<string, Record<string, string>>; // Сопоставление названий
 }
 
-const apiBaseUrl =
-  process.env.NODE_ENV === 'production'
-    ? `http://${process.env.REACT_APP_PRODUCTION_HOST}/api`
-    : 'http://localhost:3002/api';
+const apiBaseUrl = getApiBaseUrl(); // Получаем базовый URL
 
 export const apiConfigs: Record<string, ApiConfig> = {
   kotel1: {
-    apiUrl: `${apiBaseUrl}/kotel1-data`,
+    apiUrl: `${apiBaseUrl}/api/kotel1-data`,
     defaultData: {
       parameters: {
         'Уровень в барабане котел №1': '—',
@@ -76,7 +75,7 @@ export const apiConfigs: Record<string, ApiConfig> = {
   },
 
   kotel2: {
-    apiUrl: `${apiBaseUrl}/kotel2-data`,
+    apiUrl: `${apiBaseUrl}/api/kotel2-data`,
     defaultData: {
       parameters: {
         'Уровень в барабане котел №2': '—',
@@ -140,7 +139,7 @@ export const apiConfigs: Record<string, ApiConfig> = {
   },
 
   kotel3: {
-    apiUrl: `${apiBaseUrl}/kotel3-data`,
+    apiUrl: `${apiBaseUrl}/api/kotel3-data`,
     defaultData: {
       parameters: {
         'Уровень в барабане котел №3': '—',

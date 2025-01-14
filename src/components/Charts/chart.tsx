@@ -19,6 +19,7 @@ import { getChartOptions, colors } from './config/chartConfig';
 import { handleBackward, handleForward, handleReturnToCurrent, createDataWithGaps } from './utils/chartUtils';
 import IntervalSelector from './intervalSelector';
 import { useInterval } from './context/intervalContext';
+import { getApiBaseUrl } from '../../utils/apiUtils';
 
 ChartJS.register(
   LineElement,
@@ -50,6 +51,21 @@ interface GenericData {
   [key: string]: any;
 }
 
+const apiBaseUrl = getApiBaseUrl(); // Получаем базовый URL
+
+const fetchServerTime = async (): Promise<number> => {
+  try {
+    const response = await fetch(`${apiBaseUrl}/api/server-time`);
+    const data = await response.json();
+    const serverTime = new Date(data.time).getTime(); // Время сервера в миллисекундах
+    const clientTime = Date.now(); // Время клиента в миллисекундах
+    return serverTime - clientTime; // Разница между сервером и клиентом
+  } catch (error) {
+    console.error('Ошибка при получении времени сервера:', error);
+    return 0; // Если не удалось получить время сервера, используем время клиента
+  }
+};
+
 const UniversalChart: React.FC<UniversalChartProps> = ({
   apiUrl,
   title,
@@ -62,6 +78,7 @@ const UniversalChart: React.FC<UniversalChartProps> = ({
   id,
   showIntervalSelector = true,
 }) => {
+  const [timeDifference, setTimeDifference] = useState<number>(0); // Разница между сервером и клиентом
   const chartRef = useRef<ChartJS<'line'> | null>(null);
   const { interval } = useInterval();
   const [startTime, setStartTime] = useState(new Date(Date.now() - interval * 60 * 1000));
@@ -70,15 +87,28 @@ const UniversalChart: React.FC<UniversalChartProps> = ({
   const [allHidden, setAllHidden] = useState(false);
   const [isAutoScroll, setIsAutoScroll] = useState(true);
   const [lastInteractionTime, setLastInteractionTime] = useState(Date.now());
-  const [timeOffset, setTimeOffset] = useState(0); // Смещение графика в миллисекундах
+  const [timeOffset, setTimeOffset] = useState(0);
 
-  // Обновляем startTime и endTime с учетом смещения при изменении интервала
+  // Получаем разницу времени при загрузке компонента
   useEffect(() => {
-    const newEndTime = new Date(Date.now() - timeOffset);
+    fetchServerTime().then((difference) => {
+      setTimeDifference(difference);
+    });
+  }, []);
+
+  // Функция для получения текущего времени с учетом разницы
+  const getAdjustedTime = useCallback((): Date => {
+    return new Date(Date.now() + timeDifference);
+  }, [timeDifference]); 
+
+
+  // Обновляем startTime и endTime с учетом разницы времени
+  useEffect(() => {
+    const newEndTime = new Date(getAdjustedTime().getTime() - timeOffset);
     const newStartTime = new Date(newEndTime.getTime() - interval * 60 * 1000);
     setEndTime(newEndTime);
     setStartTime(newStartTime);
-  }, [interval, timeOffset]);
+  }, [interval, timeOffset, timeDifference, getAdjustedTime]); // Добавляем getAdjustedTime
 
   // Мемоизация данных
   const processedData = useMemo(() => data.map((item: GenericData) => ({
@@ -145,7 +175,7 @@ const UniversalChart: React.FC<UniversalChartProps> = ({
   useEffect(() => {
     const intervalId = setInterval(() => {
       if (isAutoScroll) {
-        const newEndTime = new Date(Date.now() - timeOffset);
+        const newEndTime = new Date(getAdjustedTime().getTime() - timeOffset);
         const newStartTime = new Date(newEndTime.getTime() - interval * 60 * 1000);
         setEndTime(newEndTime);
         setStartTime(newStartTime);
@@ -154,9 +184,9 @@ const UniversalChart: React.FC<UniversalChartProps> = ({
         refetch();
       }
     }, 5000);
-
+  
     return () => clearInterval(intervalId);
-  }, [isAutoScroll, interval, refetch, timeOffset]);
+  }, [isAutoScroll, interval, refetch, timeOffset, timeDifference, getAdjustedTime]);
 
   // Проверка бездействия пользователя
   useEffect(() => {
