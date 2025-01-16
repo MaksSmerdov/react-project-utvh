@@ -7,7 +7,7 @@ const LevelKotel1: React.FC = () => {
     <IntervalProvider>
       <UniversalChart
         id="chart-kotel1"
-        apiUrl="http://localhost:3002/api/kotel1/data"
+        apiUrls="http://localhost:3002/api/kotel1/data"
         title="График параметров котла №1"
         yMin={-100}
         yMax={100}

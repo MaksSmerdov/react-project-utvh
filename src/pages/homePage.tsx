@@ -86,7 +86,7 @@ const HomePage: React.FC = () => {
                   <IntervalProvider>
                     <UniversalChart
                       id="chart-kotel1"
-                      apiUrl={`${apiBaseUrl}/api/kotel1/data`} // Используем базовый URL
+                      apiUrls={`${apiBaseUrl}/api/kotel1/data`} // Используем базовый URL
                       title="График уровня котла №1"
                       yMin={-315}
                       yMax={315}
@@ -96,7 +96,7 @@ const HomePage: React.FC = () => {
                     />
                     <UniversalChart
                       id="chart-kotel2"
-                      apiUrl={`${apiBaseUrl}/api/kotel2/data`} // Используем базовый URL
+                      apiUrls={`${apiBaseUrl}/api/kotel2/data`} // Используем базовый URL
                       title="График уровня котла №2"
                       yMin={-315}
                       yMax={315}
@@ -106,7 +106,7 @@ const HomePage: React.FC = () => {
                     />
                     <UniversalChart
                       id="chart-kotel3"
-                      apiUrl={`${apiBaseUrl}/api/kotel3/data`} // Используем базовый URL
+                      apiUrls={`${apiBaseUrl}/api/kotel3/data`} // Используем базовый URL
                       title="График уровня котла №3"
                       yMin={-315}
                       yMax={315}
@@ -123,7 +123,7 @@ const HomePage: React.FC = () => {
                   <IntervalProvider>
                     <UniversalChart
                       id="chart-kotel1"
-                      apiUrl={`${apiBaseUrl}/api/kotel1/data`} // Используем базовый URL
+                      apiUrls={`${apiBaseUrl}/api/kotel1/data`} // Используем базовый URL
                       title="График давления пара котел №1"
                       yMin={-1}
                       yMax={10}
@@ -133,7 +133,7 @@ const HomePage: React.FC = () => {
                     />
                     <UniversalChart
                       id="chart-kotel2"
-                      apiUrl={`${apiBaseUrl}/api/kotel2/data`} // Используем базовый URL
+                      apiUrls={`${apiBaseUrl}/api/kotel2/data`} // Используем базовый URL
                       title="График давления пара котел №2"
                       yMin={-1}
                       yMax={10}
@@ -143,7 +143,7 @@ const HomePage: React.FC = () => {
                     />
                     <UniversalChart
                       id="chart-kotel3"
-                      apiUrl={`${apiBaseUrl}/api/kotel3/data`} // Используем базовый URL
+                      apiUrls={`${apiBaseUrl}/api/kotel3/data`} // Используем базовый URL
                       title="График давления пара котел №3"
                       yMin={-1}
                       yMax={10}

@@ -34,7 +34,7 @@ ChartJS.register(
 );
 
 interface UniversalChartProps {
-  apiUrl: string;
+  apiUrls: string | string[]; // Может быть строкой или массивом строк
   title: string;
   yMin?: number;
   yMax?: number;
@@ -44,6 +44,7 @@ interface UniversalChartProps {
   height?: number | string;
   id: string;
   showIntervalSelector?: boolean;
+  animationEnabled?: boolean; // Новый пропс для управления анимацией
 }
 
 interface GenericData {
@@ -67,7 +68,7 @@ const fetchServerTime = async (): Promise<number> => {
 };
 
 const UniversalChart: React.FC<UniversalChartProps> = ({
-  apiUrl,
+  apiUrls,
   title,
   yMin,
   yMax,
@@ -77,13 +78,14 @@ const UniversalChart: React.FC<UniversalChartProps> = ({
   height = '400px',
   id,
   showIntervalSelector = true,
+  animationEnabled = true, 
 }) => {
   const [timeDifference, setTimeDifference] = useState<number>(0);
   const chartRef = useRef<ChartJS<'line'> | null>(null);
   const { interval } = useInterval();
   const [startTime, setStartTime] = useState(new Date(Date.now() - interval * 60 * 1000));
   const [endTime, setEndTime] = useState(new Date());
-  const { data, error, refetch } = useData(apiUrl, startTime, endTime);
+  const { data, error, refetch } = useData(apiUrls, startTime, endTime);
   const [allHidden, setAllHidden] = useState(false);
   const [isAutoScroll, setIsAutoScroll] = useState(true);
   const [lastInteractionTime, setLastInteractionTime] = useState(Date.now());
@@ -106,44 +108,55 @@ const UniversalChart: React.FC<UniversalChartProps> = ({
     setStartTime(newStartTime);
   }, [interval, timeOffset, timeDifference, getAdjustedTime]);
 
-  const processedData = useMemo(() => data.map((item: GenericData) => ({
-    time: new Date(item.lastUpdated),
-    values: item[dataKey] || {},
-  })), [data, dataKey]);
+  const processedData = useMemo(
+    () =>
+      data.map((item: GenericData) => ({
+        time: new Date(item.lastUpdated),
+        values: item[dataKey] || {},
+      })),
+    [data, dataKey]
+  );
 
-  const chartData = useMemo(() => ({
-    labels: processedData.map((d) => d.time),
-    datasets: params.map((param, index) => ({
-      label: param.label,
-      data: createDataWithGaps(processedData, param.key),
-      borderColor: colors[index % colors.length],
-      backgroundColor: colors[index % colors.length],
-      spanGaps: false,
-    })),
-  }), [processedData, params]);
+  const chartData = useMemo(
+    () => ({
+      labels: processedData.map((d) => d.time),
+      datasets: params.map((param, index) => ({
+        label: param.label,
+        data: createDataWithGaps(processedData, param.key),
+        borderColor: colors[index % colors.length],
+        backgroundColor: colors[index % colors.length],
+        spanGaps: false,
+      })),
+    }),
+    [processedData, params]
+  );
 
-  const options = useMemo(() => getChartOptions(
-    startTime.getTime(),
-    endTime.getTime(),
-    title,
-    isAutoScroll,
-    params,
-    yMin,
-    yMax,
-  ), [startTime, endTime, title, isAutoScroll, params, yMin, yMax]);
+  const options = useMemo(
+    () =>
+      getChartOptions(
+        endTime.getTime(),
+        title,
+        isAutoScroll,
+        params,
+        yMin,
+        yMax,
+        animationEnabled // Передаем значение пропса в настройки графика
+      ),
+    [endTime, title, isAutoScroll, params, yMin, yMax, animationEnabled]
+  );
 
   const handleBackwardWithInteraction = useCallback(() => {
     setLastInteractionTime(Date.now());
     const newOffset = timeOffset + interval * 60 * 1000;
     setTimeOffset(newOffset);
-    handleBackward(startTime, endTime, setStartTime, setEndTime, setIsAutoScroll);
+    handleBackward(startTime, endTime, setStartTime, setEndTime, setIsAutoScroll, interval); 
   }, [startTime, endTime, interval, timeOffset]);
-
+  
   const handleForwardWithInteraction = useCallback(() => {
     setLastInteractionTime(Date.now());
     const newOffset = Math.max(0, timeOffset - interval * 60 * 1000);
     setTimeOffset(newOffset);
-    handleForward(startTime, endTime, setStartTime, setEndTime, setIsAutoScroll);
+    handleForward(startTime, endTime, setStartTime, setEndTime, setIsAutoScroll, interval); 
   }, [startTime, endTime, interval, timeOffset]);
 
   const handleReturnToCurrentWithInteraction = useCallback(() => {
@@ -184,7 +197,7 @@ const UniversalChart: React.FC<UniversalChartProps> = ({
       } else {
         refetch();
       }
-    }, 5000);
+    }, 1000);
 
     return () => clearInterval(intervalId);
   }, [isAutoScroll, interval, refetch, timeOffset, timeDifference, getAdjustedTime]);
@@ -235,25 +248,16 @@ const UniversalChart: React.FC<UniversalChartProps> = ({
       )}
 
       <div className={styles['dynamic-graph__btns']}>
-        <button
-          className={styles['dynamic-graph__btn']}
-          onClick={handleBackwardWithInteraction}
-        >
+        <button className={styles['dynamic-graph__btn']} onClick={handleBackwardWithInteraction}>
           Назад
         </button>
-        <button
-          className={styles['dynamic-graph__btn']}
-          onClick={handleForwardWithInteraction}
-        >
+        <button className={styles['dynamic-graph__btn']} onClick={handleForwardWithInteraction}>
           Вперёд
         </button>
         <button className={styles['dynamic-graph__btn']} onClick={handleToggleAll}>
           {allHidden ? 'Показать все' : 'Скрыть все'}
         </button>
-        <button
-          className={styles['dynamic-graph__btn']}
-          onClick={handleReturnToCurrentWithInteraction}
-        >
+        <button className={styles['dynamic-graph__btn']} onClick={handleReturnToCurrentWithInteraction}>
           Вернуться к текущим данным
         </button>
       </div>
