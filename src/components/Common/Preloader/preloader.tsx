@@ -4,22 +4,23 @@ import styles from './preloader.module.scss';
 interface LoaderProps {
   delay?: number; // Задержка перед исчезновением прелоудера (в миллисекундах)
   size?: number; // Размер прелоудера
+  fullPage?: boolean;
 }
 
-const Loader: React.FC<LoaderProps> = ({ delay = 1000, size = 60 }) => {
-  const [isVisible, setIsVisible] = useState(true); // Состояние видимости прелоудера
+const Loader: React.FC<LoaderProps> = ({ delay = 1000, size = 60, fullPage = true }) => {
+  const [isVisible, setIsVisible] = useState(true); 
 
   useEffect(() => {
     // Устанавливаем таймер для скрытия прелоудера через указанную задержку
     const timer = setTimeout(() => setIsVisible(false), delay);
-    return () => clearTimeout(timer); // Очистка таймера при размонтировании
+    return () => clearTimeout(timer); 
   }, [delay]);
 
   // Если прелоудер не видим, возвращаем null
   if (!isVisible) return null;
 
   return (
-    <div className={styles.loaderContainer}>
+    <div className={`${styles.loaderContainer} ${fullPage ? styles.fullPage : ''}`}>
       <div className={styles.reactLogo} style={{ width: size, height: size }}>
         <svg
           xmlns="http://www.w3.org/2000/svg"
