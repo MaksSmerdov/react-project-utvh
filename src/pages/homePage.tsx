@@ -3,12 +3,15 @@ import { Tab, Tabs, TabList, TabPanel } from 'react-tabs';
 import 'react-tabs/style/react-tabs.css'; // Импортируем стандартные стили
 import styles from './homePage.module.scss';
 import MnemoKotel from '../components/Mnemo/kotelnaya/mnemoKotel';
-import CurrentParameter from '../components/Current/currentParameter';
-import { apiConfigs } from '../configs/apiConfigKotelnaya';
 import UniversalChart from '../components/Charts/chart';
 import { IntervalProvider } from '../components/Charts/context/intervalContext';
 import { getApiBaseUrl } from '../utils/apiUtils'; // Импортируем функцию
 import Loader from '../components/Common/Preloader/preloader';
+import CurrentParameterHvo1 from './hvo/currentParam-hvo1';
+import CurrentParameterHvo2 from './hvo/currentParam-hvo2';
+import CurrentParameterKotel1 from './kotelnaya/currentParam/currentParam-kotel1';
+import CurrentParameterKotel2 from './kotelnaya/currentParam/currentParam-kotel2';
+import CurrentParameterKotel3 from './kotelnaya/currentParam/currentParam-kotel3';
 
 const HomePage: React.FC = () => {
   const [selectedTabIndex, setSelectedTabIndex] = useState<number>(0);
@@ -42,6 +45,12 @@ const HomePage: React.FC = () => {
           <Tab className={styles['tab']} selectedClassName={styles['tab--selected']}>
             Котел №3
           </Tab>
+          <Tab className={styles['tab']} selectedClassName={styles['tab--selected']}>
+            ХВО щит №1
+          </Tab>
+          <Tab className={styles['tab']} selectedClassName={styles['tab--selected']}>
+            ХВО щит №2
+          </Tab>
         </TabList>
 
         {/* Панель для котла №1 */}
@@ -49,10 +58,7 @@ const HomePage: React.FC = () => {
           <div className={styles['tab-content']}>
             <Tabs selectedIndex={selectedSubTabIndex} onSelect={handleSubTabChange}>
               <TabList className={styles['sub-tab-list']}>
-                <Tab
-                  className={styles['sub-tab']}
-                  selectedClassName={styles['sub-tab--selected']} // Класс для активного саб-таба
-                >
+                <Tab className={styles['sub-tab']} selectedClassName={styles['sub-tab--selected']}>
                   Мнемосхема
                 </Tab>
                 <Tab className={styles['sub-tab']} selectedClassName={styles['sub-tab--selected']}>
@@ -76,7 +82,7 @@ const HomePage: React.FC = () => {
               {/* Панель текущих параметров */}
               <TabPanel>
                 <div key={`kotel1-params-${selectedSubTabIndex}`} className={styles['sub-tab-content']}>
-                  <CurrentParameter config={apiConfigs.kotel1} title="Котел №1" />
+                  <CurrentParameterKotel1 /> {/* Используем компонент CurrentParameterKotel1 */}
                 </div>
               </TabPanel>
 
@@ -86,7 +92,7 @@ const HomePage: React.FC = () => {
                   <IntervalProvider>
                     <UniversalChart
                       id="chart-kotel1"
-                      apiUrls={`${apiBaseUrl}/api/kotel1/data`} // Используем базовый URL
+                      apiUrls={`${apiBaseUrl}/api/kotel1/data`}
                       title="График уровня котла №1"
                       yMin={-315}
                       yMax={315}
@@ -118,12 +124,13 @@ const HomePage: React.FC = () => {
                 </div>
               </TabPanel>
 
+              {/* Панель графиков пара */}
               <TabPanel>
                 <div key={`kotel1-charts-${selectedSubTabIndex}`} className={styles['sub-tab-content']}>
                   <IntervalProvider>
                     <UniversalChart
                       id="chart-kotel1"
-                      apiUrls={`${apiBaseUrl}/api/kotel1/data`} // Используем базовый URL
+                      apiUrls={`${apiBaseUrl}/api/kotel1/data`}
                       title="График давления пара котел №1"
                       yMin={-1}
                       yMax={10}
@@ -181,7 +188,7 @@ const HomePage: React.FC = () => {
               {/* Панель текущих параметров */}
               <TabPanel>
                 <div key={`kotel2-params-${selectedSubTabIndex}`} className={styles['sub-tab-content']}>
-                  <CurrentParameter config={apiConfigs.kotel2} title="Котел №2" />
+                  <CurrentParameterKotel2 /> {/* Используем компонент CurrentParameterKotel2 */}
                 </div>
               </TabPanel>
             </Tabs>
@@ -211,7 +218,47 @@ const HomePage: React.FC = () => {
               {/* Панель текущих параметров */}
               <TabPanel>
                 <div key={`kotel3-params-${selectedSubTabIndex}`} className={styles['sub-tab-content']}>
-                  <CurrentParameter config={apiConfigs.kotel3} title="Котел №3" />
+                  <CurrentParameterKotel3 /> {/* Используем компонент CurrentParameterKotel3 */}
+                </div>
+              </TabPanel>
+            </Tabs>
+          </div>
+        </TabPanel>
+
+        {/* Панель для ХВО1 */}
+        <TabPanel>
+          <div className={styles['tab-content']}>
+            <Tabs selectedIndex={selectedSubTabIndex} onSelect={handleSubTabChange}>
+              <TabList className={styles['sub-tab-list']}>
+                <Tab className={styles['sub-tab']} selectedClassName={styles['sub-tab--selected']}>
+                  Текущие параметры
+                </Tab>
+              </TabList>
+
+              {/* Панель текущих параметров */}
+              <TabPanel>
+                <div key={`hvo1-params-${selectedSubTabIndex}`} className={styles['sub-tab-content']}>
+                  <CurrentParameterHvo1 /> {/* Используем компонент CurrentParameterHvo1 */}
+                </div>
+              </TabPanel>
+            </Tabs>
+          </div>
+        </TabPanel>
+
+        {/* Панель для ХВО2 */}
+        <TabPanel>
+          <div className={styles['tab-content']}>
+            <Tabs selectedIndex={selectedSubTabIndex} onSelect={handleSubTabChange}>
+              <TabList className={styles['sub-tab-list']}>
+                <Tab className={styles['sub-tab']} selectedClassName={styles['sub-tab--selected']}>
+                  Текущие параметры
+                </Tab>
+              </TabList>
+
+              {/* Панель текущих параметров */}
+              <TabPanel>
+                <div key={`hvo2-params-${selectedSubTabIndex}`} className={styles['sub-tab-content']}>
+                  <CurrentParameterHvo2 /> {/* Используем компонент CurrentParameterHvo2 */}
                 </div>
               </TabPanel>
             </Tabs>

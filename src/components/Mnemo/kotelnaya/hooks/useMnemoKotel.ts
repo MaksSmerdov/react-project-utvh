@@ -1,5 +1,5 @@
 import { useEffect, useState } from 'react';
-import { apiConfigs } from '../../../../configs/apiConfigKotelnaya';
+import { apiConfigs } from '../../../../configs/apiConfigUtvh';
 
 type KotelKey = keyof typeof apiConfigs;
 

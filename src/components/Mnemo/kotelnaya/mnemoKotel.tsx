@@ -1,6 +1,6 @@
 import { useState } from 'react';
 import styles from './mnemoKotel.module.scss';
-import { apiConfigs } from '../../../configs/apiConfigKotelnaya';
+import { apiConfigs } from '../../../configs/apiConfigUtvh';
 import useMnemoKotel from './hooks/useMnemoKotel';
 import CustomModal from '../../Common/Modal/modal';
 import DocumentationAccordion from '../../Common/Accordion/accordion';
