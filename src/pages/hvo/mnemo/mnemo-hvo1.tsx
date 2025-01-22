@@ -1,12 +1,13 @@
 import React, { useState } from 'react';
 import { apiConfigs } from '../../../configs/apiConfigUtvh';
 import useMnemoHvo from '../../../components/Mnemo/hvo/hooks/useMnemoHvo';
-import styles from './mnemo-hvo1.module.scss'; // Импортируем SCSS-стили
+import styles from './mnemo-hvo1.module.scss';
 import Header from '../../../components/Common/Header/header';
-import Tooltip from '../../../components/Common/Tooltip/tooltip'; // Импортируем компонент Tooltip
-import ControlButtons from '../../../components/Common/ControlButtons/controlButtons'; // Импортируем компонент ControlButtons
+import Tooltip from '../../../components/Common/Tooltip/tooltip';
+import ControlButtons from '../../../components/Common/ControlButtons/controlButtons';
 import tooltipItemsHvo1 from '../../../components/Mnemo/hvo/config/tooltipItems';
-import GifComponent from '../../../components/Common/GifComponent/gifComponent'; // Импортируем GifComponent
+import GifComponent from '../../../components/Common/GifComponent/gifComponent';
+import Kran from '../../../components/Common/Kran/kranComponent';
 
 const MnemoHvo1: React.FC = () => {
   const hvo1Config = apiConfigs.hvo1;
@@ -24,6 +25,9 @@ const MnemoHvo1: React.FC = () => {
   if (isLoading) {
     return <div>Загрузка данных...</div>;
   }
+
+  console.log(data);
+
 
   return (
     <div>
@@ -215,6 +219,19 @@ const MnemoHvo1: React.FC = () => {
         <p className={`${styles['mnemo__param-descr']} ${styles['davl-posle-nasosov-3-1-2-text']}`}>
           P на промывку Ф1/1-4, Ф2/1-3
         </p>
+
+        {/* Кран для контроля положения ИМ1 */}
+        <Kran
+          size={{ width: 24, height: 18 }}
+          adaptiveSize={{ width: 30, height: 24 }}
+          value={parseFloat(String(data.parameters?.['Контроль положения ИМ1'] || '0'))} // Числовое значение
+          threshold={5} // Пороговое значение
+          orientation="vertical"
+          top="53.8%"
+          left="53.8%"
+          adaptiveTop="405px"
+          adaptiveLeft="150px"
+        />
       </div>
     </div>
   );

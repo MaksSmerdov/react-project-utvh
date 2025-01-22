@@ -33,6 +33,8 @@ const MnemoKotel = <K extends keyof typeof apiConfigs>({
   });
   const [isModalOpen, setIsModalOpen] = useState(false);
 
+  // console.log(data);
+
   return (
     <div className={styles.mnemoContainer}>
       {showLoading && <Loader delay={1000} size={100} />}
@@ -173,8 +175,8 @@ const MnemoKotel = <K extends keyof typeof apiConfigs>({
         <Kran
           size={{ width: 30, height: 24 }}
           adaptiveSize={{ width: 30, height: 24 }}
-          status={Boolean(data.info?.[`Клапан запальника котел №${objectNumber}`])}
-          orientation="vertical"
+          status={Boolean(data.info?.[`Клапан запальника котел №${objectNumber}`])} // Булевое значение
+          orientation="horizontal"
           top="405px"
           left="150px"
           adaptiveTop="405px"
@@ -184,8 +186,8 @@ const MnemoKotel = <K extends keyof typeof apiConfigs>({
         <Kran
           size={{ width: 30, height: 24 }}
           adaptiveSize={{ width: 30, height: 24 }}
-          status={Boolean(data.info?.[`Клапан отсекатель котел №${objectNumber}`])}
-          orientation="horizontal"
+          status={Boolean(data.info?.[`Клапан отсекатель котел №${objectNumber}`])} // Булевое значение
+          orientation="vertical"
           top="150px"
           left="83px"
           adaptiveTop="150px"
@@ -195,8 +197,8 @@ const MnemoKotel = <K extends keyof typeof apiConfigs>({
         <Kran
           size={{ width: 30, height: 24 }}
           adaptiveSize={{ width: 30, height: 24 }}
-          status={Boolean(data.info?.[`Клапан отсекатель котел №${objectNumber}`])}
-          orientation="horizontal"
+          status={Boolean(data.info?.[`Клапан отсекатель котел №${objectNumber}`])} // Булевое значение
+          orientation="vertical"
           top="275px"
           left="83px"
           adaptiveTop="275px"
@@ -206,9 +208,9 @@ const MnemoKotel = <K extends keyof typeof apiConfigs>({
         <Kran
           size={{ width: 30, height: 24 }}
           adaptiveSize={{ width: 30, height: 24 }}
-          status={Boolean(data.info?.[`Клапан отсекатель котел №${objectNumber}`])}
+          status={Boolean(data.info?.[`Клапан отсекатель котел №${objectNumber}`])} // Булевое значение
           reverseColorLogic={true} // Обратная логика цвета
-          orientation="horizontal"
+          orientation="vertical"
           top="150px"
           left="167px"
           adaptiveTop="150px"
