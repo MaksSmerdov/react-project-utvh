@@ -1,7 +1,6 @@
 import React, { useEffect, useState } from 'react';
 import Header from '../Common/Header/header';
 import Table from '../Common/Table/table';
-import styles from './currentParameter.module.scss';
 import { ApiConfig } from '../../configs/apiConfigUtvh';
 import Loader from '../Common/Preloader/preloader';
 
@@ -50,15 +49,15 @@ const CurrentParameter: React.FC<CurrentParameterProps> = ({
   return (
     <div>
       {showLoading && <Loader delay={1000} size={100} />}
-      {showHeader && <Header title={title} maxWidth='900px' />}
-      <div className={styles.tables}>
+      {showHeader && <Header title={title} maxWidth='100%' />}
+      <div>
         {Object.entries(config.titles).map(([key, tableTitle]) => (
           <div key={key}>
             <Table
               title={tableTitle}
               items={data[key] || {}}
               displayNames={config.displayNames[key] || {}}
-              width="900px"
+              width="100%"
             />
           </div>
         ))}

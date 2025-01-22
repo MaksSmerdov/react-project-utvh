@@ -7,8 +7,8 @@ import UniversalChart from '../components/Charts/chart';
 import { IntervalProvider } from '../components/Charts/context/intervalContext';
 import { getApiBaseUrl } from '../utils/apiUtils'; // Импортируем функцию
 import Loader from '../components/Common/Preloader/preloader';
-import CurrentParameterHvo1 from './hvo/currentParam-hvo1';
-import CurrentParameterHvo2 from './hvo/currentParam-hvo2';
+import CurrentParameterHvo1 from './hvo/currentParam/currentParam-hvo1';
+import CurrentParameterHvo2 from './hvo/currentParam/currentParam-hvo2';
 import CurrentParameterKotel1 from './kotelnaya/currentParam/currentParam-kotel1';
 import CurrentParameterKotel2 from './kotelnaya/currentParam/currentParam-kotel2';
 import CurrentParameterKotel3 from './kotelnaya/currentParam/currentParam-kotel3';

@@ -8,12 +8,12 @@ interface LoaderProps {
 }
 
 const Loader: React.FC<LoaderProps> = ({ delay = 1000, size = 60, fullPage = true }) => {
-  const [isVisible, setIsVisible] = useState(true); 
+  const [isVisible, setIsVisible] = useState(true);
 
   useEffect(() => {
     // Устанавливаем таймер для скрытия прелоудера через указанную задержку
     const timer = setTimeout(() => setIsVisible(false), delay);
-    return () => clearTimeout(timer); 
+    return () => clearTimeout(timer);
   }, [delay]);
 
   // Если прелоудер не видим, возвращаем null
@@ -22,11 +22,7 @@ const Loader: React.FC<LoaderProps> = ({ delay = 1000, size = 60, fullPage = tru
   return (
     <div className={`${styles.loaderContainer} ${fullPage ? styles.fullPage : ''}`}>
       <div className={styles.reactLogo} style={{ width: size, height: size }}>
-        <svg
-          xmlns="http://www.w3.org/2000/svg"
-          viewBox="-11.5 -10.23174 23 20.46348"
-          className={styles.reactSvg}
-        >
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="-11.5 -10.23174 23 20.46348" className={styles.reactSvg}>
           {/* Определение градиентов */}
           <defs>
             {/* Градиент для орбит */}
