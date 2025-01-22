@@ -32,7 +32,6 @@ const tooltipItemsHvo1 = [
         Токовый выход: 4 - 20 мА
       </div>
     ),
-
   },
   {
     id: 'rashod-vody-na-ustanovky',
@@ -52,8 +51,6 @@ const tooltipItemsHvo1 = [
         Токовый выход: 4 - 20 мА
       </div>
     ),
-
-
   },
   {
     id: 'davl-posle-nasosov-1-1-2-3',
@@ -73,8 +70,6 @@ const tooltipItemsHvo1 = [
         Токовый выход: 4 - 20 мА
       </div>
     ),
-
-
   },
   {
     id: 'uroven-e1-1',
@@ -94,8 +89,82 @@ const tooltipItemsHvo1 = [
         Токовый выход: 4 - 20 мА
       </div>
     ),
-
-
+  },
+  {
+    id: 'uroven-e1-2',
+    className: styles['uroven-e1-2'],
+    dataKey: 'Уровень воды в емкости E1/2',
+    source: 'parameters',
+    naimenov: 'Уровень E1/2',
+    unit: 'мм',
+    width: '240px',
+    responsiveWidth: { 'max-1280': '225px' },
+    content: (
+      <div>
+        Прибор: Уровнемер УЛ-100
+        <br />
+        Диапазон: 0...1000 мм
+        <br />
+        Токовый выход: 4 - 20 мА
+      </div>
+    ),
+  },
+  {
+    id: 'rashod-vody-na-promyvky',
+    className: styles['rashod-vody-na-promyvky'],
+    dataKey: 'Расход воды на промывку фильтров (м3/ч)',
+    source: 'parameters',
+    naimenov: 'Расход воды на промывку фильтров',
+    unit: 'м3/ч',
+    width: '240px',
+    responsiveWidth: { 'max-1280': '225px' },
+    content: (
+      <div>
+        ПРИМ-100-1-0
+        <br />
+        Диапазон: 0...1000 мм
+        <br />
+        Токовый выход: 4 - 20 мА
+      </div>
+    ),
+  },
+  {
+    id: 'davl-posle-nasosov-2-1-2',
+    className: styles['davl-posle-nasosov-2-1-2'],
+    dataKey: 'Давление воды после насосов H2/1,2',
+    source: 'parameters',
+    naimenov: 'Давление воды после насосов H2/1,2',
+    unit: 'кгс/м2',
+    width: '240px',
+    responsiveWidth: { 'max-1280': '225px' },
+    content: (
+      <div>
+        Прибор: Уровнемер УЛ-100
+        <br />
+        Диапазон: 0...1000 мм
+        <br />
+        Токовый выход: 4 - 20 мА
+      </div>
+    ),
+  },
+  {
+    id: 'davl-posle-nasosov-3-1-2',
+    className: styles['davl-posle-nasosov-3-1-2'],
+    dataKey: 'Давление воды после насосов H2/1,2',
+    source: 'parameters',
+    naimenov: 'Давление воды после насосов H3/1,2 для промывки',
+    unit: 'кгс/м2',
+    width: '240px',
+    responsiveWidth: { 'max-1280': '225px' },
+    content: (
+      <div>
+        Прибор: Уровнемер УЛ-100
+        <br />
+        Диапазон: 0...1000 мм
+        <br />
+        Токовый выход: 4 - 20 мА
+      </div>
+    ),
   },
 ];
 

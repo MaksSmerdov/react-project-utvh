@@ -63,6 +63,75 @@ const MnemoHvo1: React.FC = () => {
             </Tooltip>
           );
         })}
+
+        <div className={`${styles['mnemo__param']} ${styles['kontrol-im-1']}`}>
+          <div className={styles['mnemo__param-text']}>{data.parameters?.['Контроль положения ИМ1'] ?? '—'}</div>
+        </div>
+
+        <div className={`${styles['mnemo__param']} ${styles['zadanie-uroven-e1-1-2']}`}>
+          <div className={styles['mnemo__param-text']}>
+            {data.parameters?.['Задание уровня воды в емкостях E1/1,2'] ?? '—'}
+          </div>
+          <div className={styles['mnemo__param-naimenov']}>%</div>
+        </div>
+
+        {/* pumps */}
+
+        <div className={`${styles['mnemo__param']} ${styles['n1-1-percent']}`}>
+          <div className={styles['mnemo__param-text']}>
+            {data.parameters?.['Выход РАН давления воды для ПЧ H1/1 (%)'] ?? '—'}
+          </div>
+          <div className={styles['mnemo__param-naimenov']}>%</div>
+        </div>
+
+        <div className={`${styles['mnemo__param']} ${styles['n1-1-hz']}`}>
+          <div className={styles['mnemo__param-text']}>
+            {data.parameters?.['Рабочая частота насоса H1/1 (Гц)'] ?? '—'}
+          </div>
+          <div className={styles['mnemo__param-naimenov']}>Гц</div>
+        </div>
+
+        <div className={`${styles['mnemo__param']} ${styles['n1-2-percent']}`}>
+          <div className={styles['mnemo__param-text']}>
+            {data.parameters?.['Выход РАН давления воды для ПЧ H1/2 (%)'] ?? '—'}
+          </div>
+          <div className={styles['mnemo__param-naimenov']}>%</div>
+        </div>
+
+        <div className={`${styles['mnemo__param']} ${styles['n1-2-hz']}`}>
+          <div className={styles['mnemo__param-text']}>
+            {data.parameters?.['Рабочая частота насоса H1/2 (Гц)'] ?? '—'}
+          </div>
+          <div className={styles['mnemo__param-naimenov']}>Гц</div>
+        </div>
+
+        <div className={`${styles['mnemo__param']} ${styles['n2-1-percent']}`}>
+          <div className={styles['mnemo__param-text']}>
+            {data.parameters?.['Выход РАН давления воды для ПЧ H2/1 (%)'] ?? '—'}
+          </div>
+          <div className={styles['mnemo__param-naimenov']}>%</div>
+        </div>
+
+        <div className={`${styles['mnemo__param']} ${styles['n2-1-hz']}`}>
+          <div className={styles['mnemo__param-text']}>
+            {data.parameters?.['Рабочая частота насоса H2/1 (Гц)'] ?? '—'}
+          </div>
+          <div className={styles['mnemo__param-naimenov']}>Гц</div>
+        </div>
+
+        <div className={`${styles['mnemo__param']} ${styles['n2-2-percent']}`}>
+          <div className={styles['mnemo__param-text']}>
+            {data.parameters?.['Выход РАН давления воды для ПЧ H2/2 (%)'] ?? '—'}
+          </div>
+          <div className={styles['mnemo__param-naimenov']}>%</div>
+        </div>
+
+        <div className={`${styles['mnemo__param']} ${styles['n2-2-hz']}`}>
+          <div className={styles['mnemo__param-text']}>
+            {data.parameters?.['Рабочая частота насоса H2/2 (Гц)'] ?? '—'}
+          </div>
+          <div className={styles['mnemo__param-naimenov']}>Гц</div>
+        </div>
       </div>
     </div>
   );
