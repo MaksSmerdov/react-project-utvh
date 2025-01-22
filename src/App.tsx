@@ -10,6 +10,7 @@ import MnemoKotel3 from './pages/kotelnaya/mnemo/mnemo-kotel3';
 import LevelKotel1 from './pages/kotelnaya/graphics/graphLevel-kotel1';
 import CurrentParameterHvo1 from './pages/hvo/currentParam/currentParam-hvo1';
 import CurrentParameterHvo2 from './pages/hvo/currentParam/currentParam-hvo2';
+import MnemoHvo1 from './pages/hvo/mnemo/mnemo-hvo1';
 
 const App: React.FC = () => {
   return (
@@ -29,6 +30,8 @@ const App: React.FC = () => {
 
         <Route path="/currentParam-hvo1" element={<CurrentParameterHvo1 />} />
         <Route path="/currentParam-hvo2" element={<CurrentParameterHvo2 />} />
+
+        <Route path="/mnemo-hvo1" element={<MnemoHvo1 />} />
 
       </Routes>
     </div>

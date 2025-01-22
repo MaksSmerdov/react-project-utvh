@@ -1,0 +1,58 @@
+// Блок: MnemoHvo1
+.mnemo {
+  margin-top: 10px;
+  position: relative;
+  width: 1200px;
+
+  &__img {
+    width: 1200px;
+  }
+
+  &__param {
+    display: flex;
+    align-items: center;
+    gap: 3px;
+    padding: 3px 7px;
+    position: absolute;
+    background-color: rgb(218, 215, 215);
+    border-radius: 7px;
+    box-shadow: 0 2px 2px rgba(0, 0, 0, 0.25), 0 2px 2px rgba(0, 0, 0, 0.22);
+  }
+
+  &__param-text {
+    font-size: 15px;
+    line-height: 15px;
+    font-weight: 600;
+    color: blue;
+  }
+
+  &__param-naimenov {
+    font-size: 15px;
+    line-height: 15px;
+    font-weight: 400;
+    color: black;
+  }
+}
+
+/* parameters */
+.davl-vhod-ustanivki {
+  left: 4%;
+  top: 29.5%;
+}
+
+.rashod-vody-na-ustanovky {
+  left: 5%;
+  top: 18%;
+}
+
+.davl-posle-nasosov-1-1-2-3 {
+  left: 22.5%;
+  top: 6%;
+}
+
+.uroven-e1-1 {
+  // width: 66px;
+  right: 30.1%;
+  bottom: 37%;
+  padding: 2px;
+}
