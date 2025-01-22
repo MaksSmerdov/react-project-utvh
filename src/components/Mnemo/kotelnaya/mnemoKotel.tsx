@@ -55,79 +55,81 @@ const MnemoKotel = <K extends keyof typeof apiConfigs>({
         </CustomModal>
 
         <img src="/assets/img/kotelnaya/kotel.png" alt="Котел" className={styles['mnemo__img']} />
-        {/* mnemo__gif-1 */}
+
+        {/* Факел горелки */}
         <GifComponent
           src="/assets/img/kotelnaya/fire-gif.gif"
           alt="Факел горелки"
           className={`${styles['mnemo__gif']} ${styles['mnemo__gif-1']}`}
           data={data.info}
-          objectNumber={objectNumber}
           conditionKey={`Факел горелки котел №${objectNumber}`}
+          conditionType="boolean" // Булевое условие
         />
 
-        {/* mnemo__gif-5 */}
+        {/* Искра */}
         <GifComponent
           src="/assets/img/kotelnaya/iskra.gif"
           alt="Искра"
           className={`${styles['mnemo__gif']} ${styles['mnemo__gif-5']}`}
           data={data.info}
-          objectNumber={objectNumber}
           conditionKey={`Искрообразование котел №${objectNumber}`}
+          conditionType="boolean" // Булевое условие
         />
 
-        {/* mnemo__gif-6 */}
+        {/* Факел запальника */}
         <GifComponent
           src="/assets/img/kotelnaya/fire-zapalnik.gif"
           alt="Факел запальника"
           className={`${styles['mnemo__gif']} ${styles['mnemo__gif-6']}`}
           data={data.info}
-          objectNumber={objectNumber}
           conditionKey={`Факел запальника котел №${objectNumber}`}
+          conditionType="boolean" // Булевое условие
         />
 
-        {/* mnemo__gif-7 */}
+        {/* Пар */}
         <GifComponent
           src="/assets/img/kotelnaya/par.gif"
           alt="Пар"
           className={`${styles['mnemo__gif']} ${styles['mnemo__gif-7']}`}
           data={data.info}
-          objectNumber={objectNumber}
           conditionKey={`Рабочий режим котел №${objectNumber}`}
+          conditionType="boolean" // Булевое условие
         />
 
-        {/* mnemo__gif-2 */}
+        {/* Дымосос */}
         <GifComponent
           src="/assets/img/kotelnaya/ventilator.png"
           alt="Дымосос"
           className={`${styles['mnemo__gif']} ${styles['mnemo__gif-2']}`}
           data={data.info}
-          objectNumber={objectNumber}
           conditionKey={`Работа дымососа котел №${objectNumber}`}
-          isAnimation={true}
+          conditionType="boolean" // Булевое условие
+          isAnimation={true} // Анимация всегда включена
         />
 
-        {/* mnemo__gif-3 */}
+        {/* Вентилятор */}
         <GifComponent
           src="/assets/img/kotelnaya/ventilator.png"
           alt="Вентилятор"
           className={`${styles['mnemo__gif']} ${styles['mnemo__gif-3']}`}
           data={data.others}
-          objectNumber={objectNumber}
           conditionKey={`Индикация работы вентилятора котел №${objectNumber}`}
-          isAnimation={true}
+          conditionType="boolean" // Булевое условие
+          isAnimation={true} // Анимация всегда включена
         />
 
-        {/* mnemo__gif-4 */}
+        {/* Пар на трубе */}
         <GifComponent
           src="/assets/img/kotelnaya/ventilator.png"
           alt="Пар на трубе"
           className={`${styles['mnemo__gif']} ${styles['mnemo__gif-4']}`}
           data={data.info}
-          objectNumber={objectNumber}
           conditionKey={`Рабочий режим котел №${objectNumber}`}
-          isAnimation={true}
+          conditionType="boolean" // Булевое условие
+          isAnimation={true} // Анимация всегда включена
         />
 
+        {/* ИМ (индикаторы) */}
         {imLabels.map((label, idx) => {
           const value = data.im?.[`${label.key}${objectNumber}`] ?? '—';
           return (
@@ -167,6 +169,7 @@ const MnemoKotel = <K extends keyof typeof apiConfigs>({
           );
         })}
 
+        {/* Краны */}
         <Kran
           size={{ width: 30, height: 24 }}
           adaptiveSize={{ width: 30, height: 24 }}
@@ -248,6 +251,7 @@ const MnemoKotel = <K extends keyof typeof apiConfigs>({
           );
         })}
 
+        {/* Индикатор уровня */}
         <LevelIndicator
           objectNumber={objectNumber}
           data={data}
