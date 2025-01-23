@@ -12,6 +12,7 @@ import CurrentParameterHvo2 from './hvo/currentParam/currentParam-hvo2';
 import CurrentParameterKotel1 from './kotelnaya/currentParam/currentParam-kotel1';
 import CurrentParameterKotel2 from './kotelnaya/currentParam/currentParam-kotel2';
 import CurrentParameterKotel3 from './kotelnaya/currentParam/currentParam-kotel3';
+import MnemoHvo1 from './hvo/mnemo/mnemo-hvo1';
 
 const HomePage: React.FC = () => {
   const [selectedTabIndex, setSelectedTabIndex] = useState<number>(0);
@@ -231,9 +232,19 @@ const HomePage: React.FC = () => {
             <Tabs selectedIndex={selectedSubTabIndex} onSelect={handleSubTabChange}>
               <TabList className={styles['sub-tab-list']}>
                 <Tab className={styles['sub-tab']} selectedClassName={styles['sub-tab--selected']}>
+                  Мнемосхема
+                </Tab>
+                <Tab className={styles['sub-tab']} selectedClassName={styles['sub-tab--selected']}>
                   Текущие параметры
                 </Tab>
               </TabList>
+
+              {/* Панель мнемосхемы */}
+              <TabPanel>
+                <div key={`hvo1-mnemo-${selectedSubTabIndex}`} className={styles['sub-tab-content']}>
+                  <MnemoHvo1 /> {/* Используем компонент MnemoHvo1 */}
+                </div>
+              </TabPanel>
 
               {/* Панель текущих параметров */}
               <TabPanel>

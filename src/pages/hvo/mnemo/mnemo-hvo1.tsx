@@ -8,6 +8,9 @@ import ControlButtons from '../../../components/Common/ControlButtons/controlBut
 import tooltipItemsHvo1 from '../../../components/Mnemo/hvo/config/tooltipItems';
 import GifComponent from '../../../components/Common/GifComponent/gifComponent';
 import Kran from '../../../components/Common/Kran/kranComponent';
+import CustomModal from '../../../components/Common/Modal/modal'; // Импортируем модальное окно
+import DocumentationAccordion from '../../../components/Common/Accordion/accordion'; // Импортируем аккордеон
+import { accordionData, accordionTitles } from '../../../components/Mnemo/hvo/config/accordionItems'; // Импортируем данные для аккордеона
 
 const MnemoHvo1: React.FC = () => {
   const hvo1Config = apiConfigs.hvo1;
@@ -17,6 +20,7 @@ const MnemoHvo1: React.FC = () => {
   });
 
   const [tooltipsEnabled, setTooltipsEnabled] = useState(true); // Состояние для управления видимостью тултипов
+  const [isModalOpen, setIsModalOpen] = useState(false); // Состояние для управления модальным окном
 
   const toggleTooltips = () => {
     setTooltipsEnabled(!tooltipsEnabled); // Функция для переключения видимости тултипов
@@ -28,7 +32,6 @@ const MnemoHvo1: React.FC = () => {
 
   console.log(data);
 
-
   return (
     <div>
       <Header title="ХВО щит №1" />
@@ -37,6 +40,7 @@ const MnemoHvo1: React.FC = () => {
         <ControlButtons
           tooltipsEnabled={tooltipsEnabled}
           onToggleTooltips={toggleTooltips}
+          onOpenModal={() => setIsModalOpen(true)} // Открываем модальное окно
           top="0"
           left="0"
           adaptiveTop="-5px"
@@ -44,6 +48,11 @@ const MnemoHvo1: React.FC = () => {
           adaptiveFontSize="16px"
           adaptiveLineHeight="23px"
         />
+
+        {/* Модальное окно с документацией */}
+        <CustomModal isOpen={isModalOpen} title="Список документации" onClose={() => setIsModalOpen(false)}>
+          <DocumentationAccordion accordionData={accordionData} titles={accordionTitles} />
+        </CustomModal>
 
         <img src="/assets/img/hvo/hvo1.png" alt="Котел" className={styles['mnemo__img']} />
 

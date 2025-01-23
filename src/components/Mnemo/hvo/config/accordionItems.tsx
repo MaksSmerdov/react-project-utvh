@@ -7,194 +7,167 @@ export const accordionTitles = {
 export const accordionData = {
   schemes: [
     {
+      name: 'Сборочный чертеж. Общий вид',
+      files: [
+        {
+          type: 'DWG',
+          href: '/assets/content/hvo/schemes1/assembly_hvo1.dwg',
+        },
+        {
+          type: 'PDF',
+          href: '/assets/content/hvo/schemes1/assembly_hvo1.pdf',
+        },
+      ],
+    },
+    {
+      name: 'Схема соединений межпанельных проводок панелей №1, №3, №4',
+      files: [
+        {
+          type: 'DWG',
+          href: '/assets/content/hvo/schemes1/assembly_panel_hvo1.dwg',
+        },
+        {
+          type: 'PDF',
+          href: '/assets/content/hvo/schemes1/assembly_panel_hvo1.pdf',
+        },
+      ],
+    },
+    {
       name: 'Общие данные',
       files: [
         {
           type: 'DWG',
-          href: '/assets/content/kotelnaya/schemes/common_data_kotel.dwg',
+          href: '/assets/content/hvo/schemes1/common_data_hvo1.dwg',
         },
         {
           type: 'PDF',
-          href: '/assets/content/kotelnaya/schemes/common_data_kotel.pdf',
+          href: '/assets/content/hvo/schemes1/common_data_hvo1.pdf',
         },
       ],
     },
     {
-      name: 'Структурная схема',
+      name: 'Схема конфигурации контроллера МК-500',
       files: [
         {
           type: 'DWG',
-          href: '/assets/content/kotelnaya/schemes/structural_kotel.dwg',
+          href: '/assets/content/hvo/schemes1/configuration_MK-500_hvo1.dwg',
         },
         {
           type: 'PDF',
-          href: '/assets/content/kotelnaya/schemes/structural_kotel.pdf',
+          href: '/assets/content/hvo/schemes1/configuration_MK-500_hvo1.pdf',
         },
       ],
     },
     {
-      name: 'Принципиальная схема питания',
+      name: 'Схема конфигурации контроллера МК-500',
       files: [
         {
           type: 'DWG',
-          href: '/assets/content/kotelnaya/schemes/power_kotel.dwg',
+          href: '/assets/content/hvo/schemes1/configuration_MK-500_hvo1.dwg',
         },
         {
           type: 'PDF',
-          href: '/assets/content/kotelnaya/schemes/power_kotel.pdf',
+          href: '/assets/content/hvo/schemes1/configuration_MK-500_hvo1.pdf',
         },
       ],
     },
     {
-      name: 'Функциональная схема',
+      name: 'Схема соединений внешних проводок',
       files: [
         {
           type: 'DWG',
-          href: '/assets/content/kotelnaya/schemes/functional_kotel.dwg',
+          href: '/assets/content/hvo/schemes1/external_hvo1.dwg',
         },
         {
           type: 'PDF',
-          href: '/assets/content/kotelnaya/schemes/functional_kotel.pdf',
+          href: '/assets/content/hvo/schemes1/external_hvo1.pdf',
         },
       ],
     },
     {
-      name: 'Схема соединений запально-сигнализирующего устройства',
+      name: 'Схема функциональная',
       files: [
         {
           type: 'DWG',
-          href: '/assets/content/kotelnaya/schemes/zzu_kotel.dwg',
+          href: '/assets/content/hvo/schemes1/functional_hvo1.dwg',
         },
         {
           type: 'PDF',
-          href: '/assets/content/kotelnaya/schemes/zzu_kotel.pdf',
+          href: '/assets/content/hvo/schemes1/functional_hvo1.pdf',
         },
       ],
     },
     {
-      name: 'Принципиальная схема соединений контроллера I',
+      name: 'Схема принципиальная соединений контроллера ИМ2300 DIN поз.Р2',
       files: [
         {
           type: 'DWG',
-          href: '/assets/content/kotelnaya/schemes/MK-500_first_kotel.dwg',
+          href: '/assets/content/hvo/schemes1/IM2300_hvo1.dwg',
         },
         {
           type: 'PDF',
-          href: '/assets/content/kotelnaya/schemes/MK-500_first_kotel.pdf',
+          href: '/assets/content/hvo/schemes1/IM2300_hvo1.pdf',
         },
       ],
     },
     {
-      name: 'Принципиальная схема соединений контроллера II',
+      name: 'Схема принципиальная соединений модуля МР-20 контроллера МК500',
       files: [
         {
           type: 'DWG',
-          href: '/assets/content/kotelnaya/schemes/MK-500_second_kotel.dwg',
+          href: '/assets/content/hvo/schemes1/MK-500_first_hvo1.dwg',
         },
         {
           type: 'PDF',
-          href: '/assets/content/kotelnaya/schemes/MK-500_second_kotel.pdf',
+          href: '/assets/content/hvo/schemes1/MK-500_first_hvo1.pdf',
         },
       ],
     },
     {
-      name: 'Схема внешних соединений',
+      name: 'Схема принципиальная соединений модуля МЦ-12 контроллера МК500',
       files: [
         {
           type: 'DWG',
-          href: '/assets/content/kotelnaya/schemes/external_kotel.dwg',
+          href: '/assets/content/hvo/schemes1/MK-500_second_hvo1.dwg',
         },
         {
           type: 'PDF',
-          href: '/assets/content/kotelnaya/schemes/external_kotel.pdf',
+          href: '/assets/content/hvo/schemes1/MK-500_second_hvo1.pdf',
         },
       ],
     },
     {
-      name: 'Сборочный чертеж',
+      name: 'Схема принципиальная электрического питания',
       files: [
         {
           type: 'DWG',
-          href: '/assets/content/kotelnaya/schemes/assembly_kotel.dwg',
+          href: '/assets/content/hvo/schemes1/power_hvo1.dwg',
         },
         {
           type: 'PDF',
-          href: '/assets/content/kotelnaya/schemes/assembly_kotel.pdf',
-        },
-      ],
-    },
-    {
-      name: 'Схема конфигурации контроллера',
-      files: [
-        {
-          type: 'DWG',
-          href: '/assets/content/kotelnaya/schemes/configuration_MK-500_kotel.dwg',
-        },
-        {
-          type: 'PDF',
-          href: '/assets/content/kotelnaya/schemes/configuration_MK-500_kotel.pdf',
-        },
-      ],
-    },
-    {
-      name: 'План расположения оборудования и кабельных трасс',
-      files: [
-        {
-          type: 'DWG',
-          href: '/assets/content/kotelnaya/schemes/cable_track_plan_kotel.dwg',
-        },
-        {
-          type: 'PDF',
-          href: '/assets/content/kotelnaya/schemes/cable_track_plan_kotel.pdf',
-        },
-      ],
-    },
-    {
-      name: 'Схема монтажных соединений',
-      files: [
-        {
-          type: 'DWG',
-          href: '/assets/content/kotelnaya/schemes/wiring_kotel.dwg',
-        },
-        {
-          type: 'PDF',
-          href: '/assets/content/kotelnaya/schemes/wiring_kotel.pdf',
-        },
-      ],
-    },
-
-    {
-      name: 'Спецификация оборудования',
-      files: [
-        {
-          type: 'DWG',
-          href: '/assets/content/kotelnaya/schemes/specification_kotel.dwg',
-        },
-        {
-          type: 'PDF',
-          href: '/assets/content/kotelnaya/schemes/specification_kotel.pdf',
+          href: '/assets/content/hvo/schemes1/power_hvo1.pdf',
         },
       ],
     },
   ],
   content: [
     {
-      name: 'Руководство АИР',
+      name: 'Какое-то руководство',
       files: [
         {
           type: 'PDF',
-          href: '/assets/content/kotelnaya/docs/re_air.pdf',
+          href: '#',
         },
       ],
     },
   ],
   reglament: [
     {
-      name: 'Документация',
+      name: 'Какая-то документация',
       files: [
         {
           type: 'PDF',
-          href: '/assets/content/kotelnaya/docs/kotel_de-10-14.pdf',
+          href: '#',
         },
       ],
     },
