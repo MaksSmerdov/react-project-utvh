@@ -2,7 +2,7 @@ import React, { useEffect, useState } from 'react';
 import styles from './levelIndicator.module.scss';
 
 interface LevelIndicatorProps {
-  objectNumber: number; // Номер объекта, для которого отображается индикатор уровня
+  objectNumber?: number; // Номер объекта, для которого отображается индикатор уровня
   data: any; // Данные, содержащие информацию об уровнях. Рекомендуется заменить `any` на более конкретный тип.
   minLevel: number; // Минимальное значение уровня, которое может быть отображено
   maxLevel: number; // Максимальное значение уровня, которое может быть отображено
@@ -58,12 +58,20 @@ const LevelIndicator: React.FC<LevelIndicatorProps> = ({
     return () => window.removeEventListener('resize', handleResize);
   }, [width, height, bottom, right, adaptiveWidth, adaptiveHeight, adaptiveBottom, adaptiveRight]);
 
-  const levelKey = `${levelKeyPrefix}${objectNumber}`;
+  // Формируем levelKey в зависимости от наличия objectNumber
+  const levelKey = objectNumber !== undefined ? `${levelKeyPrefix}${objectNumber}` : levelKeyPrefix;
+
+  // Получаем значение уровня
   const rawValue = data[dataSource]?.[levelKey];
-  const levelValue = parseFloat(String(rawValue) ?? '-');
+
+  // Убираем лишние кавычки и пробелы, если они есть
+  const cleanedValue = String(rawValue).replace(/["\s]/g, '');
+
+  // Преобразуем значение в число
+  const levelValue = parseFloat(cleanedValue);
   const isValidLevel = !isNaN(levelValue);
 
-  // Определяем состояние заполненности
+  // Вычисляем fillPercentage
   let fillPercentage = 0;
 
   if (isValidLevel) {
