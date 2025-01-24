@@ -2,46 +2,51 @@ import React, { useState, useEffect } from 'react';
 import styles from './preloader.module.scss';
 
 interface LoaderProps {
-  delay?: number; // Задержка перед исчезновением прелоудера (в миллисекундах)
-  size?: number; // Размер прелоудера
+  delay?: number;
+  size?: number;
   fullPage?: boolean;
 }
 
-const Loader: React.FC<LoaderProps> = ({ delay = 1000, size = 60, fullPage = true }) => {
+const Loader: React.FC<LoaderProps> = ({
+  delay = 1000,
+  size = 60,
+  fullPage = true,
+}) => {
   const [isVisible, setIsVisible] = useState(true);
+  const [isFading, setIsFading] = useState(false);
 
   useEffect(() => {
-    // Устанавливаем таймер для скрытия прелоудера через указанную задержку
-    const timer = setTimeout(() => setIsVisible(false), delay);
-    return () => clearTimeout(timer);
+    const timer = setTimeout(() => {
+      setIsFading(true); // Начинаем анимацию исчезновения
+      setTimeout(() => setIsVisible(false), 300); // Полностью скрываем после завершения анимации
+    }, delay);
+    
+    return () => {
+      clearTimeout(timer);
+    };
   }, [delay]);
 
-  // Если прелоудер не видим, возвращаем null
   if (!isVisible) return null;
 
   return (
-    <div className={`${styles.loaderContainer} ${fullPage ? styles.fullPage : ''}`}>
+    <div className={`${styles.loaderContainer} ${fullPage ? styles.fullPage : ''} ${isFading ? styles.fadeOut : ''}`}>
       <div className={styles.reactLogo} style={{ width: size, height: size }}>
-        <svg xmlns="http://www.w3.org/2000/svg" viewBox="-11.5 -10.23174 23 20.46348" className={styles.reactSvg}>
-          {/* Определение градиентов */}
+        <svg
+          xmlns="http://www.w3.org/2000/svg"
+          viewBox="-11.5 -10.23174 23 20.46348"
+          className={styles.reactSvg}
+        >
           <defs>
-            {/* Градиент для орбит */}
             <linearGradient id="orbitGradient" x1="0%" y1="0%" x2="100%" y2="0%">
               <stop offset="0%" style={{ stopColor: 'darkgreen', stopOpacity: 1 }} />
               <stop offset="100%" style={{ stopColor: 'green', stopOpacity: 1 }} />
             </linearGradient>
-
-            {/* Градиент для ядра */}
             <radialGradient id="coreGradient" cx="50%" cy="50%" r="50%" fx="50%" fy="50%">
               <stop offset="0%" style={{ stopColor: 'black', stopOpacity: 1 }} />
               <stop offset="100%" style={{ stopColor: 'darkgreen', stopOpacity: 1 }} />
             </radialGradient>
           </defs>
-
-          {/* Центральная точка с градиентом */}
           <circle cx="0" cy="0" r="2.05" fill="url(#coreGradient)" className={styles.centerDot} />
-
-          {/* Орбиты с градиентом и анимацией */}
           <ellipse
             rx="11"
             ry="4.2"

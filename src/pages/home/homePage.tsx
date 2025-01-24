@@ -2,23 +2,20 @@ import React, { useState } from 'react';
 import { Tab, Tabs, TabList, TabPanel } from 'react-tabs';
 import 'react-tabs/style/react-tabs.css'; // Импортируем стандартные стили
 import styles from './homePage.module.scss';
-import MnemoKotel from '../components/Mnemo/kotelnaya/mnemoKotel';
-import UniversalChart from '../components/Charts/chart';
-import { IntervalProvider } from '../components/Charts/context/intervalContext';
-import { getApiBaseUrl } from '../utils/apiUtils'; // Импортируем функцию
-import Loader from '../components/Common/Preloader/preloader';
-import CurrentParameterHvo1 from './hvo/currentParam/currentParam-hvo1';
-import CurrentParameterHvo2 from './hvo/currentParam/currentParam-hvo2';
-import CurrentParameterKotel1 from './kotelnaya/currentParam/currentParam-kotel1';
-import CurrentParameterKotel2 from './kotelnaya/currentParam/currentParam-kotel2';
-import CurrentParameterKotel3 from './kotelnaya/currentParam/currentParam-kotel3';
-import MnemoHvo1 from './hvo/mnemo/mnemo-hvo1';
+import MnemoKotel from '../../components/Mnemo/kotelnaya/mnemoKotel';
+import Loader from '../../components/Common/Preloader/preloader';
+import CurrentParameterHvo1 from '../hvo/currentParam/currentParam-hvo1';
+import CurrentParameterHvo2 from '../hvo/currentParam/currentParam-hvo2';
+import CurrentParameterKotel1 from '../kotelnaya/currentParam/currentParam-kotel1';
+import CurrentParameterKotel2 from '../kotelnaya/currentParam/currentParam-kotel2';
+import CurrentParameterKotel3 from '../kotelnaya/currentParam/currentParam-kotel3';
+import GeneralLevelKotel from '../kotelnaya/graphics/general/graphGeneral-level';
+import GeneralParKotel from '../kotelnaya/graphics/general/graphGeneral-par';
+import MnemoHvo1 from '../hvo/mnemo/mnemo-hvo1';
 
 const HomePage: React.FC = () => {
   const [selectedTabIndex, setSelectedTabIndex] = useState<number>(0);
   const [selectedSubTabIndex, setSelectedSubTabIndex] = useState<number>(0);
-
-  const apiBaseUrl = getApiBaseUrl(); // Получаем базовый URL
 
   const handleTabChange = (index: number) => {
     setSelectedTabIndex(index);
@@ -83,83 +80,21 @@ const HomePage: React.FC = () => {
               {/* Панель текущих параметров */}
               <TabPanel>
                 <div key={`kotel1-params-${selectedSubTabIndex}`} className={styles['sub-tab-content']}>
-                  <CurrentParameterKotel1 /> {/* Используем компонент CurrentParameterKotel1 */}
+                  <CurrentParameterKotel1 />
                 </div>
               </TabPanel>
 
               {/* Панель графиков уровня */}
               <TabPanel>
                 <div key={`kotel1-charts-${selectedSubTabIndex}`} className={styles['sub-tab-content']}>
-                  <IntervalProvider>
-                    <UniversalChart
-                      id="chart-kotel1"
-                      apiUrls={`${apiBaseUrl}/api/kotel1/data`}
-                      title="График уровня котла №1"
-                      yMin={-315}
-                      yMax={315}
-                      dataKey="parameters"
-                      params={[{ key: 'Уровень в барабане котел №1', label: 'Уровень в котле №1', unit: 'мм' }]}
-                      showIntervalSelector={true}
-                    />
-                    <UniversalChart
-                      id="chart-kotel2"
-                      apiUrls={`${apiBaseUrl}/api/kotel2/data`} // Используем базовый URL
-                      title="График уровня котла №2"
-                      yMin={-315}
-                      yMax={315}
-                      dataKey="parameters"
-                      params={[{ key: 'Уровень в барабане котел №2', label: 'Уровень в котле №2', unit: 'мм' }]}
-                      showIntervalSelector={false}
-                    />
-                    <UniversalChart
-                      id="chart-kotel3"
-                      apiUrls={`${apiBaseUrl}/api/kotel3/data`} // Используем базовый URL
-                      title="График уровня котла №3"
-                      yMin={-315}
-                      yMax={315}
-                      dataKey="parameters"
-                      params={[{ key: 'Уровень в барабане котел №3', label: 'Уровень в котле №3', unit: 'мм' }]}
-                      showIntervalSelector={false}
-                    />
-                  </IntervalProvider>
+                  <GeneralLevelKotel></GeneralLevelKotel>
                 </div>
               </TabPanel>
 
               {/* Панель графиков пара */}
               <TabPanel>
                 <div key={`kotel1-charts-${selectedSubTabIndex}`} className={styles['sub-tab-content']}>
-                  <IntervalProvider>
-                    <UniversalChart
-                      id="chart-kotel1"
-                      apiUrls={`${apiBaseUrl}/api/kotel1/data`}
-                      title="График давления пара котел №1"
-                      yMin={-1}
-                      yMax={10}
-                      dataKey="parameters"
-                      params={[{ key: 'Давление пара котел №1', label: 'Давление пара', unit: 'кгс/см2' }]}
-                      showIntervalSelector={true}
-                    />
-                    <UniversalChart
-                      id="chart-kotel2"
-                      apiUrls={`${apiBaseUrl}/api/kotel2/data`} // Используем базовый URL
-                      title="График давления пара котел №2"
-                      yMin={-1}
-                      yMax={10}
-                      dataKey="parameters"
-                      params={[{ key: 'Давление пара котел №2', label: 'Давление пара', unit: 'кгс/см2' }]}
-                      showIntervalSelector={false}
-                    />
-                    <UniversalChart
-                      id="chart-kotel3"
-                      apiUrls={`${apiBaseUrl}/api/kotel3/data`} // Используем базовый URL
-                      title="График давления пара котел №3"
-                      yMin={-1}
-                      yMax={10}
-                      dataKey="parameters"
-                      params={[{ key: 'Давление пара котел №3', label: 'Давление пара', unit: 'кгс/см2' }]}
-                      showIntervalSelector={false}
-                    />
-                  </IntervalProvider>
+                  <GeneralParKotel></GeneralParKotel>
                 </div>
               </TabPanel>
             </Tabs>
@@ -177,6 +112,12 @@ const HomePage: React.FC = () => {
                 <Tab className={styles['sub-tab']} selectedClassName={styles['sub-tab--selected']}>
                   Текущие параметры
                 </Tab>
+                <Tab className={styles['sub-tab']} selectedClassName={styles['sub-tab--selected']}>
+                  Графики уровня
+                </Tab>
+                <Tab className={styles['sub-tab']} selectedClassName={styles['sub-tab--selected']}>
+                  Графики пара
+                </Tab>
               </TabList>
 
               {/* Панель мнемосхемы */}
@@ -189,7 +130,21 @@ const HomePage: React.FC = () => {
               {/* Панель текущих параметров */}
               <TabPanel>
                 <div key={`kotel2-params-${selectedSubTabIndex}`} className={styles['sub-tab-content']}>
-                  <CurrentParameterKotel2 /> {/* Используем компонент CurrentParameterKotel2 */}
+                  <CurrentParameterKotel2 />
+                </div>
+              </TabPanel>
+
+              {/* Панель графиков уровня */}
+              <TabPanel>
+                <div key={`kotel1-charts-${selectedSubTabIndex}`} className={styles['sub-tab-content']}>
+                  <GeneralLevelKotel></GeneralLevelKotel>
+                </div>
+              </TabPanel>
+
+              {/* Панель графиков пара */}
+              <TabPanel>
+                <div key={`kotel1-charts-${selectedSubTabIndex}`} className={styles['sub-tab-content']}>
+                  <GeneralParKotel></GeneralParKotel>
                 </div>
               </TabPanel>
             </Tabs>
@@ -207,6 +162,12 @@ const HomePage: React.FC = () => {
                 <Tab className={styles['sub-tab']} selectedClassName={styles['sub-tab--selected']}>
                   Текущие параметры
                 </Tab>
+                <Tab className={styles['sub-tab']} selectedClassName={styles['sub-tab--selected']}>
+                  Графики уровня
+                </Tab>
+                <Tab className={styles['sub-tab']} selectedClassName={styles['sub-tab--selected']}>
+                  Графики пара
+                </Tab>
               </TabList>
 
               {/* Панель мнемосхемы */}
@@ -219,7 +180,21 @@ const HomePage: React.FC = () => {
               {/* Панель текущих параметров */}
               <TabPanel>
                 <div key={`kotel3-params-${selectedSubTabIndex}`} className={styles['sub-tab-content']}>
-                  <CurrentParameterKotel3 /> {/* Используем компонент CurrentParameterKotel3 */}
+                  <CurrentParameterKotel3 />
+                </div>
+              </TabPanel>
+
+              {/* Панель графиков уровня */}
+              <TabPanel>
+                <div key={`kotel1-charts-${selectedSubTabIndex}`} className={styles['sub-tab-content']}>
+                  <GeneralLevelKotel></GeneralLevelKotel>
+                </div>
+              </TabPanel>
+
+              {/* Панель графиков пара */}
+              <TabPanel>
+                <div key={`kotel1-charts-${selectedSubTabIndex}`} className={styles['sub-tab-content']}>
+                  <GeneralParKotel></GeneralParKotel>
                 </div>
               </TabPanel>
             </Tabs>

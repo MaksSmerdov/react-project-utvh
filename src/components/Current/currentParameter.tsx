@@ -2,19 +2,16 @@ import React, { useEffect, useState } from 'react';
 import Header from '../Common/Header/header';
 import Table from '../Common/Table/table';
 import { ApiConfig } from '../../configs/apiConfigUtvh';
-import Loader from '../Common/Preloader/preloader';
 
 interface CurrentParameterProps {
   config: ApiConfig;
   title: string;
-  showLoading?: boolean; // Управление отображением прелоадера
   showHeader?: boolean; // Управление отображением заголовка
 }
 
 const CurrentParameter: React.FC<CurrentParameterProps> = ({
   config,
   title,
-  showLoading = false,
   showHeader = true,
 }) => {
   const [data, setData] = useState(config.defaultData);
@@ -48,7 +45,6 @@ const CurrentParameter: React.FC<CurrentParameterProps> = ({
 
   return (
     <div>
-      {showLoading && <Loader delay={1000} size={100} />}
       {showHeader && <Header title={title} maxWidth='100%' />}
       <div>
         {Object.entries(config.titles).map(([key, tableTitle]) => (

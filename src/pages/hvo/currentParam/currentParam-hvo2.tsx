@@ -38,7 +38,6 @@ const CurrentParameterHvo2: React.FC = () => {
               displayNames: { parameters: displayNames.parameters },
             }}
             title="ХВО щит №2" // Заголовок шапки
-            showLoading={false}
             showHeader={false} // Заголовок отображается только для первой таблицы
           />
         )}
@@ -53,7 +52,6 @@ const CurrentParameterHvo2: React.FC = () => {
               displayNames: { parameters: displayNames.parameters },
             }}
             title="Уровни"
-            showLoading={false}
             showHeader={false} // Заголовок скрыт
           />
         )}
@@ -68,7 +66,6 @@ const CurrentParameterHvo2: React.FC = () => {
               displayNames: { parameters: displayNames.parameters },
             }}
             title="Расходы"
-            showLoading={false}
             showHeader={false} // Заголовок скрыт
           />
         )}
@@ -83,7 +80,6 @@ const CurrentParameterHvo2: React.FC = () => {
               displayNames: { parameters: displayNames.parameters },
             }}
             title="Температуры"
-            showLoading={false}
             showHeader={false} // Заголовок скрыт
           />
         )}
@@ -98,7 +94,6 @@ const CurrentParameterHvo2: React.FC = () => {
               displayNames: { parameters: displayNames.parameters },
             }}
             title="Остальные параметры"
-            showLoading={false}
             showHeader={false} // Заголовок скрыт
           />
         )}

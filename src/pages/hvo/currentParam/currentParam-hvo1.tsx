@@ -36,7 +36,6 @@ const CurrentParameterHvo1: React.FC = () => {
               displayNames: { parameters: displayNames.parameters },
             }}
             title="ХВО щит №1"
-            showLoading={false}
             showHeader={false}
           />
         )}
@@ -51,7 +50,6 @@ const CurrentParameterHvo1: React.FC = () => {
               displayNames: { parameters: displayNames.parameters },
             }}
             title="Уровни"
-            showLoading={false}
             showHeader={false} // Заголовок скрыт
           />
         )}
@@ -66,7 +64,6 @@ const CurrentParameterHvo1: React.FC = () => {
               displayNames: { parameters: displayNames.parameters },
             }}
             title="Расходы"
-            showLoading={false}
             showHeader={false} // Заголовок скрыт
           />
         )}
@@ -81,7 +78,6 @@ const CurrentParameterHvo1: React.FC = () => {
               displayNames: { parameters: displayNames.parameters },
             }}
             title="Остальные параметры"
-            showLoading={false}
             showHeader={false} // Заголовок скрыт
           />
         )}

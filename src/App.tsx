@@ -1,13 +1,13 @@
 import React from 'react';
 import { Routes, Route } from 'react-router-dom';
-import HomePage from './pages/homePage';
+import HomePage from './pages/home/homePage';
 import CurrentParameterKotel1 from './pages/kotelnaya/currentParam/currentParam-kotel1';
 import CurrentParameterKotel2 from './pages/kotelnaya/currentParam/currentParam-kotel2';
 import CurrentParameterKotel3 from './pages/kotelnaya/currentParam/currentParam-kotel3';
 import MnemoKotel1 from './pages/kotelnaya/mnemo/mnemo-kotel1';
 import MnemoKotel2 from './pages/kotelnaya/mnemo/mnemo-kotel2';
 import MnemoKotel3 from './pages/kotelnaya/mnemo/mnemo-kotel3';
-import LevelKotel1 from './pages/kotelnaya/graphics/graphLevel-kotel1';
+import LevelKotel1 from './pages/kotelnaya/graphics/level/graphLevel-kotel1';
 import CurrentParameterHvo1 from './pages/hvo/currentParam/currentParam-hvo1';
 import CurrentParameterHvo2 from './pages/hvo/currentParam/currentParam-hvo2';
 import MnemoHvo1 from './pages/hvo/mnemo/mnemo-hvo1';
