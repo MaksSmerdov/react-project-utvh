@@ -1,103 +1,167 @@
-import React from 'react';
+import React, { useState, useEffect } from 'react';
 import CurrentParameter from '../../../components/Current/currentParameter';
 import { apiConfigs } from '../../../configs/apiConfigUtvh';
-import styles from './currentParam-hvo.module.scss';
 import Header from '../../../components/Common/Header/header';
+import styles from './currentParam-hvo.module.scss';
+import Loader from '../../../components/Common/Preloader/preloader';
 
-// Функция для фильтрации параметров по группам
-const filterParameters = (parameters: Record<string, string | number>, filterFn: (key: string) => boolean) => {
-  return Object.fromEntries(Object.entries(parameters).filter(([key]) => filterFn(key)));
-};
+interface CurrentParameterHvo2Props {
+  fullPageLoader?: boolean; // Пропс для управления прелоудером (на всю страницу или нет)
+}
 
-const CurrentParameterHvo2: React.FC = () => {
-  const { defaultData, displayNames } = apiConfigs.hvo2;
-  const { parameters } = defaultData; // Извлекаем параметры из defaultData
+const CurrentParameterHvo2: React.FC<CurrentParameterHvo2Props> = ({
+  fullPageLoader = true, // По умолчанию прелоудер не на всю страницу
+}) => {
+  const [isLoading, setIsLoading] = useState(true); // Состояние для управления загрузкой
+  const [data, setData] = useState<any>(null); // Состояние для хранения данных
+  const [error, setError] = useState<string | null>(null); // Состояние для обработки ошибок
+  const { displayNames, apiUrl } = apiConfigs.hvo2; // Убрали defaultData, так как она не используется
 
-  // Фильтруем параметры для каждой группы
-  const pressures = filterParameters(parameters, (key) => key.includes('Давление'));
-  const levels = filterParameters(parameters, (key) => key.includes('Уровень'));
-  const flows = filterParameters(parameters, (key) => key.includes('Расход'));
-  const temperatures = filterParameters(parameters, (key) => key.includes('Температура'));
-  const others = filterParameters(
-    parameters,
-    (key) =>
-      !key.includes('Давление') && !key.includes('Уровень') && !key.includes('Расход') && !key.includes('Температура')
-  );
+  useEffect(() => {
+    const fetchData = async () => {
+      try {
+        const response = await fetch(apiUrl);
+        if (!response.ok) throw new Error('Ошибка загрузки данных');
+        const result = await response.json();
+
+        // Фильтрация данных для каждой группы
+        const pressures = Object.fromEntries(
+          Object.entries(result.parameters).filter(([key]) => key.includes('Давление'))
+        );
+        const levels = Object.fromEntries(Object.entries(result.parameters).filter(([key]) => key.includes('Уровень')));
+        const flows = Object.fromEntries(Object.entries(result.parameters).filter(([key]) => key.includes('Расход')));
+        const temperatures = Object.fromEntries(
+          Object.entries(result.parameters).filter(([key]) => key.includes('Температура'))
+        );
+        const others = Object.fromEntries(
+          Object.entries(result.parameters).filter(
+            ([key]) =>
+              !key.includes('Давление') &&
+              !key.includes('Уровень') &&
+              !key.includes('Расход') &&
+              !key.includes('Температура')
+          )
+        );
+
+        // Сохраняем отфильтрованные данные
+        setData({ pressures, levels, flows, temperatures, others });
+        setError(null); // Сбрасываем ошибку, если данные успешно загружены
+      } catch (error) {
+        console.error('Ошибка загрузки данных:', error);
+        setError('Не удалось загрузить данные'); // Устанавливаем сообщение об ошибке
+      } finally {
+        setIsLoading(false); // Загрузка завершена
+      }
+    };
+
+    // Устанавливаем задержку в 1 секунду перед началом загрузки
+    const delayLoading = setTimeout(() => {
+      setIsLoading(true);
+      fetchData(); // Первый запрос данных
+      const interval = setInterval(fetchData, 5000); // Обновление данных каждые 5 секунд
+      return () => clearInterval(interval); // Очистка интервала при размонтировании
+    }, 1000);
+
+    return () => clearTimeout(delayLoading); // Очистка таймера при размонтировании
+  }, [apiUrl]);
+
+  if (error) {
+    return <div>{error}</div>; // Отображение ошибки, если она есть
+  }
 
   return (
     <div>
-      <Header title="ХВО щит №2" />
-      <div className={styles.tables}>
-        {/* Таблица с давлениями */}
-        {Object.keys(pressures).length > 0 && (
-          <CurrentParameter
-            config={{
-              apiUrl: apiConfigs.hvo2.apiUrl,
-              defaultData: { parameters: pressures },
-              titles: { parameters: 'Давления' },
-              displayNames: { parameters: displayNames.parameters },
-            }}
-            title="ХВО щит №2" // Заголовок шапки
-            showHeader={false} // Заголовок отображается только для первой таблицы
-          />
-        )}
+      {isLoading && (
+        <Loader
+          delay={1000}
+          size={80}
+          fullPage={fullPageLoader} // Передаем пропс для управления прелоудером
+        />
+      )}
 
-        {/* Таблица с уровнями */}
-        {Object.keys(levels).length > 0 && (
-          <CurrentParameter
-            config={{
-              apiUrl: apiConfigs.hvo2.apiUrl,
-              defaultData: { parameters: levels },
-              titles: { parameters: 'Уровни' },
-              displayNames: { parameters: displayNames.parameters },
-            }}
-            title="Уровни"
-            showHeader={false} // Заголовок скрыт
-          />
-        )}
+      {!isLoading && data && (
+        <>
+          {/* Шапка для всей страницы */}
+          <Header title="ХВО щит №2" maxWidth="100%" />
 
-        {/* Таблица с расходами */}
-        {Object.keys(flows).length > 0 && (
-          <CurrentParameter
-            config={{
-              apiUrl: apiConfigs.hvo2.apiUrl,
-              defaultData: { parameters: flows },
-              titles: { parameters: 'Расходы' },
-              displayNames: { parameters: displayNames.parameters },
-            }}
-            title="Расходы"
-            showHeader={false} // Заголовок скрыт
-          />
-        )}
+          <div className={styles.tables}>
+            {/* Таблица с давлениями */}
+            {Object.keys(data.pressures).length > 0 && (
+              <CurrentParameter
+                config={{
+                  apiUrl,
+                  defaultData: { parameters: data.pressures },
+                  titles: { parameters: 'Давления' },
+                  displayNames: { parameters: displayNames.parameters },
+                }}
+                data={{ parameters: data.pressures }} // Передаем данные для давлений
+                title="Давления"
+                showHeader={false} // Шапка больше не нужна внутри таблицы
+              />
+            )}
 
-        {/* Таблица с температурами */}
-        {Object.keys(temperatures).length > 0 && (
-          <CurrentParameter
-            config={{
-              apiUrl: apiConfigs.hvo2.apiUrl,
-              defaultData: { parameters: temperatures },
-              titles: { parameters: 'Температуры' },
-              displayNames: { parameters: displayNames.parameters },
-            }}
-            title="Температуры"
-            showHeader={false} // Заголовок скрыт
-          />
-        )}
+            {/* Таблица с уровнями */}
+            {Object.keys(data.levels).length > 0 && (
+              <CurrentParameter
+                config={{
+                  apiUrl,
+                  defaultData: { parameters: data.levels },
+                  titles: { parameters: 'Уровни' },
+                  displayNames: { parameters: displayNames.parameters },
+                }}
+                data={{ parameters: data.levels }} // Передаем данные для уровней
+                title="Уровни"
+                showHeader={false} // Шапка больше не нужна внутри таблицы
+              />
+            )}
 
-        {/* Таблица с остальными параметрами */}
-        {Object.keys(others).length > 0 && (
-          <CurrentParameter
-            config={{
-              apiUrl: apiConfigs.hvo2.apiUrl,
-              defaultData: { parameters: others },
-              titles: { parameters: 'Остальные параметры' },
-              displayNames: { parameters: displayNames.parameters },
-            }}
-            title="Остальные параметры"
-            showHeader={false} // Заголовок скрыт
-          />
-        )}
-      </div>
+            {/* Таблица с расходами */}
+            {Object.keys(data.flows).length > 0 && (
+              <CurrentParameter
+                config={{
+                  apiUrl,
+                  defaultData: { parameters: data.flows },
+                  titles: { parameters: 'Расходы' },
+                  displayNames: { parameters: displayNames.parameters },
+                }}
+                data={{ parameters: data.flows }} // Передаем данные для расходов
+                title="Расходы"
+                showHeader={false} // Шапка больше не нужна внутри таблицы
+              />
+            )}
+
+            {/* Таблица с температурами */}
+            {Object.keys(data.temperatures).length > 0 && (
+              <CurrentParameter
+                config={{
+                  apiUrl,
+                  defaultData: { parameters: data.temperatures },
+                  titles: { parameters: 'Температуры' },
+                  displayNames: { parameters: displayNames.parameters },
+                }}
+                data={{ parameters: data.temperatures }} // Передаем данные для температур
+                title="Температуры"
+                showHeader={false} // Шапка больше не нужна внутри таблицы
+              />
+            )}
+
+            {/* Таблица с остальными параметрами */}
+            {Object.keys(data.others).length > 0 && (
+              <CurrentParameter
+                config={{
+                  apiUrl,
+                  defaultData: { parameters: data.others },
+                  titles: { parameters: 'Остальные параметры' },
+                  displayNames: { parameters: displayNames.parameters },
+                }}
+                data={{ parameters: data.others }} // Передаем данные для остальных параметров
+                title="Остальные параметры"
+                showHeader={false} // Шапка больше не нужна внутри таблицы
+              />
+            )}
+          </div>
+        </>
+      )}
     </div>
   );
 };

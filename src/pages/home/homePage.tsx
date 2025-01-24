@@ -2,13 +2,11 @@ import React, { useState } from 'react';
 import { Tab, Tabs, TabList, TabPanel } from 'react-tabs';
 import 'react-tabs/style/react-tabs.css'; // Импортируем стандартные стили
 import styles from './homePage.module.scss';
-import MnemoKotel from '../../components/Mnemo/kotelnaya/mnemoKotel';
+import MnemoKotel from '../kotelnaya/mnemo/mnemoKotel';
 import Loader from '../../components/Common/Preloader/preloader';
 import CurrentParameterHvo1 from '../hvo/currentParam/currentParam-hvo1';
 import CurrentParameterHvo2 from '../hvo/currentParam/currentParam-hvo2';
-import CurrentParameterKotel1 from '../kotelnaya/currentParam/currentParam-kotel1';
-import CurrentParameterKotel2 from '../kotelnaya/currentParam/currentParam-kotel2';
-import CurrentParameterKotel3 from '../kotelnaya/currentParam/currentParam-kotel3';
+import CurrentParameterKotel from '../kotelnaya/currentParam/currentParam-kotel';
 import GeneralLevelKotel from '../kotelnaya/graphics/general/graphGeneral-level';
 import GeneralParKotel from '../kotelnaya/graphics/general/graphGeneral-par';
 import MnemoHvo1 from '../hvo/mnemo/mnemo-hvo1';
@@ -28,7 +26,7 @@ const HomePage: React.FC = () => {
 
   return (
     <div className={styles['container']}>
-      <Loader delay={1000} size={100} />
+      <Loader delay={2000} size={100} />
       <Tabs selectedIndex={selectedTabIndex} onSelect={handleTabChange}>
         <TabList className={styles['tab-list']}>
           <Tab
@@ -73,14 +71,14 @@ const HomePage: React.FC = () => {
               {/* Панель мнемосхемы */}
               <TabPanel>
                 <div key={`kotel1-mnemo-${selectedSubTabIndex}`} className={styles['sub-tab-content']}>
-                  <MnemoKotel configKey="kotel1" title="Котел №1" objectNumber={1} />
+                <MnemoKotel kotelNumber={1} fullPageLoader={false} />
                 </div>
               </TabPanel>
 
               {/* Панель текущих параметров */}
               <TabPanel>
                 <div key={`kotel1-params-${selectedSubTabIndex}`} className={styles['sub-tab-content']}>
-                  <CurrentParameterKotel1 />
+                  <CurrentParameterKotel kotelNumber={1} fullPageLoader={false} />
                 </div>
               </TabPanel>
 
@@ -123,14 +121,14 @@ const HomePage: React.FC = () => {
               {/* Панель мнемосхемы */}
               <TabPanel>
                 <div key={`kotel2-mnemo-${selectedSubTabIndex}`} className={styles['sub-tab-content']}>
-                  <MnemoKotel configKey="kotel2" title="Котел №2" objectNumber={2} />
+                <MnemoKotel kotelNumber={2} fullPageLoader={false} />
                 </div>
               </TabPanel>
 
               {/* Панель текущих параметров */}
               <TabPanel>
                 <div key={`kotel2-params-${selectedSubTabIndex}`} className={styles['sub-tab-content']}>
-                  <CurrentParameterKotel2 />
+                  <CurrentParameterKotel kotelNumber={2} fullPageLoader={false} />
                 </div>
               </TabPanel>
 
@@ -173,14 +171,14 @@ const HomePage: React.FC = () => {
               {/* Панель мнемосхемы */}
               <TabPanel>
                 <div key={`kotel3-mnemo-${selectedSubTabIndex}`} className={styles['sub-tab-content']}>
-                  <MnemoKotel configKey="kotel3" title="Котел №3" objectNumber={3} />
+                <MnemoKotel kotelNumber={3} fullPageLoader={false} />
                 </div>
               </TabPanel>
 
               {/* Панель текущих параметров */}
               <TabPanel>
                 <div key={`kotel3-params-${selectedSubTabIndex}`} className={styles['sub-tab-content']}>
-                  <CurrentParameterKotel3 />
+                  <CurrentParameterKotel kotelNumber={3} fullPageLoader={false} />
                 </div>
               </TabPanel>
 
@@ -217,14 +215,14 @@ const HomePage: React.FC = () => {
               {/* Панель мнемосхемы */}
               <TabPanel>
                 <div key={`hvo1-mnemo-${selectedSubTabIndex}`} className={styles['sub-tab-content']}>
-                  <MnemoHvo1 /> {/* Используем компонент MnemoHvo1 */}
+                  <MnemoHvo1 fullPageLoader={false} /> {/* Используем компонент MnemoHvo1 */}
                 </div>
               </TabPanel>
 
               {/* Панель текущих параметров */}
               <TabPanel>
                 <div key={`hvo1-params-${selectedSubTabIndex}`} className={styles['sub-tab-content']}>
-                  <CurrentParameterHvo1 /> {/* Используем компонент CurrentParameterHvo1 */}
+                  <CurrentParameterHvo1 fullPageLoader={false} /> {/* Используем компонент CurrentParameterHvo1 */}
                 </div>
               </TabPanel>
             </Tabs>
@@ -244,7 +242,7 @@ const HomePage: React.FC = () => {
               {/* Панель текущих параметров */}
               <TabPanel>
                 <div key={`hvo2-params-${selectedSubTabIndex}`} className={styles['sub-tab-content']}>
-                  <CurrentParameterHvo2 /> {/* Используем компонент CurrentParameterHvo2 */}
+                  <CurrentParameterHvo2 fullPageLoader={false}/> {/* Используем компонент CurrentParameterHvo2 */}
                 </div>
               </TabPanel>
             </Tabs>

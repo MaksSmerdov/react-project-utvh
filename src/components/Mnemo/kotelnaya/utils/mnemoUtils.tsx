@@ -1,4 +1,4 @@
-import styles from '../mnemoKotel.module.scss';
+import styles from '../../../../pages/kotelnaya/mnemo/mnemoKotel.module.scss';
 
 export const alarmLabels = [
   { text: <>Давл. воздуха низко</>, className: styles.alarmVozduhNizko, key: `Давление воздуха низко котел №` },

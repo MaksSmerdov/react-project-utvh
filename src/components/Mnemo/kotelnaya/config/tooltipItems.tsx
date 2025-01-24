@@ -1,7 +1,6 @@
 // tooltipItems.tsx
 import React from 'react';
-import styles from '../mnemoKotel.module.scss'; // Путь к стилям
-
+import styles from '../../../../pages/kotelnaya/mnemo/mnemoKotel.module.scss';
 export interface TooltippedParam {
   id: string;
   className: string;
