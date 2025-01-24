@@ -18,6 +18,7 @@ interface LevelIndicatorProps {
   adaptiveBottom?: string; // Адаптивное положение снизу для мобильных устройств (опционально)
   adaptiveRight?: string; // Адаптивное положение справа для мобильных устройств (опционально)
   fillColor?: string; // Цвет фона индикатора уровня, когда значение уровня действительное (по умолчанию '#57b7f7')
+  warningThreshold?: number; // Порог (в процентах), при котором индикатор начинает мигать красным (по умолчанию 25%)
 }
 
 const LevelIndicator: React.FC<LevelIndicatorProps> = ({
@@ -37,9 +38,11 @@ const LevelIndicator: React.FC<LevelIndicatorProps> = ({
   adaptiveBottom,
   adaptiveRight,
   fillColor = '#57b7f7',
+  warningThreshold = 25, // Порог по умолчанию 25%
 }) => {
   const [dynamicSize, setDynamicSize] = useState({ width, height });
   const [position, setPosition] = useState({ bottom, right });
+  const [isWarning, setIsWarning] = useState(false); // Состояние для мигания красным цветом
 
   useEffect(() => {
     const handleResize = () => {
@@ -85,6 +88,19 @@ const LevelIndicator: React.FC<LevelIndicatorProps> = ({
     }
   }
 
+  // Проверяем, нужно ли мигать красным
+  useEffect(() => {
+    if (isValidLevel && fillPercentage < warningThreshold) {
+      const interval = setInterval(() => {
+        setIsWarning((prev) => !prev); // Переключаем состояние для мигания
+      }, 500); // Интервал мигания: 500 мс
+
+      return () => clearInterval(interval); // Очистка интервала при размонтировании
+    } else {
+      setIsWarning(false); // Отключаем мигание, если уровень выше порога
+    }
+  }, [fillPercentage, isValidLevel, warningThreshold]);
+
   return (
     <div
       className={styles['mnemo__level-container']}
@@ -103,7 +119,8 @@ const LevelIndicator: React.FC<LevelIndicatorProps> = ({
         className={styles['mnemo__level-fill']}
         style={{
           height: `${fillPercentage}%`,
-          backgroundColor: isValidLevel ? fillColor : 'transparent',
+          backgroundColor: isWarning ? 'red' : isValidLevel ? fillColor : 'transparent',
+          transition: 'background-color 0.5s ease', // Плавное изменение цвета
         }}
       />
     </div>

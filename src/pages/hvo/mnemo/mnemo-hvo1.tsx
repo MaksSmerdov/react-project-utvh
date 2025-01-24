@@ -11,6 +11,9 @@ import Kran from '../../../components/Common/Kran/kranComponent';
 import CustomModal from '../../../components/Common/Modal/modal'; // Импортируем модальное окно
 import DocumentationAccordion from '../../../components/Common/Accordion/accordion'; // Импортируем аккордеон
 import { accordionData, accordionTitles } from '../../../components/Mnemo/hvo/config/accordionItems'; // Импортируем данные для аккордеона
+import LevelIndicator from '../../../components/Common/LevelIndicator/levelIndicator';
+import MnemoSymbols from '../../../components/Mnemo/hvo/mnemoSymbols';
+import StaticLabels from '../../../components/Mnemo/hvo/staticLabels';
 
 const MnemoHvo1: React.FC = () => {
   const hvo1Config = apiConfigs.hvo1;
@@ -199,48 +202,62 @@ const MnemoHvo1: React.FC = () => {
         </div>
 
         {/* Статические подписи */}
-        <p className={`${styles['mnemo__param-descr']} ${styles['pomeshenie-2-text']}`}>Помещение-2</p>
-        <p className={`${styles['mnemo__param-descr']} ${styles['zadanie-uroven-e1-1-2-text']}`}>Задание</p>
-        <p className={`${styles['mnemo__param-descr']} ${styles['f1-1-text']}`}>Ф1/1</p>
-        <p className={`${styles['mnemo__param-descr']} ${styles['f1-2-text']}`}>Ф1/2</p>
-        <p className={`${styles['mnemo__param-descr']} ${styles['f1-3-text']}`}>Ф1/3</p>
-        <p className={`${styles['mnemo__param-descr']} ${styles['f1-4-text']}`}>Ф1/4</p>
-        <p className={`${styles['mnemo__param-descr']} ${styles['f2-1-text']}`}>Ф2/1</p>
-        <p className={`${styles['mnemo__param-descr']} ${styles['f2-2-text']}`}>Ф2/2</p>
-        <p className={`${styles['mnemo__param-descr']} ${styles['f2-3-text']}`}>Ф2/3</p>
-        <p className={`${styles['mnemo__param-descr']} ${styles['e1-1-text']}`}>Е1/1</p>
-        <p className={`${styles['mnemo__param-descr']} ${styles['e1-2-text']}`}>Е1/2</p>
-        <p className={`${styles['mnemo__param-descr']} ${styles['n1-1-text']}`}>H1/1</p>
-        <p className={`${styles['mnemo__param-descr']} ${styles['n1-2-text']}`}>H1/2</p>
-        <p className={`${styles['mnemo__param-descr']} ${styles['n1-3-text']}`}>H1/3</p>
-        <p className={`${styles['mnemo__param-descr']} ${styles['n2-1-text']}`}>H2/1</p>
-        <p className={`${styles['mnemo__param-descr']} ${styles['n2-2-text']}`}>H2/2</p>
-        <p className={`${styles['mnemo__param-descr']} ${styles['n3-1-text']}`}>H3/1</p>
-        <p className={`${styles['mnemo__param-descr']} ${styles['n3-2-text']}`}>H3/2</p>
-        <p className={`${styles['mnemo__param-descr']} ${styles['rashod-na-promyvku-text']}`}>Q на промывку</p>
-        <p className={`${styles['mnemo__param-descr']} ${styles['rashod-na-vhode-text']}`}>Q на входе</p>
-        <p className={`${styles['mnemo__param-descr']} ${styles['davl-vhod-ustanivki-text']}`}>P на входе</p>
-        <p className={`${styles['mnemo__param-descr']} ${styles['davl-posle-nasosov-1-1-2-3-text']}`}>
-          P перед фильтрами
-        </p>
-        <p className={`${styles['mnemo__param-descr']} ${styles['kontrol-im-1-text']}`}>ИМ1</p>
-        <p className={`${styles['mnemo__param-descr']} ${styles['davl-pered-f3-1-7-text']}`}>P перед Ф3/1-7</p>
-        <p className={`${styles['mnemo__param-descr']} ${styles['davl-posle-nasosov-3-1-2-text']}`}>
-          P на промывку Ф1/1-4, Ф2/1-3
-        </p>
+        <StaticLabels />
 
         {/* Кран для контроля положения ИМ1 */}
         <Kran
           size={{ width: 24, height: 18 }}
-          adaptiveSize={{ width: 30, height: 24 }}
+          adaptiveSize={{ width: 20, height: 14 }}
           value={parseFloat(String(data.parameters?.['Контроль положения ИМ1'] || '0'))} // Числовое значение
           threshold={5} // Пороговое значение
           orientation="vertical"
           top="53.8%"
           left="53.8%"
-          adaptiveTop="405px"
-          adaptiveLeft="150px"
+          adaptiveTop="53.8%"
+          adaptiveLeft="53.8%"
         />
+
+        {/* Индикатор уровня для емкости E1/1 */}
+        <LevelIndicator
+          data={data}
+          minLevel={0} // Минимальный уровень
+          maxLevel={1600} // Максимальный уровень
+          totalRange={1600} // Общий диапазон
+          levelKeyPrefix="Уровень воды в емкости E1/1" // Ключ для данных уровня
+          dataSource="parameters" // Источник данных
+          width="63px" // Ширина индикатора
+          height="88px" // Высота индикатора
+          bottom="40.1%" // Позиционирование
+          right="30.2%"
+          adaptiveWidth="51px"
+          adaptiveHeight="73px"
+          adaptiveBottom="40.1%"
+          adaptiveRight="30.2%"
+          fillColor="#57b7f7" // Цвет заполнения
+        />
+
+        {/* Индикатор уровня для емкости E1/2 */}
+        <LevelIndicator
+          data={data}
+          minLevel={0}
+          maxLevel={1600}
+          totalRange={1600}
+          levelKeyPrefix="Уровень воды в емкости E1/2"
+          dataSource="parameters"
+          width="63px"
+          height="88px"
+          bottom="40.1%"
+          right="17.5%" // Позиционирование для E1/2
+          adaptiveWidth="51px"
+          adaptiveHeight="73px"
+          adaptiveBottom="40.1%"
+          adaptiveRight="17.5%"
+          fillColor="#57b7f7"
+          warningThreshold={30}
+        />
+
+        {/* Добавляем компонент MnemoSymbols */}
+        <MnemoSymbols />
       </div>
     </div>
   );

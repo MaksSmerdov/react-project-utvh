@@ -1,7 +1,6 @@
 @use '../../../styles/mixins' as mixins;
 @use '../../../styles/variables' as vars;
 
-
 // Блок: MnemoHvo1
 .mnemo {
   margin-top: 10px;
@@ -22,7 +21,7 @@
     border-radius: 7px;
     box-shadow: 0 2px 2px rgba(0, 0, 0, 0.25), 0 2px 2px rgba(0, 0, 0, 0.22);
     cursor: pointer;
-    transition: background-color .3s ease-in-out;
+    transition: background-color 0.3s ease-in-out;
   }
   &__param:hover {
     background-color: lightgreen;
@@ -43,21 +42,56 @@
     font-weight: 400;
     color: black;
   }
+
+  // giffs
+  &__gif {
+    position: absolute;
+    z-index: 1;
+    width: 31px;
+    height: 31px;
+    animation: rotate 1s infinite linear;
+    animation-play-state: paused;
+  }
+
+  &__gif-img {
+    width: 31px;
+    height: 31px;
+    animation: rotate 1s infinite linear;
+    animation-play-state: paused;
+  }
+
+  &__gif-pump-1-1 {
+    left: 17.4%;
+    top: 14.3%;
+  }
+
+  &__gif-pump-1-2 {
+    left: 17.4%;
+    top: 20.4%;
+  }
+
+  &__gif-pump-2-1 {
+    bottom: 23.5%;
+    right: 20.6%;
+  }
+
+  &__gif-pump-2-2 {
+    bottom: 18.2%;
+    right: 20.6%;
+  }
+}
+
+@keyframes rotate {
+  0% {
+    transform: rotate(0deg);
+  }
+
+  100% {
+    transform: rotate(360deg);
+  }
 }
 
 /* parameters */
-.mnemo__param-descr {
-  margin: 0;
-  display: block;
-  position: absolute;
-  z-index: 1;
-  font-size: 14px;
-  line-height: 14px;
-  font-weight: 600;
-  color: rgba(10, 59, 10);
-  text-align: center;
-}
-
 .davl-vhod-ustanivki {
   left: 4%;
   top: 29.5%;
@@ -175,182 +209,134 @@
   bottom: 21.5%;
 }
 
-/* descriptions */
-.pomeshenie-2-text {
-  max-width: 200px;
-  font-size: 12px;
-  right: 8%;
-  bottom: 28.8%;
-}
+@media (max-width: 1280px) {
+  .mnemo {
+    width: 976px;
+    &__img {
+      width: 976px;
+    }
+    &__param-naimenov,
+    &__param-text {
+      font-size: 13px;
+      line-height: 13px;
+    }
 
-.zadanie-uroven-e1-1-2-text {
-  right: 41.5%;
-  bottom: 38.5%;
-  font-size: 14px;
-}
+    &__param {
+      padding: 0 2px;
+    }
 
-.kontrol-im-1-text {
-  right: 42%;
-  bottom: 54%;
-  font-size: 12px;
-}
+    &__gif-img {
+      width: 25px;
+      height: 25px;
+    }
 
-.f1-1-text {
-  left: 33.5%;
-  top: 21%;
-}
+    &__gif-pump-1-1 {
+      left: 17.1%;
+      top: 14%;
+    }
 
-.f1-2-text {
-  left: 47.2%;
-  top: 21%;
-}
+    &__gif-pump-1-2 {
+      left: 17.1%;
+      top: 20%;
+    }
 
-.f1-3-text {
-  right: 36.5%;
-  top: 21%;
-}
+    &__gif-pump-2-1 {
+      bottom: 23.1%;
+      right: 20.2%;
+    }
 
-.f1-4-text {
-  right: 22.7%;
-  top: 21%;
-}
-
-.f2-1-text {
-  left: 18%;
-  bottom: 43%;
-}
-
-.f2-2-text {
-  left: 31.5%;
-  bottom: 43%;
-}
-
-.f2-3-text {
-  left: 45%;
-  bottom: 43%;
-}
-
-.e1-1-text {
-  right: 31.8%;
-  bottom: 46%;
-}
-
-.e1-2-text {
-  right: 19%;
-  bottom: 46%;
-}
-
-.n1-1-text {
-  left: 26.5%;
-  top: 15.2%;
-}
-
-.n1-2-text {
-  left: 26.5%;
-  top: 21.2%;
-}
-
-.n1-3-text {
-  left: 26.5%;
-  top: 27.2%;
-}
-
-.n2-1-text {
-  right: 28%;
-  bottom: 24.5%;
-}
-
-.n2-2-text {
-  right: 28%;
-  bottom: 19%;
-}
-
-.n3-1-text {
-  right: 28%;
-  bottom: 11.5%;
-}
-
-.n3-2-text {
-  right: 28%;
-  bottom: 6.5%;
-}
-
-.rashod-na-promyvku-text {
-  right: 0;
-  bottom: 52.5%;
-  max-width: 72px;
-}
-
-.rashod-na-vhode-text {
-  top: 16%;
-  left: 4%;
-}
-
-.davl-vhod-ustanivki-text {
-  top: 33%;
-  left: 4.5%;
-}
-
-.davl-posle-nasosov-1-1-2-3-text {
-  top: 6.5%;
-  left: 10.5%;
-}
-
-.davl-pered-f3-1-7-text {
-  max-width: 88px;
-  bottom: 24.2%;
-  right: 0%;
-}
-
-.davl-posle-nasosov-3-1-2-text {
-  max-width: 72px;
-  bottom: 14%;
-  right: 0%;
-}
-
-/* gifs */
-.mnemo__gif {
-  position: absolute;
-  z-index: 1;
-  width: 31px;
-  height: 31px;
-  animation: rotate 1s infinite linear;
-  animation-play-state: paused;
-}
-
-.mnemo__gif-img {
-  width: 31px;
-  height: 31px;
-  animation: rotate 1s infinite linear;
-  animation-play-state: paused;
-}
-
-@keyframes rotate {
-  0% {
-    transform: rotate(0deg);
+    &__gif-pump-2-2 {
+      bottom: 17.8%;
+      right: 20.2%;
+    }
   }
 
-  100% {
-    transform: rotate(360deg);
+  .uroven-e1-1 {
+    width: 59px;
+    right: 30%;
+    bottom: 37%;
   }
-}
 
-.mnemo__gif-pump-1-1 {
-  left: 17.4%;
-  top: 14.3%;
-}
+  .uroven-e1-2 {
+    width: 59px;
+    right: 17%;
+    bottom: 37%;
+  }
 
-.mnemo__gif-pump-1-2 {
-  left: 17.4%;
-  top: 20.4%;
-}
+  .n1-1-percent {
+    width: 45px;
+    left: 14.3%;
+    top: 12%;
+  }
 
-.mnemo__gif-pump-2-1 {
-  bottom: 23.5%;
-  right: 20.6%;
-}
+  .n1-1-hz {
+    width: 45px;
+    left: 20%;
+    top: 12%;
+  }
 
-.mnemo__gif-pump-2-2 {
-  bottom: 18.2%;
-  right: 20.6%;
+  .n1-2-percent {
+    width: 45px;
+    left: 14.3%;
+    top: 18%;
+  }
+
+  .n1-2-hz {
+    width: 45px;
+    left: 20%;
+    top: 18%;
+  }
+
+  .n2-1-percent {
+    width: 45px;
+    right: 21.5%;
+    bottom: 27.5%;
+  }
+
+  .n2-1-hz {
+    width: 45px;
+
+    right: 15.5%;
+    bottom: 27.5%;
+  }
+
+  .n2-2-percent {
+    width: 45px;
+
+    right: 21.5%;
+    bottom: 21.5%;
+  }
+
+  .n2-2-hz {
+    width: 45px;
+
+    right: 15.5%;
+    bottom: 21.5%;
+  }
+
+  .column-e1-1 {
+    width: 48px;
+    height: 71px;
+  }
+
+  .column-e1-2 {
+    width: 48px;
+    height: 71px;
+  }
+
+  .davl-posle-nasosov-2-1-2 {
+    right: 7.2%;
+  }
+
+  .davl-posle-nasosov-3-1-2 {
+    right: 7.2%;
+  }
+
+  .rashod-vody-na-ustanovky {
+    left: 4%;
+  }
+
+  .zadanie-uroven-e1-1-2 {
+    bottom: 45%;
+  }
 }
