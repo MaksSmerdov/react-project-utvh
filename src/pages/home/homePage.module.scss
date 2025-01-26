@@ -89,6 +89,7 @@
 
 .sub-tab-content {
   animation: fadeIn 1s ease; 
+  min-height: 600px;
 }
 
 @keyframes fadeIn {

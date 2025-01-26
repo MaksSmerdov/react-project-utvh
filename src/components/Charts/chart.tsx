@@ -245,7 +245,7 @@ const UniversalChart: React.FC<UniversalChartProps> = ({
 
       {isLoading ? (
         <div className={styles['loader-container']} style={{ width, height }}>
-          <Loader size={80} fullPage={false} />
+          <Loader size={80} />
         </div>
       ) : error ? (
         <div className={styles['error-message']} style={{ width, height }}>

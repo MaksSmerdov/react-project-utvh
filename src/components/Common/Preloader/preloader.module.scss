@@ -2,6 +2,12 @@
 @use '../../../styles/variables' as vars;
 
 .loaderContainer {
+  position: fixed; // Используйте absolute вместо fixed
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%); // Центрирование
+  width: 100%;
+  height: 100%;
   display: flex;
   flex-direction: column;
   align-items: center;
@@ -13,15 +19,7 @@
 
   &.fadeOut {
     opacity: 0;
-    pointer-events: none; /* Отключаем взаимодействие во время анимации */
-  }
-
-  &.fullPage {
-    position: fixed;
-    top: 0;
-    left: 0;
-    width: 100vw;
-    height: 100vh;
+    pointer-events: none;
   }
 }
 

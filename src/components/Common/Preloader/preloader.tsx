@@ -4,21 +4,19 @@ import styles from './preloader.module.scss';
 interface LoaderProps {
   delay?: number;
   size?: number;
-  fullPage?: boolean;
 }
 
 const Loader: React.FC<LoaderProps> = ({
   delay = 1000,
   size = 60,
-  fullPage = true,
 }) => {
   const [isVisible, setIsVisible] = useState(true);
   const [isFading, setIsFading] = useState(false);
 
   useEffect(() => {
     const timer = setTimeout(() => {
-      setIsFading(true); // Начинаем анимацию исчезновения
-      setTimeout(() => setIsVisible(false), 300); // Полностью скрываем после завершения анимации
+      setIsFading(true);
+      setTimeout(() => setIsVisible(false), 300);
     }, delay);
     
     return () => {
@@ -29,7 +27,7 @@ const Loader: React.FC<LoaderProps> = ({
   if (!isVisible) return null;
 
   return (
-    <div className={`${styles.loaderContainer} ${fullPage ? styles.fullPage : ''} ${isFading ? styles.fadeOut : ''}`}>
+    <div className={`${styles.loaderContainer} ${isFading ? styles.fadeOut : ''}`}>
       <div className={styles.reactLogo} style={{ width: size, height: size }}>
         <svg
           xmlns="http://www.w3.org/2000/svg"
@@ -73,7 +71,7 @@ const Loader: React.FC<LoaderProps> = ({
             transform="rotate(120)"
             className={styles.orbit3}
           />
-        </svg>
+        </svg>      
       </div>
       <p className={styles.loaderText}>Идет загрузка, пожалуйста подождите</p>
     </div>

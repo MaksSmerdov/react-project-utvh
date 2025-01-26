@@ -1,6 +1,15 @@
 @use '../../../styles/mixins' as mixins;
 @use '../../../styles/variables' as vars;
 
+.mnemoContainer {
+  opacity: 0;
+  transition: opacity 0.3s ease-in-out;
+  
+  &.visible {
+    opacity: 1;
+  }
+}
+
 .mnemo {
   margin-left: 10px;
   margin-top: 15px;

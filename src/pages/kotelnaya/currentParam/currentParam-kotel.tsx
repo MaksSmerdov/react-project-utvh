@@ -69,7 +69,6 @@ const CurrentParameterKotel: React.FC<CurrentParameterKotelProps> = ({
         <Loader
           delay={1000}
           size={80}
-          fullPage={fullPageLoader}
         />
       )}
       {!isLoading && data && (

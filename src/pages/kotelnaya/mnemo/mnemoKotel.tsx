@@ -13,20 +13,20 @@ import Header from '../../../components/Common/Header/header';
 import Kran from '../../../components/Common/Kran/kranComponent';
 import GifComponent from '../../../components/Common/GifComponent/gifComponent';
 import LevelIndicator from '../../../components/Common/LevelIndicator/levelIndicator';
-import Loader from '../../../components/Common/Preloader/preloader'; // Импортируем Loader
+import Loader from '../../../components/Common/Preloader/preloader';
 
 interface MnemoKotelProps {
-  kotelNumber: number; // Единственный пропс — номер котла
-  fullPageLoader?: boolean; // Пропс для управления прелоудером (на всю страницу или нет)
+  kotelNumber: number;
 }
 
-const MnemoKotel = ({ kotelNumber, fullPageLoader = true }: MnemoKotelProps) => {
+const MnemoKotel = ({ kotelNumber}: MnemoKotelProps) => {
   const configKey = `kotel${kotelNumber}` as keyof typeof apiConfigs;
   const title = `Котел №${kotelNumber}`;
 
-  const [isLoading, setIsLoading] = useState(true); // Состояние для управления загрузкой
-  const [data, setData] = useState<any>(null); // Состояние для хранения данных
-  const [error, setError] = useState<string | null>(null); // Состояние для обработки ошибок
+  const [isLoading, setIsLoading] = useState(true);
+  const [data, setData] = useState<any>(null);
+  const [error, setError] = useState<string | null>(null);
+  const [isLoaderVisible, setIsLoaderVisible] = useState(true); // Состояние для управления видимостью прелоудера
 
   const { tooltipsEnabled, toggleTooltips } = useMnemoKotel({
     config: apiConfigs[configKey],
@@ -40,7 +40,6 @@ const MnemoKotel = ({ kotelNumber, fullPageLoader = true }: MnemoKotelProps) => 
         if (!response.ok) throw new Error('Ошибка загрузки данных');
         const result = await response.json();
 
-        // Фильтрация данных для каждого типа
         const filteredData = Object.keys(apiConfigs[configKey].defaultData).reduce((acc, key) => {
           acc[key] = Object.fromEntries(
             Object.entries(result[key] || {}).filter(([param]) => param in apiConfigs[configKey].defaultData[key])
@@ -49,44 +48,44 @@ const MnemoKotel = ({ kotelNumber, fullPageLoader = true }: MnemoKotelProps) => 
         }, {} as any);
 
         setData(filteredData);
-        setError(null); // Сбрасываем ошибку, если данные успешно загружены
+        setError(null);
       } catch (error) {
         console.error('Ошибка загрузки данных:', error);
-        setError('Не удалось загрузить данные'); // Устанавливаем сообщение об ошибке
+        setError('Не удалось загрузить данные');
       } finally {
-        setIsLoading(false); // Загрузка завершена
+        setIsLoading(false);
+        // Плавное исчезновение прелоудера через 0.5 секунды
+        setTimeout(() => setIsLoaderVisible(false), 500);
       }
     };
 
-    // Устанавливаем задержку в 1 секунду перед началом загрузки
     const delayLoading = setTimeout(() => {
       setIsLoading(true);
-      fetchData(); // Первый запрос данных
-      const interval = setInterval(fetchData, 5000); // Обновление данных каждые 5 секунд
-      return () => clearInterval(interval); // Очистка интервала при размонтировании
+      fetchData();
+      const interval = setInterval(fetchData, 5000);
+      return () => clearInterval(interval);
     }, 1000);
 
-    return () => clearTimeout(delayLoading); // Очистка таймера при размонтировании
+    return () => clearTimeout(delayLoading);
   }, [configKey]);
 
   const getKotelKey = (key: string) => `${key} котел №${kotelNumber}`;
 
   if (error) {
-    return <div>{error}</div>; // Отображение ошибки, если она есть
+    return <div>{error}</div>;
   }
 
   return (
-    <div className={styles.mnemoContainer}>
-      {isLoading && (
-        <Loader
-          delay={1000}
-          size={80}
-          fullPage={fullPageLoader}
-        />
+    <div className={`${styles.mnemoContainer} ${!isLoaderVisible ? styles.visible : ''}`}>
+      {isLoaderVisible && (
+          <Loader
+            delay={1000}
+            size={80}
+          />
       )}
       {!isLoading && data && (
         <>
-          <Header title={title} maxWidth="1000px" />
+          <Header title={title} maxWidth="auto" />
           <div className={styles.mnemo}>
             <ControlButtons
               tooltipsEnabled={tooltipsEnabled}

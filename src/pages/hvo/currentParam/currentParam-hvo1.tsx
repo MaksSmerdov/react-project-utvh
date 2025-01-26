@@ -73,7 +73,6 @@ const CurrentParameterHvo1: React.FC<CurrentParameterHvo1Props> = ({
         <Loader
           delay={1000}
           size={80}
-          fullPage={fullPageLoader} // Передаем пропс для управления прелоудером
         />
       )}
       {!isLoading && data && (

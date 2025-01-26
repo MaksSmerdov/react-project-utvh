@@ -3,7 +3,6 @@ import { Tab, Tabs, TabList, TabPanel } from 'react-tabs';
 import 'react-tabs/style/react-tabs.css'; // Импортируем стандартные стили
 import styles from './homePage.module.scss';
 import MnemoKotel from '../kotelnaya/mnemo/mnemoKotel';
-import Loader from '../../components/Common/Preloader/preloader';
 import CurrentParameterHvo1 from '../hvo/currentParam/currentParam-hvo1';
 import CurrentParameterHvo2 from '../hvo/currentParam/currentParam-hvo2';
 import CurrentParameterKotel from '../kotelnaya/currentParam/currentParam-kotel';
@@ -26,7 +25,6 @@ const HomePage: React.FC = () => {
 
   return (
     <div className={styles['container']}>
-      <Loader delay={2000} size={100} />
       <Tabs selectedIndex={selectedTabIndex} onSelect={handleTabChange}>
         <TabList className={styles['tab-list']}>
           <Tab
@@ -71,7 +69,7 @@ const HomePage: React.FC = () => {
               {/* Панель мнемосхемы */}
               <TabPanel>
                 <div key={`kotel1-mnemo-${selectedSubTabIndex}`} className={styles['sub-tab-content']}>
-                <MnemoKotel kotelNumber={1} fullPageLoader={false} />
+                <MnemoKotel kotelNumber={1} />
                 </div>
               </TabPanel>
 
@@ -121,7 +119,7 @@ const HomePage: React.FC = () => {
               {/* Панель мнемосхемы */}
               <TabPanel>
                 <div key={`kotel2-mnemo-${selectedSubTabIndex}`} className={styles['sub-tab-content']}>
-                <MnemoKotel kotelNumber={2} fullPageLoader={false} />
+                <MnemoKotel kotelNumber={2} />
                 </div>
               </TabPanel>
 
@@ -171,14 +169,14 @@ const HomePage: React.FC = () => {
               {/* Панель мнемосхемы */}
               <TabPanel>
                 <div key={`kotel3-mnemo-${selectedSubTabIndex}`} className={styles['sub-tab-content']}>
-                <MnemoKotel kotelNumber={3} fullPageLoader={false} />
+                <MnemoKotel kotelNumber={3} />
                 </div>
               </TabPanel>
 
               {/* Панель текущих параметров */}
               <TabPanel>
                 <div key={`kotel3-params-${selectedSubTabIndex}`} className={styles['sub-tab-content']}>
-                  <CurrentParameterKotel kotelNumber={3} fullPageLoader={false} />
+                  <CurrentParameterKotel kotelNumber={3}/>
                 </div>
               </TabPanel>
 

@@ -75,7 +75,7 @@ const MnemoHvo1: React.FC<MnemoHvo1Props> = ({ fullPageLoader = true }) => {
 
   return (
     <div className={styles.mnemoContainer}>
-      {isLoading && <Loader delay={1000} size={80} fullPage={fullPageLoader} />}
+      {isLoading && <Loader delay={1000} size={80} />}
       {!isLoading && data && (
         <>
           <Header title="ХВО щит №1" />
