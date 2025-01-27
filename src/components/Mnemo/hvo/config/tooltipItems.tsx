@@ -25,11 +25,11 @@ const tooltipItemsHvo1 = [
     responsiveWidth: { 'max-1280': '225px' },
     content: (
       <div>
-        Прибор: Датчик давления ДД-1
+        МИДА-ДИ-15
         <br />
-        Диапазон: 0...10 бар
+        <strong>Диапазон:</strong> 0...1 МПа
         <br />
-        Токовый выход: 4 - 20 мА
+        <strong>Токовый выход:</strong> 4 - 20 мА
       </div>
     ),
   },
@@ -44,11 +44,16 @@ const tooltipItemsHvo1 = [
     responsiveWidth: { 'max-1280': '225px' },
     content: (
       <div>
-        Прибор: Расходомер РМ-200
+        <strong>Прибор:</strong> ПРИМ-80-1-0
         <br />
-        Диапазон: 0...20 м³/ч
+        <strong>Диаметр:</strong> Ду80
         <br />
-        Токовый выход: 4 - 20 мА
+        <strong>Расход:</strong> Qнаим=0,75 м3/ч
+        <br />
+        Qперех=1,5 м3/ч
+        <br />
+        Qнаиб=150 м3/ч
+        <br />
       </div>
     ),
   },
@@ -63,11 +68,11 @@ const tooltipItemsHvo1 = [
     responsiveWidth: { 'max-1280': '225px' },
     content: (
       <div>
-        Прибор: Датчик давления ДД-2
+        МИДА-ДИ-15
         <br />
-        Диапазон: 0...15 бар
+        <strong>Диапазон:</strong> 0...1 МПа
         <br />
-        Токовый выход: 4 - 20 мА
+        <strong>Токовый выход:</strong> 4 - 20 мА
       </div>
     ),
   },
@@ -82,11 +87,11 @@ const tooltipItemsHvo1 = [
     responsiveWidth: { 'max-1280': '225px' },
     content: (
       <div>
-        Прибор: Уровнемер УЛ-100
+        УГЦ-1.1
         <br />
-        Диапазон: 0...1000 мм
+        <strong>Диапазон:</strong> 0...1,6 м
         <br />
-        Токовый выход: 4 - 20 мА
+        <strong>Токовый выход:</strong> 4 - 20 мА
       </div>
     ),
   },
@@ -101,11 +106,11 @@ const tooltipItemsHvo1 = [
     responsiveWidth: { 'max-1280': '225px' },
     content: (
       <div>
-        Прибор: Уровнемер УЛ-100
+        УГЦ-1.1
         <br />
-        Диапазон: 0...1000 мм
+        <strong>Диапазон:</strong> 0...1,6 м
         <br />
-        Токовый выход: 4 - 20 мА
+        <strong>Токовый выход:</strong> 4 - 20 мА
       </div>
     ),
   },
@@ -120,11 +125,16 @@ const tooltipItemsHvo1 = [
     responsiveWidth: { 'max-1280': '225px' },
     content: (
       <div>
-        ПРИМ-100-1-0
+        <strong>Прибор:</strong> ПРИМ-100-1-0
         <br />
-        Диапазон: 0...1000 мм
+        <strong>Диаметр:</strong> Ду100
         <br />
-        Токовый выход: 4 - 20 мА
+        <strong>Расход:</strong> Qнаим=0,75 м3/ч
+        <br />
+        Qперех=1,5 м3/ч
+        <br />
+        Qнаиб=150 м3/ч
+        <br />
       </div>
     ),
   },
@@ -139,11 +149,11 @@ const tooltipItemsHvo1 = [
     responsiveWidth: { 'max-1280': '225px' },
     content: (
       <div>
-        Прибор: Уровнемер УЛ-100
+        МИДА-ДИ-15
         <br />
-        Диапазон: 0...1000 мм
+        <strong>Диапазон:</strong> 0...1 МПа
         <br />
-        Токовый выход: 4 - 20 мА
+        <strong>Токовый выход:</strong> 4 - 20 мА
       </div>
     ),
   },
@@ -158,11 +168,11 @@ const tooltipItemsHvo1 = [
     responsiveWidth: { 'max-1280': '225px' },
     content: (
       <div>
-        Прибор: Уровнемер УЛ-100
+        МИДА-ДИ-15
         <br />
-        Диапазон: 0...1000 мм
+        <strong>Диапазон:</strong> 0...1 МПа
         <br />
-        Токовый выход: 4 - 20 мА
+        <strong>Токовый выход:</strong> 4 - 20 мА
       </div>
     ),
   },

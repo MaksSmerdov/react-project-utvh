@@ -1,3 +1,6 @@
+@use '../../../styles/mixins' as mixins;
+@use '../../../styles/variables' as vars;
+
 .mnemo__symbols {
   position: absolute;
   bottom: 50px;
@@ -6,10 +9,7 @@
 
   &-title {
     margin: 0;
-    font-size: 24px;
-    line-height: 35px;
-    font-weight: 600;
-    color: green;
+    @include mixins.text-style(24px, 35px, 600, vars.$hulk);
   }
 
   &-item {
@@ -23,11 +23,8 @@
 
   &-descr {
     margin: 0;
-    font-size: 18px;
-    line-height: 26px;
-    font-weight: 400;
-    color: black;
     font-style: italic;
+    @include mixins.text-style(18px, 29px, 400, vars.$black);
   }
 
   &-name {

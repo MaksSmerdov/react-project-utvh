@@ -48,9 +48,6 @@ const GifComponent: React.FC<GifComponentProps> = ({
       isActive = false;
   }
 
-  // Лог для проверки isActive
-  console.log(`isActive для ${conditionKey}:`, isActive);
-
   return (
     <img
       src={src}
