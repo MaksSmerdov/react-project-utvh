@@ -2,19 +2,18 @@ import React, { useState, useEffect } from 'react';
 import CurrentParameter from '../../../components/Current/currentParameter';
 import { apiConfigs } from '../../../configs/apiConfigUtvh';
 import Loader from '../../../components/Common/Preloader/preloader';
+import styles from './currentParam-kotel.module.scss'; // Импорт стилей
 
 interface CurrentParameterKotelProps {
   kotelNumber: number; // Номер котла (1, 2 или 3)
-  fullPageLoader?: boolean; // Пропс для управления прелоудером (на всю страницу или нет)
 }
 
-const CurrentParameterKotel: React.FC<CurrentParameterKotelProps> = ({
-  kotelNumber,
-  fullPageLoader = true, // По умолчанию прелоудер на всю страницу
-}) => {
+const CurrentParameterKotel: React.FC<CurrentParameterKotelProps> = ({ kotelNumber }) => {
   const [isLoading, setIsLoading] = useState(true); // Состояние для управления загрузкой
   const [data, setData] = useState<any>(null); // Состояние для хранения данных
   const [error, setError] = useState<string | null>(null); // Состояние для обработки ошибок
+  const [isLoaderVisible, setIsLoaderVisible] = useState(true); // Состояние для управления видимостью прелоудера
+
   const config = apiConfigs[`kotel${kotelNumber}` as keyof typeof apiConfigs];
   const title = `Котел №${kotelNumber}`;
 
@@ -40,7 +39,8 @@ const CurrentParameterKotel: React.FC<CurrentParameterKotelProps> = ({
         console.error('Ошибка загрузки данных:', error);
         setError('Не удалось загрузить данные'); // Устанавливаем сообщение об ошибке
       } finally {
-        setIsLoading(false); // Загрузка завершена
+        setIsLoading(false);
+        setTimeout(() => setIsLoaderVisible(false), 100);
       }
     };
 
@@ -65,19 +65,21 @@ const CurrentParameterKotel: React.FC<CurrentParameterKotelProps> = ({
 
   return (
     <>
-      {isLoading && (
+      {isLoaderVisible && (
         <Loader
           delay={1000}
           size={80}
         />
       )}
       {!isLoading && data && (
-        <CurrentParameter
-          config={config}
-          title={title}
-          data={data} // Передаем загруженные данные в CurrentParameter
-          showHeader={true} // Управление отображением заголовка
-        />
+        <div className={`${styles.contentContainer} ${!isLoaderVisible ? styles.visible : ''}`}>
+          <CurrentParameter
+            config={config}
+            title={title}
+            data={data} // Передаем загруженные данные в CurrentParameter
+            showHeader={true} // Управление отображением заголовка
+          />
+        </div>
       )}
     </>
   );

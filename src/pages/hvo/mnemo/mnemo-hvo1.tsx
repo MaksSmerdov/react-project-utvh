@@ -8,30 +8,27 @@ import ControlButtons from '../../../components/Common/ControlButtons/controlBut
 import tooltipItemsHvo1 from '../../../components/Mnemo/hvo/config/tooltipItems';
 import GifComponent from '../../../components/Common/GifComponent/gifComponent';
 import Kran from '../../../components/Common/Kran/kranComponent';
-import CustomModal from '../../../components/Common/Modal/modal'; // Импортируем модальное окно
-import DocumentationAccordion from '../../../components/Common/Accordion/accordion'; // Импортируем аккордеон
-import { accordionData, accordionTitles } from '../../../components/Mnemo/hvo/config/accordionItems'; // Импортируем данные для аккордеона
+import CustomModal from '../../../components/Common/Modal/modal';
+import DocumentationAccordion from '../../../components/Common/Accordion/accordion';
+import { accordionData, accordionTitles } from '../../../components/Mnemo/hvo/config/accordionItems';
 import LevelIndicator from '../../../components/Common/LevelIndicator/levelIndicator';
 import MnemoSymbols from '../../../components/Mnemo/hvo/mnemoSymbols';
 import StaticLabels from '../../../components/Mnemo/hvo/staticLabels';
-import Loader from '../../../components/Common/Preloader/preloader'; // Импортируем Loader
+import Loader from '../../../components/Common/Preloader/preloader';
 
-interface MnemoHvo1Props {
-  fullPageLoader?: boolean; // Пропс для управления прелоудером (на всю страницу или нет)
-}
-
-const MnemoHvo1: React.FC<MnemoHvo1Props> = ({ fullPageLoader = true }) => {
+const MnemoHvo1: React.FC = () => {
   const hvo1Config = apiConfigs.hvo1;
 
   const [isLoading, setIsLoading] = useState(true); // Состояние для управления загрузкой
   const [data, setData] = useState<any>(null); // Состояние для хранения данных
   const [error, setError] = useState<string | null>(null); // Состояние для обработки ошибок
+  const [isLoaderVisible, setIsLoaderVisible] = useState(true); // Состояние для управления видимостью прелоудера
 
   const { tooltipsEnabled, toggleTooltips } = useMnemoHvo({
     config: hvo1Config,
   });
 
-  const [isModalOpen, setIsModalOpen] = useState(false); // Состояние для управления модальным окном
+  const [isModalOpen, setIsModalOpen] = useState(false);
 
   useEffect(() => {
     const fetchData = async () => {
@@ -54,7 +51,8 @@ const MnemoHvo1: React.FC<MnemoHvo1Props> = ({ fullPageLoader = true }) => {
         console.error('Ошибка загрузки данных:', error);
         setError('Не удалось загрузить данные'); // Устанавливаем сообщение об ошибке
       } finally {
-        setIsLoading(false); // Загрузка завершена
+        setIsLoading(false);
+        setTimeout(() => setIsLoaderVisible(false), 100);
       }
     };
 
@@ -74,17 +72,17 @@ const MnemoHvo1: React.FC<MnemoHvo1Props> = ({ fullPageLoader = true }) => {
   }
 
   return (
-    <div className={styles.mnemoContainer}>
-      {isLoading && <Loader delay={1000} size={80} />}
+    <div>
+      {isLoaderVisible && <Loader delay={1000} size={80} />}
       {!isLoading && data && (
-        <>
+        <div className={`${styles.contentContainer} ${!isLoaderVisible ? styles.visible : ''}`}>
           <Header title="ХВО щит №1" />
 
           <div className={styles['mnemo']}>
             <ControlButtons
               tooltipsEnabled={tooltipsEnabled}
               onToggleTooltips={toggleTooltips}
-              onOpenModal={() => setIsModalOpen(true)} // Открываем модальное окно
+              onOpenModal={() => setIsModalOpen(true)}
               top="0"
               left="0"
               adaptiveTop="-5px"
@@ -101,19 +99,17 @@ const MnemoHvo1: React.FC<MnemoHvo1Props> = ({ fullPageLoader = true }) => {
             <img src="/assets/img/hvo/hvo1.png" alt="Котел" className={styles['mnemo__img']} />
 
             {/* Анимации насосов */}
-            {/* Насос H1/1 */}
             <GifComponent
-              src="/assets/img/hvo/ventilator.png" // Путь к изображению вентилятора
+              src="/assets/img/hvo/ventilator.png"
               alt="Насос H1/1"
               className={`${styles['mnemo__gif']} ${styles['mnemo__gif-pump-1-1']}`}
               data={data.parameters}
               conditionKey="Рабочая частота насоса H1/1 (Гц)"
-              conditionType="greaterThan" // Условие: частота > 5
-              conditionValue={5} // Пороговое значение
-              isAnimation={true} // Анимация всегда включена
+              conditionType="greaterThan"
+              conditionValue={5}
+              isAnimation={true}
             />
 
-            {/* Насос H1/2 */}
             <GifComponent
               src="/assets/img/hvo/ventilator.png"
               alt="Насос H1/2"
@@ -125,7 +121,6 @@ const MnemoHvo1: React.FC<MnemoHvo1Props> = ({ fullPageLoader = true }) => {
               isAnimation={true}
             />
 
-            {/* Насос H2/1 */}
             <GifComponent
               src="/assets/img/hvo/ventilator.png"
               alt="Насос H2/1"
@@ -137,7 +132,6 @@ const MnemoHvo1: React.FC<MnemoHvo1Props> = ({ fullPageLoader = true }) => {
               isAnimation={true}
             />
 
-            {/* Насос H2/2 */}
             <GifComponent
               src="/assets/img/hvo/ventilator.png"
               alt="Насос H2/2"
@@ -251,8 +245,8 @@ const MnemoHvo1: React.FC<MnemoHvo1Props> = ({ fullPageLoader = true }) => {
             <Kran
               size={{ width: 24, height: 18 }}
               adaptiveSize={{ width: 20, height: 14 }}
-              value={parseFloat(String(data.parameters?.['Контроль положения ИМ1'] || '0'))} // Числовое значение
-              threshold={5} // Пороговое значение
+              value={parseFloat(String(data.parameters?.['Контроль положения ИМ1'] || '0'))}
+              threshold={5}
               orientation="vertical"
               top="53.8%"
               left="53.8%"
@@ -263,20 +257,20 @@ const MnemoHvo1: React.FC<MnemoHvo1Props> = ({ fullPageLoader = true }) => {
             {/* Индикатор уровня для емкости E1/1 */}
             <LevelIndicator
               data={data}
-              minLevel={0} // Минимальный уровень
-              maxLevel={1600} // Максимальный уровень
-              totalRange={1600} // Общий диапазон
-              levelKeyPrefix="Уровень воды в емкости E1/1" // Ключ для данных уровня
-              dataSource="parameters" // Источник данных
-              width="63px" // Ширина индикатора
-              height="88px" // Высота индикатора
-              bottom="40.1%" // Позиционирование
+              minLevel={0}
+              maxLevel={1600}
+              totalRange={1600}
+              levelKeyPrefix="Уровень воды в емкости E1/1"
+              dataSource="parameters"
+              width="63px"
+              height="88px"
+              bottom="40.1%"
               right="30.2%"
               adaptiveWidth="51px"
               adaptiveHeight="73px"
               adaptiveBottom="40.1%"
               adaptiveRight="30.2%"
-              fillColor="#57b7f7" // Цвет заполнения
+              fillColor="#57b7f7"
             />
 
             {/* Индикатор уровня для емкости E1/2 */}
@@ -290,7 +284,7 @@ const MnemoHvo1: React.FC<MnemoHvo1Props> = ({ fullPageLoader = true }) => {
               width="63px"
               height="88px"
               bottom="40.1%"
-              right="17.5%" // Позиционирование для E1/2
+              right="17.5%"
               adaptiveWidth="51px"
               adaptiveHeight="73px"
               adaptiveBottom="40.1%"
@@ -302,7 +296,7 @@ const MnemoHvo1: React.FC<MnemoHvo1Props> = ({ fullPageLoader = true }) => {
             {/* Добавляем компонент MnemoSymbols */}
             <MnemoSymbols />
           </div>
-        </>
+        </div>
       )}
     </div>
   );

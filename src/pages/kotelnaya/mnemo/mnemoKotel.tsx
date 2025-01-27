@@ -19,7 +19,7 @@ interface MnemoKotelProps {
   kotelNumber: number;
 }
 
-const MnemoKotel = ({ kotelNumber}: MnemoKotelProps) => {
+const MnemoKotel = ({ kotelNumber }: MnemoKotelProps) => {
   const configKey = `kotel${kotelNumber}` as keyof typeof apiConfigs;
   const title = `Котел №${kotelNumber}`;
 
@@ -54,8 +54,7 @@ const MnemoKotel = ({ kotelNumber}: MnemoKotelProps) => {
         setError('Не удалось загрузить данные');
       } finally {
         setIsLoading(false);
-        // Плавное исчезновение прелоудера через 0.5 секунды
-        setTimeout(() => setIsLoaderVisible(false), 500);
+        setTimeout(() => setIsLoaderVisible(false), 100);
       }
     };
 
@@ -76,15 +75,15 @@ const MnemoKotel = ({ kotelNumber}: MnemoKotelProps) => {
   }
 
   return (
-    <div className={`${styles.mnemoContainer} ${!isLoaderVisible ? styles.visible : ''}`}>
+    <div>
       {isLoaderVisible && (
-          <Loader
-            delay={1000}
-            size={80}
-          />
+        <Loader
+          delay={1000}
+          size={80}
+        />
       )}
       {!isLoading && data && (
-        <>
+        <div className={`${styles.mnemoContainer} ${!isLoaderVisible ? styles.visible : ''}`}>
           <Header title={title} maxWidth="auto" />
           <div className={styles.mnemo}>
             <ControlButtons
@@ -286,11 +285,11 @@ const MnemoKotel = ({ kotelNumber}: MnemoKotelProps) => {
                   placement="top"
                 >
                   <div
-                    className={`${styles['mnemo__param']} ${param.className} ${tooltipsEnabled ? styles.enabledHover : ''}`}
+                    className={`${styles['mnemo__param']} ${param.className} ${
+                      tooltipsEnabled ? styles.enabledHover : ''
+                    }`}
                   >
-                    <div className={styles['mnemo__param-naimenov']}>
-                      {param.naimenov || 'Нет данных'}
-                    </div>
+                    <div className={styles['mnemo__param-naimenov']}>{param.naimenov || 'Нет данных'}</div>
                     <div className={styles['mnemo__param-text']}>
                       <div className={styles['mnemo__param-value']}>{value}</div>
                       <div className={styles['mnemo__param-span']}>{param.unit}</div>
@@ -320,7 +319,7 @@ const MnemoKotel = ({ kotelNumber}: MnemoKotelProps) => {
               fillColor="#57b7f7"
             />
           </div>
-        </>
+        </div>
       )}
     </div>
   );

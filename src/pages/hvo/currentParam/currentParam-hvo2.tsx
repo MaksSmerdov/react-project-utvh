@@ -5,17 +5,12 @@ import Header from '../../../components/Common/Header/header';
 import styles from './currentParam-hvo.module.scss';
 import Loader from '../../../components/Common/Preloader/preloader';
 
-interface CurrentParameterHvo2Props {
-  fullPageLoader?: boolean; // Пропс для управления прелоудером (на всю страницу или нет)
-}
-
-const CurrentParameterHvo2: React.FC<CurrentParameterHvo2Props> = ({
-  fullPageLoader = true, // По умолчанию прелоудер не на всю страницу
-}) => {
-  const [isLoading, setIsLoading] = useState(true); // Состояние для управления загрузкой
-  const [data, setData] = useState<any>(null); // Состояние для хранения данных
-  const [error, setError] = useState<string | null>(null); // Состояние для обработки ошибок
-  const { displayNames, apiUrl } = apiConfigs.hvo2; // Убрали defaultData, так как она не используется
+const CurrentParameterHvo2: React.FC = () => {
+  const [isLoading, setIsLoading] = useState(true);
+  const [data, setData] = useState<any>(null);
+  const [error, setError] = useState<string | null>(null);
+  const [isLoaderVisible, setIsLoaderVisible] = useState(true); // Состояние для управления видимостью прелоудера
+  const { displayNames, apiUrl } = apiConfigs.hvo2;
 
   useEffect(() => {
     const fetchData = async () => {
@@ -45,41 +40,37 @@ const CurrentParameterHvo2: React.FC<CurrentParameterHvo2Props> = ({
 
         // Сохраняем отфильтрованные данные
         setData({ pressures, levels, flows, temperatures, others });
-        setError(null); // Сбрасываем ошибку, если данные успешно загружены
+        setError(null);
       } catch (error) {
         console.error('Ошибка загрузки данных:', error);
-        setError('Не удалось загрузить данные'); // Устанавливаем сообщение об ошибке
+        setError('Не удалось загрузить данные');
       } finally {
-        setIsLoading(false); // Загрузка завершена
+        setIsLoading(false);
+        // Плавное исчезновение прелоудера через 0.5 секунды
+        setTimeout(() => setIsLoaderVisible(false), 500);
       }
     };
 
     // Устанавливаем задержку в 1 секунду перед началом загрузки
     const delayLoading = setTimeout(() => {
       setIsLoading(true);
-      fetchData(); // Первый запрос данных
-      const interval = setInterval(fetchData, 5000); // Обновление данных каждые 5 секунд
-      return () => clearInterval(interval); // Очистка интервала при размонтировании
+      fetchData();
+      const interval = setInterval(fetchData, 5000);
+      return () => clearInterval(interval);
     }, 1000);
 
-    return () => clearTimeout(delayLoading); // Очистка таймера при размонтировании
+    return () => clearTimeout(delayLoading);
   }, [apiUrl]);
 
   if (error) {
-    return <div>{error}</div>; // Отображение ошибки, если она есть
+    return <div>{error}</div>;
   }
 
   return (
     <div>
-      {isLoading && (
-        <Loader
-          delay={1000}
-          size={80}
-        />
-      )}
-
+      {isLoaderVisible && <Loader delay={1000} size={80} />}
       {!isLoading && data && (
-        <>
+        <div className={`${styles.contentContainer} ${!isLoaderVisible ? styles.visible : ''}`}>
           {/* Шапка для всей страницы */}
           <Header title="ХВО щит №2" maxWidth="100%" />
 
@@ -93,9 +84,9 @@ const CurrentParameterHvo2: React.FC<CurrentParameterHvo2Props> = ({
                   titles: { parameters: 'Давления' },
                   displayNames: { parameters: displayNames.parameters },
                 }}
-                data={{ parameters: data.pressures }} // Передаем данные для давлений
+                data={{ parameters: data.pressures }}
                 title="Давления"
-                showHeader={false} // Шапка больше не нужна внутри таблицы
+                showHeader={false}
               />
             )}
 
@@ -108,9 +99,9 @@ const CurrentParameterHvo2: React.FC<CurrentParameterHvo2Props> = ({
                   titles: { parameters: 'Уровни' },
                   displayNames: { parameters: displayNames.parameters },
                 }}
-                data={{ parameters: data.levels }} // Передаем данные для уровней
+                data={{ parameters: data.levels }}
                 title="Уровни"
-                showHeader={false} // Шапка больше не нужна внутри таблицы
+                showHeader={false}
               />
             )}
 
@@ -123,9 +114,9 @@ const CurrentParameterHvo2: React.FC<CurrentParameterHvo2Props> = ({
                   titles: { parameters: 'Расходы' },
                   displayNames: { parameters: displayNames.parameters },
                 }}
-                data={{ parameters: data.flows }} // Передаем данные для расходов
+                data={{ parameters: data.flows }}
                 title="Расходы"
-                showHeader={false} // Шапка больше не нужна внутри таблицы
+                showHeader={false}
               />
             )}
 
@@ -138,9 +129,9 @@ const CurrentParameterHvo2: React.FC<CurrentParameterHvo2Props> = ({
                   titles: { parameters: 'Температуры' },
                   displayNames: { parameters: displayNames.parameters },
                 }}
-                data={{ parameters: data.temperatures }} // Передаем данные для температур
+                data={{ parameters: data.temperatures }}
                 title="Температуры"
-                showHeader={false} // Шапка больше не нужна внутри таблицы
+                showHeader={false}
               />
             )}
 
@@ -153,13 +144,13 @@ const CurrentParameterHvo2: React.FC<CurrentParameterHvo2Props> = ({
                   titles: { parameters: 'Остальные параметры' },
                   displayNames: { parameters: displayNames.parameters },
                 }}
-                data={{ parameters: data.others }} // Передаем данные для остальных параметров
+                data={{ parameters: data.others }}
                 title="Остальные параметры"
-                showHeader={false} // Шапка больше не нужна внутри таблицы
+                showHeader={false}
               />
             )}
           </div>
-        </>
+        </div>
       )}
     </div>
   );

@@ -4,11 +4,13 @@ import styles from './preloader.module.scss';
 interface LoaderProps {
   delay?: number;
   size?: number;
+  fullpage?: boolean;
 }
 
 const Loader: React.FC<LoaderProps> = ({
   delay = 1000,
   size = 60,
+  fullpage = true,
 }) => {
   const [isVisible, setIsVisible] = useState(true);
   const [isFading, setIsFading] = useState(false);
@@ -27,7 +29,7 @@ const Loader: React.FC<LoaderProps> = ({
   if (!isVisible) return null;
 
   return (
-    <div className={`${styles.loaderContainer} ${isFading ? styles.fadeOut : ''}`}>
+    <div className={`${styles.loaderContainer} ${isFading ? styles.fadeOut : ''} ${fullpage ? styles.fullpage : ''}`}>
       <div className={styles.reactLogo} style={{ width: size, height: size }}>
         <svg
           xmlns="http://www.w3.org/2000/svg"

@@ -1,7 +1,15 @@
 @use '../../../styles/mixins' as mixins;
 @use '../../../styles/variables' as vars;
 
-// Блок: MnemoHvo1
+.contentContainer {
+  opacity: 0;
+  transition: opacity 0.3s ease-in-out;
+
+  &.visible {
+    opacity: 1;
+  }
+}
+
 .mnemo {
   margin-top: 10px;
   position: relative;
