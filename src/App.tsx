@@ -8,6 +8,7 @@ import GraphParKotel from './pages/kotelnaya/graphics/graphPar-kotel';
 import CurrentParameterHvo1 from './pages/hvo/currentParam/currentParam-hvo1';
 import CurrentParameterHvo2 from './pages/hvo/currentParam/currentParam-hvo2';
 import MnemoHvo1 from './pages/hvo/mnemo/mnemo-hvo1';
+import MnemoHvo2 from './pages/hvo/mnemo/mnemo-hvo2';
 
 const App: React.FC = () => {
   return (
@@ -35,6 +36,8 @@ const App: React.FC = () => {
         <Route path="/currentParam-hvo2" element={<CurrentParameterHvo2 />} />
 
         <Route path="/mnemo-hvo1" element={<MnemoHvo1 />} />
+        <Route path="/mnemo-hvo2" element={<MnemoHvo2 />} />
+
       </Routes>
     </div>
   );

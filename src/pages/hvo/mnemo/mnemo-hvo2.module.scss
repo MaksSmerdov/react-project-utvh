@@ -1,0 +1,233 @@
+@use '../../../styles/mixins' as mixins;
+@use '../../../styles/variables' as vars;
+
+.contentContainer {
+  opacity: 0;
+  transition: opacity 0.3s ease-in-out;
+
+  &.visible {
+    opacity: 1;
+  }
+}
+
+.mnemo {
+  margin-top: 10px;
+  position: relative;
+  width: 1200px;
+
+  &__img {
+    width: 1200px;
+  }
+
+  &__param {
+    display: flex;
+    align-items: center;
+    gap: 3px;
+    padding: 3px 7px;
+    position: absolute;
+    background-color: vars.$sharp-pebbles;
+    border-radius: 7px;
+    box-shadow: 0 2px 2px rgba(0, 0, 0, 0.25), 0 2px 2px rgba(0, 0, 0, 0.22);
+    cursor: pointer;
+    transition: background-color 0.3s ease-in-out;
+  }
+  &__param:hover {
+    background-color: vars.$ulva-lactuca-green;
+  }
+  &__param:active {
+    background-color: vars.$ulva-lactuca-green;
+  }
+  &__param-text {
+    font-size: 15px;
+    line-height: 15px;
+    font-weight: 600;
+    color: vars.$blue;
+  }
+
+  &__param-naimenov {
+    font-size: 15px;
+    line-height: 15px;
+    font-weight: 400;
+    color: vars.$black;
+  }
+
+  // giffs
+  &__gif {
+    position: absolute;
+    z-index: 1;
+    width: 31px;
+    height: 31px;
+    animation: rotate 1s infinite linear;
+    animation-play-state: paused;
+  }
+
+  &__gif-img {
+    width: 31px;
+    height: 31px;
+    animation: rotate 1s infinite linear;
+    animation-play-state: paused;
+  }
+}
+
+@keyframes rotate {
+  0% {
+    transform: rotate(0deg);
+  }
+
+  100% {
+    transform: rotate(360deg);
+  }
+}
+
+/* parameters */
+.rashod-vody-filtr {
+  padding: 2px 3px;
+  top: 4.5%;
+  left: 49.2%;
+  min-width: 67px;
+}
+
+.rashod-kanalizacia {
+  padding: 2px 3px;
+  bottom: 30.5%;
+  left: 47.8%;
+  min-width: 67px;
+}
+
+// ------
+.davlenie-posle-filtrov {
+  top: 31%;
+  right: 44%;
+  min-width: 100px;
+}
+// ------
+
+.im2 {
+  top: 4.5%;
+  right: 31.5%;
+  min-width: 55px;
+}
+
+.davlenie-carbon {
+  bottom: 2%;
+  left: 88%;
+}
+
+.davlenie-k265 {
+  bottom: 2%;
+  left: 54.5%;
+}
+
+.davlenie-k312 {
+  bottom: 2%;
+  left: 18%;
+}
+
+.temper-e2-1-sever {
+  top: 20.5%;
+  right: 25.1%;
+  min-width: 70px;
+}
+
+.temper-e2-1-ug {
+  top: 20.5%;
+  right: 41%;
+  min-width: 70px;
+}
+
+.temper-e2-2-ug {
+  top: 20.5%;
+  right: 18.9%;
+  min-width: 70px;
+}
+
+.temper-e2-2-sever {
+  top: 20.5%;
+  right: 3.2%;
+  min-width: 70px;
+}
+
+.uroven-titan-e2-1 {
+  top: 22%;
+  right: 36.3%;
+}
+
+.uroven-mida-e2-1 {
+  top: 22%;
+  right: 32%;
+}
+
+.uroven-titan-e2-2 {
+  top: 22%;
+  right: 14.8%;
+}
+
+.uroven-mida-e2-2 {
+  top: 22%;
+  right: 10.5%;
+}
+
+.davlenie-n4-1 {
+  left: 8.5%;
+  bottom: 18%;
+}
+
+.n4-1-hz {
+  left: 8.5%;
+  bottom: 21.5%;
+}
+
+.davlenie-n4-2 {
+  left: 21.3%;
+  bottom: 18%;
+}
+
+.n4-2-hz {
+  left: 21.3%;
+  bottom: 21.5%;
+}
+
+.davlenie-n5-1 {
+  left: 34.2%;
+  bottom: 18%;
+}
+
+.n5-1-hz {
+  left: 34.2%;
+  bottom: 21.5%;
+}
+
+.davlenie-n5-2 {
+  left: 47.1%;
+  bottom: 18%;
+}
+
+.n5-2-hz {
+  left: 47.1%;
+  bottom: 21.5%;
+}
+
+@media (max-width: 1280px) {
+  .mnemo {
+    width: 976px;
+    &__img {
+      width: 976px;
+    }
+    &__param-naimenov,
+    &__param-text {
+      font-size: 13px;
+      line-height: 13px;
+    }
+
+    &__param {
+      padding: 0 2px;
+    }
+
+    &__gif-img {
+      width: 25px;
+      height: 25px;
+    }
+  }
+
+
+}

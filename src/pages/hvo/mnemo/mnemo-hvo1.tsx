@@ -5,7 +5,6 @@ import styles from './mnemo-hvo1.module.scss';
 import Header from '../../../components/Common/Header/header';
 import Tooltip from '../../../components/Common/Tooltip/tooltip';
 import ControlButtons from '../../../components/Common/ControlButtons/controlButtons';
-import tooltipItemsHvo1 from '../../../components/Mnemo/hvo/config/tooltipItems';
 import GifComponent from '../../../components/Common/GifComponent/gifComponent';
 import Kran from '../../../components/Common/Kran/kranComponent';
 import CustomModal from '../../../components/Common/Modal/modal';
@@ -15,6 +14,7 @@ import LevelIndicator from '../../../components/Common/LevelIndicator/levelIndic
 import MnemoSymbols from '../../../components/Mnemo/hvo/mnemoSymbols';
 import StaticLabels from '../../../components/Mnemo/hvo/staticLabels';
 import Loader from '../../../components/Common/Preloader/preloader';
+import { tooltipItemsHvo1 } from '../../../components/Mnemo/hvo/config/tooltipItems';
 
 const MnemoHvo1: React.FC = () => {
   const hvo1Config = apiConfigs.hvo1;
