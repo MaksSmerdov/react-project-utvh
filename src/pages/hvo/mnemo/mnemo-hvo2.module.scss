@@ -30,11 +30,12 @@
     box-shadow: 0 2px 2px rgba(0, 0, 0, 0.25), 0 2px 2px rgba(0, 0, 0, 0.22);
     cursor: pointer;
     transition: background-color 0.3s ease-in-out;
+    z-index: 1;
   }
-  &__param:hover {
-    background-color: vars.$ulva-lactuca-green;
+  &__param.no-cursor {
+    cursor: default; // Убираем курсор pointer для элементов без тултипов
   }
-  &__param:active {
+  &__param.hoverable:hover {
     background-color: vars.$ulva-lactuca-green;
   }
   &__param-text {

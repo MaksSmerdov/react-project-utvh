@@ -100,19 +100,21 @@ const MnemoHvo2: React.FC = () => {
             {/* Параметры с тултипами */}
             {tooltipItemsHvo2.map((param, idx) => {
               const value = data.parameters?.[param.dataKey] ?? '—';
+              const tooltipContent = param.hasTooltip ? param.content : null;
+
               return (
                 <Tooltip
                   key={`${param.id}-${idx}`}
                   tooltipId={param.id}
-                  content={param.content}
-                  disabled={!tooltipsEnabled}
+                  content={tooltipContent}
+                  disabled={!tooltipsEnabled || !param.hasTooltip}
                   width={param.width}
                   responsiveWidth={param.responsiveWidth}
                   placement="top"
                 >
                   <div
                     className={`${styles['mnemo__param']} ${param.className} ${
-                      tooltipsEnabled ? styles.enabledHover : ''
+                      param.hasTooltip && tooltipsEnabled ? styles.hoverable : styles['no-cursor']
                     }`}
                   >
                     <div className={styles['mnemo__param-text']}>{value}</div>
@@ -288,77 +290,6 @@ const MnemoHvo2: React.FC = () => {
               conditionValue={5}
               isAnimation={true}
             />
-
-            {/* Контроль положения ИМ1 */}
-            <div className={`${styles['mnemo__param']} ${styles['im2']}`}>
-              <div className={styles['mnemo__param-text']}>{data.parameters?.['Контроль положения ИМ2'] ?? '—'} %</div>
-            </div>
-
-            {/* Уровни */}
-            <div className={`${styles['mnemo__param']} ${styles['uroven-titan-e2-1']}`}>
-              <div className={styles['mnemo__param-text']}>
-                {data.parameters?.['Уровень воды в E2/1 (Титан)'] ?? '—'}
-              </div>
-            </div>
-            <div className={`${styles['mnemo__param']} ${styles['uroven-mida-e2-1']}`}>
-              <div className={styles['mnemo__param-text']}>
-                {data.parameters?.['Уровень воды в E2/1 (Мида)'] ?? '—'}
-              </div>
-            </div>
-            <div className={`${styles['mnemo__param']} ${styles['uroven-titan-e2-2']}`}>
-              <div className={styles['mnemo__param-text']}>
-                {data.parameters?.['Уровень воды в E2/2 (Титан)'] ?? '—'}
-              </div>
-            </div>
-            <div className={`${styles['mnemo__param']} ${styles['uroven-mida-e2-2']}`}>
-              <div className={styles['mnemo__param-text']}>
-                {data.parameters?.['Уровень воды в E2/2 (Мида)'] ?? '—'}
-              </div>
-            </div>
-
-            {/* Частоты */}
-            <div className={`${styles['mnemo__param']} ${styles['n4-1-hz']}`}>
-              <div className={styles['mnemo__param-text']}>
-                {data.parameters?.['Рабочая частота насоса H4/1 (Гц)'] ?? '—'}
-              </div>
-              <span className={styles['mnemo__param-naimenov']}>Гц</span>
-            </div>
-            <div className={`${styles['mnemo__param']} ${styles['n4-2-hz']}`}>
-              <div className={styles['mnemo__param-text']}>
-                {data.parameters?.['Рабочая частота насоса H4/2 (Гц)'] ?? '—'}
-              </div>
-              <span className={styles['mnemo__param-naimenov']}>Гц</span>
-            </div>
-            <div className={`${styles['mnemo__param']} ${styles['n5-1-hz']}`}>
-              <div className={styles['mnemo__param-text']}>
-                {data.parameters?.['Рабочая частота насоса H5/1 (Гц)'] ?? '—'}
-              </div>
-              <span className={styles['mnemo__param-naimenov']}>Гц</span>
-            </div>
-            <div className={`${styles['mnemo__param']} ${styles['n5-2-hz']}`}>
-              <div className={styles['mnemo__param-text']}>
-                {data.parameters?.['Рабочая частота насоса H5/2 (Гц)'] ?? '—'}
-              </div>
-              <span className={styles['mnemo__param-naimenov']}>Гц</span>
-            </div>
-            <div className={`${styles['mnemo__param']} ${styles['n6-1-hz']}`}>
-              <div className={styles['mnemo__param-text']}>
-                {data.parameters?.['Рабочая частота насоса H6/1 (Гц)'] ?? '—'}
-              </div>
-              <span className={styles['mnemo__param-naimenov']}>Гц</span>
-            </div>
-            <div className={`${styles['mnemo__param']} ${styles['n6-2-hz']}`}>
-              <div className={styles['mnemo__param-text']}>
-                {data.parameters?.['Рабочая частота насоса H6/2 (Гц)'] ?? '—'}
-              </div>
-              <span className={styles['mnemo__param-naimenov']}>Гц</span>
-            </div>
-            <div className={`${styles['mnemo__param']} ${styles['n6-3-hz']}`}>
-              <div className={styles['mnemo__param-text']}>
-                {data.parameters?.['Рабочая частота насоса H6/3 (Гц)'] ?? '—'}
-              </div>
-              <span className={styles['mnemo__param-naimenov']}>Гц</span>
-            </div>
           </div>
         </div>
       )}

@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import { Tab, Tabs, TabList, TabPanel } from 'react-tabs';
-import 'react-tabs/style/react-tabs.css'; // Импортируем стандартные стили
+import 'react-tabs/style/react-tabs.css';
 import styles from './homePage.module.scss';
 import MnemoKotel from '../kotelnaya/mnemo/mnemoKotel';
 import CurrentParameterHvo1 from '../hvo/currentParam/currentParam-hvo1';
@@ -9,6 +9,7 @@ import CurrentParameterKotel from '../kotelnaya/currentParam/currentParam-kotel'
 import GeneralLevelKotel from '../kotelnaya/graphics/general/graphGeneral-level';
 import GeneralParKotel from '../kotelnaya/graphics/general/graphGeneral-par';
 import MnemoHvo1 from '../hvo/mnemo/mnemo-hvo1';
+import MnemoHvo2 from '../hvo/mnemo/mnemo-hvo2'; // Импортируем компонент MnemoHvo2
 
 const HomePage: React.FC = () => {
   const [selectedTabIndex, setSelectedTabIndex] = useState<number>(0);
@@ -27,10 +28,7 @@ const HomePage: React.FC = () => {
     <div className={styles['container']}>
       <Tabs selectedIndex={selectedTabIndex} onSelect={handleTabChange}>
         <TabList className={styles['tab-list']}>
-          <Tab
-            className={styles['tab']}
-            selectedClassName={styles['tab--selected']} // Класс для активного таба
-          >
+          <Tab className={styles['tab']} selectedClassName={styles['tab--selected']}>
             Котел №1
           </Tab>
           <Tab className={styles['tab']} selectedClassName={styles['tab--selected']}>
@@ -69,7 +67,7 @@ const HomePage: React.FC = () => {
               {/* Панель мнемосхемы */}
               <TabPanel>
                 <div key={`kotel1-mnemo-${selectedSubTabIndex}`} className={styles['sub-tab-content']}>
-                <MnemoKotel kotelNumber={1}/>
+                  <MnemoKotel kotelNumber={1} />
                 </div>
               </TabPanel>
 
@@ -83,14 +81,14 @@ const HomePage: React.FC = () => {
               {/* Панель графиков уровня */}
               <TabPanel>
                 <div key={`kotel1-charts-${selectedSubTabIndex}`} className={styles['sub-tab-content']}>
-                  <GeneralLevelKotel></GeneralLevelKotel>
+                  <GeneralLevelKotel />
                 </div>
               </TabPanel>
 
               {/* Панель графиков пара */}
               <TabPanel>
                 <div key={`kotel1-charts-${selectedSubTabIndex}`} className={styles['sub-tab-content']}>
-                  <GeneralParKotel></GeneralParKotel>
+                  <GeneralParKotel />
                 </div>
               </TabPanel>
             </Tabs>
@@ -119,7 +117,7 @@ const HomePage: React.FC = () => {
               {/* Панель мнемосхемы */}
               <TabPanel>
                 <div key={`kotel2-mnemo-${selectedSubTabIndex}`} className={styles['sub-tab-content']}>
-                <MnemoKotel kotelNumber={2}/>
+                  <MnemoKotel kotelNumber={2} />
                 </div>
               </TabPanel>
 
@@ -132,15 +130,15 @@ const HomePage: React.FC = () => {
 
               {/* Панель графиков уровня */}
               <TabPanel>
-                <div key={`kotel1-charts-${selectedSubTabIndex}`} className={styles['sub-tab-content']}>
-                  <GeneralLevelKotel></GeneralLevelKotel>
+                <div key={`kotel2-charts-${selectedSubTabIndex}`} className={styles['sub-tab-content']}>
+                  <GeneralLevelKotel />
                 </div>
               </TabPanel>
 
               {/* Панель графиков пара */}
               <TabPanel>
-                <div key={`kotel1-charts-${selectedSubTabIndex}`} className={styles['sub-tab-content']}>
-                  <GeneralParKotel></GeneralParKotel>
+                <div key={`kotel2-charts-${selectedSubTabIndex}`} className={styles['sub-tab-content']}>
+                  <GeneralParKotel />
                 </div>
               </TabPanel>
             </Tabs>
@@ -169,28 +167,28 @@ const HomePage: React.FC = () => {
               {/* Панель мнемосхемы */}
               <TabPanel>
                 <div key={`kotel3-mnemo-${selectedSubTabIndex}`} className={styles['sub-tab-content']}>
-                <MnemoKotel kotelNumber={3} />
+                  <MnemoKotel kotelNumber={3} />
                 </div>
               </TabPanel>
 
               {/* Панель текущих параметров */}
               <TabPanel>
                 <div key={`kotel3-params-${selectedSubTabIndex}`} className={styles['sub-tab-content']}>
-                  <CurrentParameterKotel kotelNumber={3}/>
+                  <CurrentParameterKotel kotelNumber={3} />
                 </div>
               </TabPanel>
 
               {/* Панель графиков уровня */}
               <TabPanel>
-                <div key={`kotel1-charts-${selectedSubTabIndex}`} className={styles['sub-tab-content']}>
-                  <GeneralLevelKotel></GeneralLevelKotel>
+                <div key={`kotel3-charts-${selectedSubTabIndex}`} className={styles['sub-tab-content']}>
+                  <GeneralLevelKotel />
                 </div>
               </TabPanel>
 
               {/* Панель графиков пара */}
               <TabPanel>
-                <div key={`kotel1-charts-${selectedSubTabIndex}`} className={styles['sub-tab-content']}>
-                  <GeneralParKotel></GeneralParKotel>
+                <div key={`kotel3-charts-${selectedSubTabIndex}`} className={styles['sub-tab-content']}>
+                  <GeneralParKotel />
                 </div>
               </TabPanel>
             </Tabs>
@@ -213,14 +211,14 @@ const HomePage: React.FC = () => {
               {/* Панель мнемосхемы */}
               <TabPanel>
                 <div key={`hvo1-mnemo-${selectedSubTabIndex}`} className={styles['sub-tab-content']}>
-                  <MnemoHvo1 /> {/* Используем компонент MnemoHvo1 */}
+                  <MnemoHvo1 />
                 </div>
               </TabPanel>
 
               {/* Панель текущих параметров */}
               <TabPanel>
                 <div key={`hvo1-params-${selectedSubTabIndex}`} className={styles['sub-tab-content']}>
-                  <CurrentParameterHvo1 /> {/* Используем компонент CurrentParameterHvo1 */}
+                  <CurrentParameterHvo1 />
                 </div>
               </TabPanel>
             </Tabs>
@@ -233,14 +231,24 @@ const HomePage: React.FC = () => {
             <Tabs selectedIndex={selectedSubTabIndex} onSelect={handleSubTabChange}>
               <TabList className={styles['sub-tab-list']}>
                 <Tab className={styles['sub-tab']} selectedClassName={styles['sub-tab--selected']}>
+                  Мнемосхема
+                </Tab>
+                <Tab className={styles['sub-tab']} selectedClassName={styles['sub-tab--selected']}>
                   Текущие параметры
                 </Tab>
               </TabList>
 
+              {/* Панель мнемосхемы */}
+              <TabPanel>
+                <div key={`hvo2-mnemo-${selectedSubTabIndex}`} className={styles['sub-tab-content']}>
+                  <MnemoHvo2 /> {/* Добавляем компонент MnemoHvo2 */}
+                </div>
+              </TabPanel>
+
               {/* Панель текущих параметров */}
               <TabPanel>
                 <div key={`hvo2-params-${selectedSubTabIndex}`} className={styles['sub-tab-content']}>
-                  <CurrentParameterHvo2 /> {/* Используем компонент CurrentParameterHvo2 */}
+                  <CurrentParameterHvo2 />
                 </div>
               </TabPanel>
             </Tabs>

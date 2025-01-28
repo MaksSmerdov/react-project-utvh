@@ -31,10 +31,10 @@
     cursor: pointer;
     transition: background-color 0.3s ease-in-out;
   }
-  &__param:hover {
-    background-color: vars.$ulva-lactuca-green;
+  &__param.no-cursor {
+    cursor: default; // Убираем курсор pointer для элементов без тултипов
   }
-  &__param:active {
+  &__param.hoverable:hover {
     background-color: vars.$ulva-lactuca-green;
   }
   &__param-text {

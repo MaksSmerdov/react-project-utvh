@@ -146,19 +146,21 @@ const MnemoHvo1: React.FC = () => {
             {/* Параметры с тултипами */}
             {tooltipItemsHvo1.map((param, idx) => {
               const value = data.parameters?.[param.dataKey] ?? '—';
+              const tooltipContent = param.hasTooltip ? param.content : null;
+
               return (
                 <Tooltip
                   key={`${param.id}-${idx}`}
                   tooltipId={param.id}
-                  content={param.content}
-                  disabled={!tooltipsEnabled}
+                  content={tooltipContent}
+                  disabled={!tooltipsEnabled || !param.hasTooltip}
                   width={param.width}
                   responsiveWidth={param.responsiveWidth}
                   placement="top"
                 >
                   <div
                     className={`${styles['mnemo__param']} ${param.className} ${
-                      tooltipsEnabled ? styles.enabledHover : ''
+                      param.hasTooltip && tooltipsEnabled ? styles.hoverable : styles['no-cursor']
                     }`}
                   >
                     <div className={styles['mnemo__param-text']}>{value}</div>
@@ -167,76 +169,6 @@ const MnemoHvo1: React.FC = () => {
                 </Tooltip>
               );
             })}
-
-            {/* Контроль положения ИМ1 */}
-            <div className={`${styles['mnemo__param']} ${styles['kontrol-im-1']}`}>
-              <div className={styles['mnemo__param-text']}>{data.parameters?.['Контроль положения ИМ1'] ?? '—'}</div>
-            </div>
-
-            {/* Задание уровня воды в емкостях E1/1,2 */}
-            <div className={`${styles['mnemo__param']} ${styles['zadanie-uroven-e1-1-2']}`}>
-              <div className={styles['mnemo__param-text']}>
-                {data.parameters?.['Задание уровня воды в емкостях E1/1,2'] ?? '—'}
-              </div>
-              <div className={styles['mnemo__param-naimenov']}>%</div>
-            </div>
-
-            {/* Насосы */}
-            <div className={`${styles['mnemo__param']} ${styles['n1-1-percent']}`}>
-              <div className={styles['mnemo__param-text']}>
-                {data.parameters?.['Выход РАН давления воды для ПЧ H1/1 (%)'] ?? '—'}
-              </div>
-              <div className={styles['mnemo__param-naimenov']}>%</div>
-            </div>
-
-            <div className={`${styles['mnemo__param']} ${styles['n1-1-hz']}`}>
-              <div className={styles['mnemo__param-text']}>
-                {data.parameters?.['Рабочая частота насоса H1/1 (Гц)'] ?? '—'}
-              </div>
-              <div className={styles['mnemo__param-naimenov']}>Гц</div>
-            </div>
-
-            <div className={`${styles['mnemo__param']} ${styles['n1-2-percent']}`}>
-              <div className={styles['mnemo__param-text']}>
-                {data.parameters?.['Выход РАН давления воды для ПЧ H1/2 (%)'] ?? '—'}
-              </div>
-              <div className={styles['mnemo__param-naimenov']}>%</div>
-            </div>
-
-            <div className={`${styles['mnemo__param']} ${styles['n1-2-hz']}`}>
-              <div className={styles['mnemo__param-text']}>
-                {data.parameters?.['Рабочая частота насоса H1/2 (Гц)'] ?? '—'}
-              </div>
-              <div className={styles['mnemo__param-naimenov']}>Гц</div>
-            </div>
-
-            <div className={`${styles['mnemo__param']} ${styles['n2-1-percent']}`}>
-              <div className={styles['mnemo__param-text']}>
-                {data.parameters?.['Выход РАН давления воды для ПЧ H2/1 (%)'] ?? '—'}
-              </div>
-              <div className={styles['mnemo__param-naimenov']}>%</div>
-            </div>
-
-            <div className={`${styles['mnemo__param']} ${styles['n2-1-hz']}`}>
-              <div className={styles['mnemo__param-text']}>
-                {data.parameters?.['Рабочая частота насоса H2/1 (Гц)'] ?? '—'}
-              </div>
-              <div className={styles['mnemo__param-naimenov']}>Гц</div>
-            </div>
-
-            <div className={`${styles['mnemo__param']} ${styles['n2-2-percent']}`}>
-              <div className={styles['mnemo__param-text']}>
-                {data.parameters?.['Выход РАН давления воды для ПЧ H2/2 (%)'] ?? '—'}
-              </div>
-              <div className={styles['mnemo__param-naimenov']}>%</div>
-            </div>
-
-            <div className={`${styles['mnemo__param']} ${styles['n2-2-hz']}`}>
-              <div className={styles['mnemo__param-text']}>
-                {data.parameters?.['Рабочая частота насоса H2/2 (Гц)'] ?? '—'}
-              </div>
-              <div className={styles['mnemo__param-naimenov']}>Гц</div>
-            </div>
 
             {/* Статические подписи */}
             <StaticLabelsHvo1 />

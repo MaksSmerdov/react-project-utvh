@@ -33,6 +33,7 @@ export const tooltipItemsHvo1 = [
         <strong>Токовый выход:</strong> 4 - 20 мА
       </div>
     ),
+    hasTooltip: true,
   },
   {
     id: 'rashod-vody-na-ustanovky',
@@ -57,6 +58,7 @@ export const tooltipItemsHvo1 = [
         <br />
       </div>
     ),
+    hasTooltip: true,
   },
   {
     id: 'davl-posle-nasosov-1-1-2-3',
@@ -76,6 +78,7 @@ export const tooltipItemsHvo1 = [
         <strong>Токовый выход:</strong> 4 - 20 мА
       </div>
     ),
+    hasTooltip: true,
   },
   {
     id: 'uroven-e1-1',
@@ -95,6 +98,7 @@ export const tooltipItemsHvo1 = [
         <strong>Токовый выход:</strong> 4 - 20 мА
       </div>
     ),
+    hasTooltip: true,
   },
   {
     id: 'uroven-e1-2',
@@ -114,6 +118,7 @@ export const tooltipItemsHvo1 = [
         <strong>Токовый выход:</strong> 4 - 20 мА
       </div>
     ),
+    hasTooltip: true,
   },
   {
     id: 'rashod-vody-na-promyvky',
@@ -138,6 +143,7 @@ export const tooltipItemsHvo1 = [
         <br />
       </div>
     ),
+    hasTooltip: true,
   },
   {
     id: 'davl-posle-nasosov-2-1-2',
@@ -157,6 +163,7 @@ export const tooltipItemsHvo1 = [
         <strong>Токовый выход:</strong> 4 - 20 мА
       </div>
     ),
+    hasTooltip: true,
   },
   {
     id: 'davl-posle-nasosov-3-1-2',
@@ -176,6 +183,169 @@ export const tooltipItemsHvo1 = [
         <strong>Токовый выход:</strong> 4 - 20 мА
       </div>
     ),
+    hasTooltip: true,
+  },
+  {
+    id: 'kontrol-polozheniya-im1',
+    className: stylesHvo1['kontrol-im-1'],
+    dataKey: 'Контроль положения ИМ1',
+    source: 'parameters',
+    naimenov: 'Контроль положения ИМ1',
+    unit: '%',
+    width: '240px',
+    responsiveWidth: { 'max-1280': '225px' },
+    content: (
+      <div>
+        <strong>Информация:</strong> Контроль положения ИМ1.
+      </div>
+    ),
+    hasTooltip: false,
+  },
+  {
+    id: 'zadanie-uroven-e1-1-2',
+    className: stylesHvo1['zadanie-uroven-e1-1-2'],
+    dataKey: 'Задание уровня воды в емкостях E1/1,2',
+    source: 'parameters',
+    naimenov: 'Задание уровня воды в емкостях E1/1,2',
+    unit: '%',
+    width: '240px',
+    responsiveWidth: { 'max-1280': '225px' },
+    content: (
+      <div>
+        <strong>Информация:</strong> Задание уровня воды в емкостях E1/1,2.
+      </div>
+    ),
+    hasTooltip: false,
+  },
+  {
+    id: 'vikhod-ran-davleniya-vody-dlya-pch-h1-1',
+    className: stylesHvo1['n1-1-percent'],
+    dataKey: 'Выход РАН давления воды для ПЧ H1/1 (%)',
+    source: 'parameters',
+    naimenov: 'Выход РАН давления воды для ПЧ H1/1',
+    unit: '%',
+    width: '240px',
+    responsiveWidth: { 'max-1280': '225px' },
+    content: (
+      <div>
+        <strong>Информация:</strong> Выход РАН давления воды для ПЧ H1/1.
+      </div>
+    ),
+    hasTooltip: false,
+  },
+
+  {
+    id: 'rabochaya-chastota-nasosa-h1-1',
+    className: stylesHvo1['n1-1-hz'],
+    dataKey: 'Рабочая частота насоса H1/1 (Гц)',
+    source: 'parameters',
+    naimenov: 'Рабочая частота насоса H1/1',
+    unit: 'Гц',
+    width: '240px',
+    responsiveWidth: { 'max-1280': '225px' },
+    content: (
+      <div>
+        <strong>Информация:</strong> Рабочая частота насоса H1/1.
+      </div>
+    ),
+    hasTooltip: false,
+  },
+
+  {
+    id: 'vikhod-ran-davleniya-vody-dlya-pch-h1-2',
+    className: stylesHvo1['n1-2-percent'],
+    dataKey: 'Выход РАН давления воды для ПЧ H1/2 (%)',
+    source: 'parameters',
+    naimenov: 'Выход РАН давления воды для ПЧ H1/2',
+    unit: '%',
+    width: '240px',
+    responsiveWidth: { 'max-1280': '225px' },
+    content: (
+      <div>
+        <strong>Информация:</strong> Выход РАН давления воды для ПЧ H1/2.
+      </div>
+    ),
+    hasTooltip: false,
+  },
+  {
+    id: 'rabochaya-chastota-nasosa-h1-2',
+    className: stylesHvo1['n1-2-hz'],
+    dataKey: 'Рабочая частота насоса H1/2 (Гц)',
+    source: 'parameters',
+    naimenov: 'Рабочая частота насоса H1/2',
+    unit: 'Гц',
+    width: '240px',
+    responsiveWidth: { 'max-1280': '225px' },
+    content: (
+      <div>
+        <strong>Информация:</strong> Рабочая частота насоса H1/2.
+      </div>
+    ),
+    hasTooltip: false,
+  },
+  {
+    id: 'vikhod-ran-davleniya-vody-dlya-pch-h2-1',
+    className: stylesHvo1['n2-1-percent'],
+    dataKey: 'Выход РАН давления воды для ПЧ H2/1 (%)',
+    source: 'parameters',
+    naimenov: 'Выход РАН давления воды для ПЧ H2/1',
+    unit: '%',
+    width: '240px',
+    responsiveWidth: { 'max-1280': '225px' },
+    content: (
+      <div>
+        <strong>Информация:</strong> Выход РАН давления воды для ПЧ H2/1.
+      </div>
+    ),
+    hasTooltip: false,
+  },
+  {
+    id: 'rabochaya-chastota-nasosa-h2-1',
+    className: stylesHvo1['n2-1-hz'],
+    dataKey: 'Рабочая частота насоса H2/1 (Гц)',
+    source: 'parameters',
+    naimenov: 'Рабочая частота насоса H2/1',
+    unit: 'Гц',
+    width: '240px',
+    responsiveWidth: { 'max-1280': '225px' },
+    content: (
+      <div>
+        <strong>Информация:</strong> Рабочая частота насоса H2/1.
+      </div>
+    ),
+    hasTooltip: false,
+  },
+  {
+    id: 'vikhod-ran-davleniya-vody-dlya-pch-h2-2',
+    className: stylesHvo1['n2-2-percent'],
+    dataKey: 'Выход РАН давления воды для ПЧ H2/2 (%)',
+    source: 'parameters',
+    naimenov: 'Выход РАН давления воды для ПЧ H2/2',
+    unit: '%',
+    width: '240px',
+    responsiveWidth: { 'max-1280': '225px' },
+    content: (
+      <div>
+        <strong>Информация:</strong> Выход РАН давления воды для ПЧ H2/2.
+      </div>
+    ),
+    hasTooltip: false,
+  },
+  {
+    id: 'rabochaya-chastota-nasosa-h2-2',
+    className: stylesHvo1['n2-2-hz'],
+    dataKey: 'Рабочая частота насоса H2/2 (Гц)',
+    source: 'parameters',
+    naimenov: 'Рабочая частота насоса H2/2',
+    unit: 'Гц',
+    width: '240px',
+    responsiveWidth: { 'max-1280': '225px' },
+    content: (
+      <div>
+        <strong>Информация:</strong> Рабочая частота насоса H2/2.
+      </div>
+    ),
+    hasTooltip: false,
   },
 ];
 
@@ -203,6 +373,7 @@ export const tooltipItemsHvo2 = [
         <br />
       </div>
     ),
+    hasTooltip: true, // Этот параметр имеет тултип
   },
   {
     id: 'rashod-kanalizacia',
@@ -227,6 +398,7 @@ export const tooltipItemsHvo2 = [
         <br />
       </div>
     ),
+    hasTooltip: true, // Этот параметр имеет тултип
   },
   {
     id: 'davlenie-carbon',
@@ -246,6 +418,7 @@ export const tooltipItemsHvo2 = [
         <strong>Токовый выход:</strong> 4 - 20 мА
       </div>
     ),
+    hasTooltip: true, // Этот параметр имеет тултип
   },
   {
     id: 'davlenie-k265',
@@ -265,6 +438,7 @@ export const tooltipItemsHvo2 = [
         <strong>Токовый выход:</strong> 4 - 20 мА
       </div>
     ),
+    hasTooltip: true, // Этот параметр имеет тултип
   },
   {
     id: 'davlenie-k312',
@@ -284,6 +458,7 @@ export const tooltipItemsHvo2 = [
         <strong>Токовый выход:</strong> 4 - 20 мА
       </div>
     ),
+    hasTooltip: true, // Этот параметр имеет тултип
   },
   {
     id: 'temper-e2-1-ug',
@@ -303,6 +478,7 @@ export const tooltipItemsHvo2 = [
         <strong>Резьба:</strong> М20x1.5
       </div>
     ),
+    hasTooltip: true, // Этот параметр имеет тултип
   },
   {
     id: 'temper-e2-1-sever',
@@ -322,6 +498,7 @@ export const tooltipItemsHvo2 = [
         <strong>Резьба:</strong> М20x1.5
       </div>
     ),
+    hasTooltip: true, // Этот параметр имеет тултип
   },
   {
     id: 'temper-e2-2-sever',
@@ -341,6 +518,7 @@ export const tooltipItemsHvo2 = [
         <strong>Резьба:</strong> М20x1.5
       </div>
     ),
+    hasTooltip: true, // Этот параметр имеет тултип
   },
   {
     id: 'temper-e2-2-ug',
@@ -360,6 +538,7 @@ export const tooltipItemsHvo2 = [
         <strong>Резьба:</strong> М20x1.5
       </div>
     ),
+    hasTooltip: true, // Этот параметр имеет тултип
   },
   {
     id: 'davlenie-n4-1',
@@ -379,6 +558,7 @@ export const tooltipItemsHvo2 = [
         <strong>Токовый выход:</strong> 4 - 20 мА
       </div>
     ),
+    hasTooltip: true, // Этот параметр имеет тултип
   },
   {
     id: 'davlenie-n4-2',
@@ -398,6 +578,7 @@ export const tooltipItemsHvo2 = [
         <strong>Токовый выход:</strong> 4 - 20 мА
       </div>
     ),
+    hasTooltip: true, // Этот параметр имеет тултип
   },
   {
     id: 'davlenie-n5-1',
@@ -417,6 +598,7 @@ export const tooltipItemsHvo2 = [
         <strong>Токовый выход:</strong> 4 - 20 мА
       </div>
     ),
+    hasTooltip: true, // Этот параметр имеет тултип
   },
   {
     id: 'davlenie-n5-2',
@@ -436,6 +618,7 @@ export const tooltipItemsHvo2 = [
         <strong>Токовый выход:</strong> 4 - 20 мА
       </div>
     ),
+    hasTooltip: true, // Этот параметр имеет тултип
   },
   {
     id: 'davlenie-n6-1',
@@ -455,6 +638,7 @@ export const tooltipItemsHvo2 = [
         <strong>Токовый выход:</strong> 4 - 20 мА
       </div>
     ),
+    hasTooltip: true, // Этот параметр имеет тултип
   },
   {
     id: 'davlenie-n6-2',
@@ -474,6 +658,7 @@ export const tooltipItemsHvo2 = [
         <strong>Токовый выход:</strong> 4 - 20 мА
       </div>
     ),
+    hasTooltip: true, // Этот параметр имеет тултип
   },
   {
     id: 'davlenie-n6-3',
@@ -493,6 +678,7 @@ export const tooltipItemsHvo2 = [
         <strong>Токовый выход:</strong> 4 - 20 мА
       </div>
     ),
+    hasTooltip: true, // Этот параметр имеет тултип
   },
   {
     id: 'davlenie-posle-filtrov',
@@ -512,5 +698,188 @@ export const tooltipItemsHvo2 = [
         <strong>Токовый выход:</strong> 4 - 20 мА
       </div>
     ),
+    hasTooltip: true, // Этот параметр имеет тултип
+  },
+  {
+    id: 'uroven-titan-e2-2',
+    className: stylesHvo2['uroven-titan-e2-2'],
+    dataKey: 'Уровень воды в E2/2 (Титан)',
+    source: 'parameters',
+    naimenov: 'Уровень воды в E2/2 (Титан)',
+    unit: 'м',
+    width: '240px',
+    responsiveWidth: { 'max-1280': '225px' },
+    hasTooltip: false, // Этот параметр не имеет тултипа
+  },
+  {
+    id: 'uroven-mida-e2-2',
+    className: stylesHvo2['uroven-mida-e2-2'],
+    dataKey: 'Уровень воды в E2/2 (Мида)',
+    source: 'parameters',
+    naimenov: 'Уровень воды в E2/2 (Мида)',
+    unit: 'м',
+    width: '240px',
+    responsiveWidth: { 'max-1280': '225px' },
+    hasTooltip: false, // Этот параметр не имеет тултипа
+  },
+  {
+    id: 'uroven-titan-e2-1',
+    className: stylesHvo2['uroven-titan-e2-1'],
+    dataKey: 'Уровень воды в E2/1 (Титан)',
+    source: 'parameters',
+    naimenov: 'Уровень воды в E2/1 (Титан)',
+    unit: 'м',
+    width: '240px',
+    responsiveWidth: { 'max-1280': '225px' },
+    content: (
+      <div>
+        <strong>Информация:</strong> Уровень воды в емкости.
+      </div>
+    ),
+    hasTooltip: false, // Этот параметр имеет тултип
+  },
+  {
+    id: 'uroven-mida-e2-1',
+    className: stylesHvo2['uroven-mida-e2-1'],
+    dataKey: 'Уровень воды в E2/1 (Мида)',
+    source: 'parameters',
+    naimenov: 'Уровень воды в E2/1 (Мида)',
+    unit: 'м',
+    width: '240px',
+    responsiveWidth: { 'max-1280': '225px' },
+    content: (
+      <div>
+        <strong>Информация:</strong> Уровень воды в емкости.
+      </div>
+    ),
+    hasTooltip: false, // Этот параметр имеет тултип
+  },
+  {
+    id: 'kontrol-polozheniya-im2',
+    className: stylesHvo2['im2'],
+    dataKey: 'Контроль положения ИМ2',
+    source: 'parameters',
+    naimenov: 'Контроль положения ИМ2',
+    unit: '%',
+    width: '240px',
+    responsiveWidth: { 'max-1280': '225px' },
+    content: (
+      <div>
+        <strong>Информация:</strong> Уровень контроля положения ИМ2.
+      </div>
+    ),
+    hasTooltip: false,
+  },
+  {
+    id: 'rabochaya-chastota-nasosa-h4-1',
+    className: stylesHvo2['n4-1-hz'],
+    dataKey: 'Рабочая частота насоса H4/1 (Гц)',
+    source: 'parameters',
+    naimenov: 'Рабочая частота насоса H4/1',
+    unit: 'Гц',
+    width: '240px',
+    responsiveWidth: { 'max-1280': '225px' },
+    content: (
+      <div>
+        <strong>Информация:</strong> Рабочая частота насоса H4/1.
+      </div>
+    ),
+    hasTooltip: false,
+  },
+  {
+    id: 'rabochaya-chastota-nasosa-h4-2',
+    className: stylesHvo2['n4-2-hz'],
+    dataKey: 'Рабочая частота насоса H4/2 (Гц)',
+    source: 'parameters',
+    naimenov: 'Рабочая частота насоса H4/2',
+    unit: 'Гц',
+    width: '240px',
+    responsiveWidth: { 'max-1280': '225px' },
+    content: (
+      <div>
+        <strong>Информация:</strong> Рабочая частота насоса H4/2.
+      </div>
+    ),
+    hasTooltip: false,
+  },
+  {
+    id: 'rabochaya-chastota-nasosa-h5-1',
+    className: stylesHvo2['n5-1-hz'],
+    dataKey: 'Рабочая частота насоса H5/1 (Гц)',
+    source: 'parameters',
+    naimenov: 'Рабочая частота насоса H5/1',
+    unit: 'Гц',
+    width: '240px',
+    responsiveWidth: { 'max-1280': '225px' },
+    content: (
+      <div>
+        <strong>Информация:</strong> Рабочая частота насоса H5/1.
+      </div>
+    ),
+    hasTooltip: false,
+  },
+  {
+    id: 'rabochaya-chastota-nasosa-h5-2',
+    className: stylesHvo2['n5-2-hz'],
+    dataKey: 'Рабочая частота насоса H5/2 (Гц)',
+    source: 'parameters',
+    naimenov: 'Рабочая частота насоса H5/2',
+    unit: 'Гц',
+    width: '240px',
+    responsiveWidth: { 'max-1280': '225px' },
+    content: (
+      <div>
+        <strong>Информация:</strong> Рабочая частота насоса H5/2.
+      </div>
+    ),
+    hasTooltip: false,
+  },
+  {
+    id: 'rabochaya-chastota-nasosa-h6-1',
+    className: stylesHvo2['n6-1-hz'],
+    dataKey: 'Рабочая частота насоса H6/1 (Гц)',
+    source: 'parameters',
+    naimenov: 'Рабочая частота насоса H6/1',
+    unit: 'Гц',
+    width: '240px',
+    responsiveWidth: { 'max-1280': '225px' },
+    content: (
+      <div>
+        <strong>Информация:</strong> Рабочая частота насоса H6/1.
+      </div>
+    ),
+    hasTooltip: false,
+  },
+  {
+    id: 'rabochaya-chastota-nasosa-h6-2',
+    className: stylesHvo2['n6-2-hz'],
+    dataKey: 'Рабочая частота насоса H6/2 (Гц)',
+    source: 'parameters',
+    naimenov: 'Рабочая частота насоса H6/2',
+    unit: 'Гц',
+    width: '240px',
+    responsiveWidth: { 'max-1280': '225px' },
+    content: (
+      <div>
+        <strong>Информация:</strong> Рабочая частота насоса H6/2.
+      </div>
+    ),
+    hasTooltip: false,
+  },
+  {
+    id: 'rabochaya-chastota-nasosa-h6-3',
+    className: stylesHvo2['n6-3-hz'],
+    dataKey: 'Рабочая частота насоса H6/3 (Гц)',
+    source: 'parameters',
+    naimenov: 'Рабочая частота насоса H6/3',
+    unit: 'Гц',
+    width: '240px',
+    responsiveWidth: { 'max-1280': '225px' },
+    content: (
+      <div>
+        <strong>Информация:</strong> Рабочая частота насоса H6/3.
+      </div>
+    ),
+    hasTooltip: false,
   },
 ];
