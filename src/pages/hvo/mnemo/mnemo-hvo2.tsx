@@ -11,6 +11,7 @@ import { accordionData, accordionTitles } from '../../../components/Mnemo/hvo/co
 import Loader from '../../../components/Common/Preloader/preloader';
 import { tooltipItemsHvo2 } from '../../../components/Mnemo/hvo/config/tooltipItems';
 import StaticLabelsHvo2 from '../../../components/Mnemo/hvo/staticLabelsHvo2';
+import Kran from '../../../components/Common/Kran/kranComponent';
 
 const MnemoHvo2: React.FC = () => {
   const hvo2Config = apiConfigs.hvo2;
@@ -119,7 +120,21 @@ const MnemoHvo2: React.FC = () => {
               );
             })}
 
+            {/* Статические подписи */}
             <StaticLabelsHvo2></StaticLabelsHvo2>
+
+            {/* Кран для контроля положения ИМ1 */}
+            <Kran
+              size={{ width: 24, height: 18 }}
+              adaptiveSize={{ width: 20, height: 14 }}
+              value={parseFloat(String(data.parameters?.['Контроль положения ИМ2'] || '0'))}
+              threshold={5}
+              orientation="horizontal"
+              top="7.8%"
+              left="65.6%"
+              adaptiveTop="7.8%"
+              adaptiveLeft="65.6%"
+            />
 
             {/* Контроль положения ИМ1 */}
             <div className={`${styles['mnemo__param']} ${styles['im2']}`}>
