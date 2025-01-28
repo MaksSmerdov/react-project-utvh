@@ -9,7 +9,7 @@ import GifComponent from '../../../components/Common/GifComponent/gifComponent';
 import Kran from '../../../components/Common/Kran/kranComponent';
 import CustomModal from '../../../components/Common/Modal/modal';
 import DocumentationAccordion from '../../../components/Common/Accordion/accordion';
-import { accordionData, accordionTitles } from '../../../components/Mnemo/hvo/config/accordionItems';
+import { accordionDataHvo1, accordionTitles } from '../../../components/Mnemo/hvo/config/accordionItems';
 import LevelIndicator from '../../../components/Common/LevelIndicator/levelIndicator';
 import MnemoSymbols from '../../../components/Mnemo/hvo/mnemoSymbols';
 import StaticLabelsHvo1 from '../../../components/Mnemo/hvo/staticLabelsHvo1';
@@ -93,7 +93,7 @@ const MnemoHvo1: React.FC = () => {
 
             {/* Модальное окно с документацией */}
             <CustomModal isOpen={isModalOpen} title="Список документации" onClose={() => setIsModalOpen(false)}>
-              <DocumentationAccordion accordionData={accordionData} titles={accordionTitles} />
+              <DocumentationAccordion accordionData={accordionDataHvo1} titles={accordionTitles} />
             </CustomModal>
 
             <img src="/assets/img/hvo/hvo1.png" alt="Котел" className={styles['mnemo__img']} />

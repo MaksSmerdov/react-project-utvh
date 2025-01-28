@@ -7,7 +7,7 @@ import Tooltip from '../../../components/Common/Tooltip/tooltip';
 import ControlButtons from '../../../components/Common/ControlButtons/controlButtons';
 import CustomModal from '../../../components/Common/Modal/modal';
 import DocumentationAccordion from '../../../components/Common/Accordion/accordion';
-import { accordionData, accordionTitles } from '../../../components/Mnemo/hvo/config/accordionItems';
+import { accordionDataHvo2, accordionTitles } from '../../../components/Mnemo/hvo/config/accordionItems';
 import Loader from '../../../components/Common/Preloader/preloader';
 import { tooltipItemsHvo2 } from '../../../components/Mnemo/hvo/config/tooltipItems';
 import StaticLabelsHvo2 from '../../../components/Mnemo/hvo/staticLabelsHvo2';
@@ -90,7 +90,7 @@ const MnemoHvo2: React.FC = () => {
 
             {/* Модальное окно с документацией */}
             <CustomModal isOpen={isModalOpen} title="Список документации" onClose={() => setIsModalOpen(false)}>
-              <DocumentationAccordion accordionData={accordionData} titles={accordionTitles} />
+              <DocumentationAccordion accordionData={accordionDataHvo2} titles={accordionTitles} />
             </CustomModal>
 
             <img src="/assets/img/hvo/hvo2.png" alt="Котел" className={styles['mnemo__img']} />
