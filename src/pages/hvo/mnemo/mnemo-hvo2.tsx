@@ -12,6 +12,8 @@ import Loader from '../../../components/Common/Preloader/preloader';
 import { tooltipItemsHvo2 } from '../../../components/Mnemo/hvo/config/tooltipItems';
 import StaticLabelsHvo2 from '../../../components/Mnemo/hvo/staticLabelsHvo2';
 import Kran from '../../../components/Common/Kran/kranComponent';
+import LevelIndicator from '../../../components/Common/LevelIndicator/levelIndicator';
+import GifComponent from '../../../components/Common/GifComponent/gifComponent';
 
 const MnemoHvo2: React.FC = () => {
   const hvo2Config = apiConfigs.hvo2;
@@ -134,6 +136,157 @@ const MnemoHvo2: React.FC = () => {
               left="65.6%"
               adaptiveTop="7.8%"
               adaptiveLeft="65.6%"
+            />
+
+            {/* индикаторы уровней */}
+            <LevelIndicator
+              data={data}
+              minLevel={0}
+              maxLevel={1600}
+              totalRange={1600}
+              levelKeyPrefix="Уровень воды в E2/1 (Титан)"
+              dataSource="parameters"
+              width="47px"
+              height="91px"
+              bottom="74.3%"
+              right="35.6%"
+              adaptiveWidth="51px"
+              adaptiveHeight="73px"
+              adaptiveBottom="40.1%"
+              adaptiveRight="30.2%"
+              fillColor="blue"
+            />
+
+            <LevelIndicator
+              data={data}
+              minLevel={0}
+              maxLevel={1600}
+              totalRange={1600}
+              levelKeyPrefix="Уровень воды в E2/1 (Мида)"
+              dataSource="parameters"
+              width="47px"
+              height="91px"
+              bottom="74.3%"
+              right="31.9%"
+              adaptiveWidth="51px"
+              adaptiveHeight="73px"
+              adaptiveBottom="40.1%"
+              adaptiveRight="30.2%"
+              fillColor="#57b7f7"
+            />
+
+            <LevelIndicator
+              data={data}
+              minLevel={0}
+              maxLevel={1600}
+              totalRange={1600}
+              levelKeyPrefix="Уровень воды в E2/2 (Титан)"
+              dataSource="parameters"
+              width="47px"
+              height="91px"
+              bottom="74.3%"
+              right="14.1%"
+              adaptiveWidth="51px"
+              adaptiveHeight="73px"
+              adaptiveBottom="40.1%"
+              adaptiveRight="30.2%"
+              fillColor="blue"
+            />
+
+            <LevelIndicator
+              data={data}
+              minLevel={0}
+              maxLevel={1600}
+              totalRange={1600}
+              levelKeyPrefix="Уровень воды в E2/2 (Мида)"
+              dataSource="parameters"
+              width="47px"
+              height="91px"
+              bottom="74.3%"
+              right="10.4%"
+              adaptiveWidth="51px"
+              adaptiveHeight="73px"
+              adaptiveBottom="40.1%"
+              adaptiveRight="30.2%"
+              fillColor="#57b7f7"
+            />
+
+            {/* Анимации насосов */}
+            <GifComponent
+              src="/assets/img/hvo/ventilator.png"
+              alt="Насос H4/1"
+              className={`${styles['mnemo__gif']} ${styles['mnemo__gif-pump-4-1']}`}
+              data={data.parameters}
+              conditionKey="Рабочая частота насоса H4/1 (Гц)"
+              conditionType="greaterThan"
+              conditionValue={5}
+              isAnimation={true}
+            />
+
+            <GifComponent
+              src="/assets/img/hvo/ventilator.png"
+              alt="Насос H4/2"
+              className={`${styles['mnemo__gif']} ${styles['mnemo__gif-pump-4-2']}`}
+              data={data.parameters}
+              conditionKey="Рабочая частота насоса H4/2 (Гц)"
+              conditionType="greaterThan"
+              conditionValue={5}
+              isAnimation={true}
+            />
+
+            <GifComponent
+              src="/assets/img/hvo/ventilator.png"
+              alt="Насос H5/1"
+              className={`${styles['mnemo__gif']} ${styles['mnemo__gif-pump-5-1']}`}
+              data={data.parameters}
+              conditionKey="Рабочая частота насоса H5/1 (Гц)"
+              conditionType="greaterThan"
+              conditionValue={5}
+              isAnimation={true}
+            />
+
+            <GifComponent
+              src="/assets/img/hvo/ventilator.png"
+              alt="Насос H5/2"
+              className={`${styles['mnemo__gif']} ${styles['mnemo__gif-pump-5-2']}`}
+              data={data.parameters}
+              conditionKey="Рабочая частота насоса H5/2 (Гц)"
+              conditionType="greaterThan"
+              conditionValue={5}
+              isAnimation={true}
+            />
+
+            <GifComponent
+              src="/assets/img/hvo/ventilator.png"
+              alt="Насос H6/1"
+              className={`${styles['mnemo__gif']} ${styles['mnemo__gif-pump-6-1']}`}
+              data={data.parameters}
+              conditionKey="Рабочая частота насоса H6/1 (Гц)"
+              conditionType="greaterThan"
+              conditionValue={5}
+              isAnimation={true}
+            />
+
+            <GifComponent
+              src="/assets/img/hvo/ventilator.png"
+              alt="Насос H6/2"
+              className={`${styles['mnemo__gif']} ${styles['mnemo__gif-pump-6-2']}`}
+              data={data.parameters}
+              conditionKey="Рабочая частота насоса H6/2 (Гц)"
+              conditionType="greaterThan"
+              conditionValue={5}
+              isAnimation={true}
+            />
+
+            <GifComponent
+              src="/assets/img/hvo/ventilator.png"
+              alt="Насос H6/3"
+              className={`${styles['mnemo__gif']} ${styles['mnemo__gif-pump-6-3']}`}
+              data={data.parameters}
+              conditionKey="Рабочая частота насоса H6/3 (Гц)"
+              conditionType="greaterThan"
+              conditionValue={5}
+              isAnimation={true}
             />
 
             {/* Контроль положения ИМ1 */}
