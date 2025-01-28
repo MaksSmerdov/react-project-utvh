@@ -437,4 +437,80 @@ export const tooltipItemsHvo2 = [
       </div>
     ),
   },
+  {
+    id: 'davlenie-n6-1',
+    className: stylesHvo2['davlenie-n6-1'],
+    dataKey: 'Давление воды после насоса H6/1',
+    source: 'parameters',
+    naimenov: 'Давление воды после насоса H6/1',
+    unit: 'кгс/cм2',
+    width: '240px',
+    responsiveWidth: { 'max-1280': '225px' },
+    content: (
+      <div>
+        МИДА-ДИ-15
+        <br />
+        <strong>Диапазон:</strong> 0...1 МПа
+        <br />
+        <strong>Токовый выход:</strong> 4 - 20 мА
+      </div>
+    ),
+  },
+  {
+    id: 'davlenie-n6-2',
+    className: stylesHvo2['davlenie-n6-2'],
+    dataKey: 'Давление воды после насоса H6/2',
+    source: 'parameters',
+    naimenov: 'Давление воды после насоса H6/2',
+    unit: 'кгс/cм2',
+    width: '240px',
+    responsiveWidth: { 'max-1280': '225px' },
+    content: (
+      <div>
+        МИДА-ДИ-15
+        <br />
+        <strong>Диапазон:</strong> 0...1 МПа
+        <br />
+        <strong>Токовый выход:</strong> 4 - 20 мА
+      </div>
+    ),
+  },
+  {
+    id: 'davlenie-n6-3',
+    className: stylesHvo2['davlenie-n6-3'],
+    dataKey: 'Давление воды после насоса H6/3',
+    source: 'parameters',
+    naimenov: 'Давление воды после насоса H6/3',
+    unit: 'кгс/cм2',
+    width: '240px',
+    responsiveWidth: { 'max-1280': '225px' },
+    content: (
+      <div>
+        МИДА-ДИ-15
+        <br />
+        <strong>Диапазон:</strong> 0...1 МПа
+        <br />
+        <strong>Токовый выход:</strong> 4 - 20 мА
+      </div>
+    ),
+  },
+  {
+    id: 'davlenie-posle-filtrov',
+    className: stylesHvo2['davlenie-posle-filtrov'],
+    dataKey: 'Давление воды после Ф4/1,2,3',
+    source: 'parameters',
+    naimenov: 'Давление воды после Ф4/1,2,3',
+    unit: 'кгс/cм2',
+    width: '240px',
+    responsiveWidth: { 'max-1280': '225px' },
+    content: (
+      <div>
+        МИДА-ДИ-15
+        <br />
+        <strong>Диапазон:</strong> 0...1 МПа
+        <br />
+        <strong>Токовый выход:</strong> 4 - 20 мА
+      </div>
+    ),
+  },
 ];

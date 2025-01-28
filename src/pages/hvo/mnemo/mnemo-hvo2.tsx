@@ -10,6 +10,7 @@ import DocumentationAccordion from '../../../components/Common/Accordion/accordi
 import { accordionData, accordionTitles } from '../../../components/Mnemo/hvo/config/accordionItems';
 import Loader from '../../../components/Common/Preloader/preloader';
 import { tooltipItemsHvo2 } from '../../../components/Mnemo/hvo/config/tooltipItems';
+import StaticLabelsHvo2 from '../../../components/Mnemo/hvo/staticLabelsHvo2';
 
 const MnemoHvo2: React.FC = () => {
   const hvo2Config = apiConfigs.hvo2;
@@ -118,6 +119,8 @@ const MnemoHvo2: React.FC = () => {
               );
             })}
 
+            <StaticLabelsHvo2></StaticLabelsHvo2>
+
             {/* Контроль положения ИМ1 */}
             <div className={`${styles['mnemo__param']} ${styles['im2']}`}>
               <div className={styles['mnemo__param-text']}>{data.parameters?.['Контроль положения ИМ2'] ?? '—'} %</div>
@@ -143,6 +146,50 @@ const MnemoHvo2: React.FC = () => {
               <div className={styles['mnemo__param-text']}>
                 {data.parameters?.['Уровень воды в E2/2 (Мида)'] ?? '—'}
               </div>
+            </div>
+
+            {/* Частоты */}
+            <div className={`${styles['mnemo__param']} ${styles['n4-1-hz']}`}>
+              <div className={styles['mnemo__param-text']}>
+                {data.parameters?.['Рабочая частота насоса H4/1 (Гц)'] ?? '—'}
+              </div>
+              <span className={styles['mnemo__param-naimenov']}>Гц</span>
+            </div>
+            <div className={`${styles['mnemo__param']} ${styles['n4-2-hz']}`}>
+              <div className={styles['mnemo__param-text']}>
+                {data.parameters?.['Рабочая частота насоса H4/2 (Гц)'] ?? '—'}
+              </div>
+              <span className={styles['mnemo__param-naimenov']}>Гц</span>
+            </div>
+            <div className={`${styles['mnemo__param']} ${styles['n5-1-hz']}`}>
+              <div className={styles['mnemo__param-text']}>
+                {data.parameters?.['Рабочая частота насоса H5/1 (Гц)'] ?? '—'}
+              </div>
+              <span className={styles['mnemo__param-naimenov']}>Гц</span>
+            </div>
+            <div className={`${styles['mnemo__param']} ${styles['n5-2-hz']}`}>
+              <div className={styles['mnemo__param-text']}>
+                {data.parameters?.['Рабочая частота насоса H5/2 (Гц)'] ?? '—'}
+              </div>
+              <span className={styles['mnemo__param-naimenov']}>Гц</span>
+            </div>
+            <div className={`${styles['mnemo__param']} ${styles['n6-1-hz']}`}>
+              <div className={styles['mnemo__param-text']}>
+                {data.parameters?.['Рабочая частота насоса H6/1 (Гц)'] ?? '—'}
+              </div>
+              <span className={styles['mnemo__param-naimenov']}>Гц</span>
+            </div>
+            <div className={`${styles['mnemo__param']} ${styles['n6-2-hz']}`}>
+              <div className={styles['mnemo__param-text']}>
+                {data.parameters?.['Рабочая частота насоса H6/2 (Гц)'] ?? '—'}
+              </div>
+              <span className={styles['mnemo__param-naimenov']}>Гц</span>
+            </div>
+            <div className={`${styles['mnemo__param']} ${styles['n6-3-hz']}`}>
+              <div className={styles['mnemo__param-text']}>
+                {data.parameters?.['Рабочая частота насоса H6/3 (Гц)'] ?? '—'}
+              </div>
+              <span className={styles['mnemo__param-naimenov']}>Гц</span>
             </div>
           </div>
         </div>

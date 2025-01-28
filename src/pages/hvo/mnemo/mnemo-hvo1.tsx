@@ -12,7 +12,7 @@ import DocumentationAccordion from '../../../components/Common/Accordion/accordi
 import { accordionData, accordionTitles } from '../../../components/Mnemo/hvo/config/accordionItems';
 import LevelIndicator from '../../../components/Common/LevelIndicator/levelIndicator';
 import MnemoSymbols from '../../../components/Mnemo/hvo/mnemoSymbols';
-import StaticLabels from '../../../components/Mnemo/hvo/staticLabels';
+import StaticLabelsHvo1 from '../../../components/Mnemo/hvo/staticLabelsHvo1';
 import Loader from '../../../components/Common/Preloader/preloader';
 import { tooltipItemsHvo1 } from '../../../components/Mnemo/hvo/config/tooltipItems';
 
@@ -239,7 +239,7 @@ const MnemoHvo1: React.FC = () => {
             </div>
 
             {/* Статические подписи */}
-            <StaticLabels />
+            <StaticLabelsHvo1 />
 
             {/* Кран для контроля положения ИМ1 */}
             <Kran

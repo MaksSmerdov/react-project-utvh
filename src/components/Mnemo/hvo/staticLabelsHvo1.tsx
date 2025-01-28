@@ -1,7 +1,7 @@
 import React from 'react';
-import styles from './staticLabels.module.scss';
+import styles from './staticLabelsHvo1.module.scss';
 
-const StaticLabels: React.FC = () => {
+const StaticLabelsHvo1: React.FC = () => {
   return (
     <>
       {/* Статические подписи */}
@@ -38,4 +38,4 @@ const StaticLabels: React.FC = () => {
   );
 };
 
-export default StaticLabels;
+export default StaticLabelsHvo1;
