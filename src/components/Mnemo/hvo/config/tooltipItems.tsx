@@ -706,7 +706,7 @@ export const tooltipItemsHvo2 = [
     dataKey: 'Уровень воды в E2/2 (Титан)',
     source: 'parameters',
     naimenov: 'Уровень воды в E2/2 (Титан)',
-    unit: 'м',
+    unit: 'мм',
     width: '240px',
     responsiveWidth: { 'max-1280': '225px' },
     hasTooltip: false, // Этот параметр не имеет тултипа
@@ -717,7 +717,7 @@ export const tooltipItemsHvo2 = [
     dataKey: 'Уровень воды в E2/2 (Мида)',
     source: 'parameters',
     naimenov: 'Уровень воды в E2/2 (Мида)',
-    unit: 'м',
+    unit: 'мм',
     width: '240px',
     responsiveWidth: { 'max-1280': '225px' },
     hasTooltip: false, // Этот параметр не имеет тултипа
@@ -728,7 +728,7 @@ export const tooltipItemsHvo2 = [
     dataKey: 'Уровень воды в E2/1 (Титан)',
     source: 'parameters',
     naimenov: 'Уровень воды в E2/1 (Титан)',
-    unit: 'м',
+    unit: 'мм',
     width: '240px',
     responsiveWidth: { 'max-1280': '225px' },
     content: (
@@ -744,7 +744,7 @@ export const tooltipItemsHvo2 = [
     dataKey: 'Уровень воды в E2/1 (Мида)',
     source: 'parameters',
     naimenov: 'Уровень воды в E2/1 (Мида)',
-    unit: 'м',
+    unit: 'мм',
     width: '240px',
     responsiveWidth: { 'max-1280': '225px' },
     content: (
