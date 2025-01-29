@@ -9,6 +9,8 @@ import CurrentParameterHvo1 from './pages/hvo/currentParam/currentParam-hvo1';
 import CurrentParameterHvo2 from './pages/hvo/currentParam/currentParam-hvo2';
 import MnemoHvo1 from './pages/hvo/mnemo/mnemo-hvo1';
 import MnemoHvo2 from './pages/hvo/mnemo/mnemo-hvo2';
+import GeneralLevelKotel from './pages/kotelnaya/graphics/general/graphGeneral-level';
+import GeneralParKotel from './pages/kotelnaya/graphics/general/graphGeneral-par';
 
 const App: React.FC = () => {
   return (
@@ -31,6 +33,9 @@ const App: React.FC = () => {
         <Route path="/graphPar-kotel1" element={<GraphParKotel kotelNumber={1} />} />
         <Route path="/graphPar-kotel2" element={<GraphParKotel kotelNumber={2} />} />
         <Route path="/graphPar-kotel3" element={<GraphParKotel kotelNumber={3} />} />
+
+        <Route path="/graphPar-general" element={<GeneralParKotel />} />
+        <Route path="/graphLevel-general" element={<GeneralLevelKotel />} />
 
         <Route path="/currentParam-hvo1" element={<CurrentParameterHvo1 />} />
         <Route path="/currentParam-hvo2" element={<CurrentParameterHvo2 />} />
