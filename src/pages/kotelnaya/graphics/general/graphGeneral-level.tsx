@@ -18,6 +18,17 @@ const GeneralLevelKotel: React.FC = () => {
             dataKey: 'parameters',
             params: [{ key: 'Уровень в барабане котел №1', label: 'Уровень в котле', unit: 'мм' }],
           },
+          {
+            apiUrl: `${apiBaseUrl}/api/kotel1/data`,
+            dataKey: 'im',
+            params: [
+              {
+                key: `ИМ уровня котел №1`,
+                label: `Процент открытия`,
+                unit: '%',
+              },
+            ],
+          },
         ]}
         showIntervalSelector={true} // Включаем селектор интервала, если нужно
       />
@@ -32,6 +43,17 @@ const GeneralLevelKotel: React.FC = () => {
             dataKey: 'parameters',
             params: [{ key: 'Уровень в барабане котел №2', label: 'Уровень в котле', unit: 'мм' }],
           },
+          {
+            apiUrl: `${apiBaseUrl}/api/kotel2/data`,
+            dataKey: 'im',
+            params: [
+              {
+                key: `ИМ уровня котел №2`,
+                label: `Процент открытия`,
+                unit: '%',
+              },
+            ],
+          },
         ]}
         showIntervalSelector={false}
       />
@@ -45,6 +67,17 @@ const GeneralLevelKotel: React.FC = () => {
             apiUrl: `${apiBaseUrl}/api/kotel3/data`,
             dataKey: 'parameters',
             params: [{ key: 'Уровень в барабане котел №3', label: 'Уровень в котле', unit: 'мм' }],
+          },
+          {
+            apiUrl: `${apiBaseUrl}/api/kotel3/data`,
+            dataKey: 'im',
+            params: [
+              {
+                key: `ИМ уровня котел №3`,
+                label: `Процент открытия`,
+                unit: '%',
+              },
+            ],
           },
         ]}
         showIntervalSelector={false}

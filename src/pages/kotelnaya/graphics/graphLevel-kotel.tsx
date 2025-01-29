@@ -29,6 +29,17 @@ const GraphLevelKotel: React.FC<LevelKotelProps> = ({ kotelNumber }) => {
               },
             ],
           },
+          {
+            apiUrl: `${apiBaseUrl}/api/kotel${kotelNumber}/data`, // Динамический API URL
+            dataKey: 'im',
+            params: [
+              { 
+                key: `ИМ уровня котел №${kotelNumber}`, // Динамический ключ параметра
+                label: `Процент открытия`, // Динамическая метка
+                unit: '%', 
+              },
+            ],
+          },
         ]}
         showIntervalSelector={true}
       />
