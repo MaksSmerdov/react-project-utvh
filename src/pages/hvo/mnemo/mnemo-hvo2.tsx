@@ -75,7 +75,9 @@ const MnemoHvo2: React.FC = () => {
       {isLoaderVisible && <Loader delay={1000} size={80} />}
       {!isLoading && data && (
         <div className={`${styles.contentContainer} ${!isLoaderVisible ? styles.visible : ''}`}>
-          <Header title="ХВО щит №2" />
+          <div className={styles['hvo-header']}>
+            <Header title="ХВО щит №2" />
+          </div>
 
           <div className={styles['mnemo']}>
             <ControlButtons
@@ -152,10 +154,10 @@ const MnemoHvo2: React.FC = () => {
               height="91px"
               bottom="74.3%"
               right="35.6%"
-              adaptiveWidth="51px"
-              adaptiveHeight="73px"
-              adaptiveBottom="40.1%"
-              adaptiveRight="30.2%"
+              adaptiveWidth="37px"
+              adaptiveHeight="75px"
+              adaptiveBottom="74.3%"
+              adaptiveRight="35.6%"
               fillColor="blue"
             />
 
@@ -170,10 +172,10 @@ const MnemoHvo2: React.FC = () => {
               height="91px"
               bottom="74.3%"
               right="31.9%"
-              adaptiveWidth="51px"
-              adaptiveHeight="73px"
-              adaptiveBottom="40.1%"
-              adaptiveRight="30.2%"
+              adaptiveWidth="37px"
+              adaptiveHeight="75px"
+              adaptiveBottom="74.3%"
+              adaptiveRight="31.9%"
               fillColor="#57b7f7"
             />
 
@@ -188,10 +190,10 @@ const MnemoHvo2: React.FC = () => {
               height="91px"
               bottom="74.3%"
               right="14.1%"
-              adaptiveWidth="51px"
-              adaptiveHeight="73px"
-              adaptiveBottom="40.1%"
-              adaptiveRight="30.2%"
+              adaptiveWidth="37px"
+              adaptiveHeight="75px"
+              adaptiveBottom="74.3%"
+              adaptiveRight="14.1%"
               fillColor="blue"
             />
 
@@ -206,10 +208,10 @@ const MnemoHvo2: React.FC = () => {
               height="91px"
               bottom="74.3%"
               right="10.4%"
-              adaptiveWidth="51px"
-              adaptiveHeight="73px"
-              adaptiveBottom="40.1%"
-              adaptiveRight="30.2%"
+              adaptiveWidth="37px"
+              adaptiveHeight="75px"
+              adaptiveBottom="74.3%"
+              adaptiveRight="10.4%"
               fillColor="#57b7f7"
             />
 

@@ -9,12 +9,11 @@
     z-index: 1;
     text-align: center;
     @include mixins.text-style(14px, 14px, 600, vars.$hunter-green);
-
   }
   @media (max-width: 1280px) {
     &__param-descr {
       font-size: 12px;
-      line-height: 16px;
+      line-height: 12px;
     }
   }
 }
@@ -214,11 +213,6 @@
   bottom: 29.7%;
 }
 
-
-
-
-
-
 @media (max-width: 1280px) {
   .rashod-vody-filtr-text {
     top: 9.5%;
@@ -234,6 +228,50 @@
 
   .im2-text {
     top: 9.6%;
+  }
+
+  .davlenie-posle-filtrov-text {
+    top: 26.5%;
+    right: 44%;
+    max-width: 78px;
+  }
+
+  .rashod-vody-filtr-text {
+    top: 9.5%;
+    left: 46.9%;
+    min-width: 85px;
+  }
+
+  .temper-e2-1-sever-text,
+  .temper-e2-2-sever-text {
+    max-width: 66px;
+    top: 17.4%;
+  }
+
+  .temper-e2-1-ug-text,
+  .temper-e2-2-ug-text {
+    max-width: 52px;
+    top: 17.4%
+  }
+
+  .temper-e2-1-sever-text {
+    right: 24.8%;
+  }
+
+  .temper-e2-2-ug-text {
+    right: 19.3%;
+  }
+
+  .uroven-titan-e2-1-text,
+  .uroven-titan-e2-2-text,
+  .uroven-mida-e2-1-text,
+  .uroven-mida-e2-2-text {
+    max-width: 43px;
+  }
+
+  .rashod-kanalizacia-text {
+    bottom: 36%;
+    left: 46.4%;
   }
 
 

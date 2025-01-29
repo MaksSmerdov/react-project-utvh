@@ -76,7 +76,9 @@ const MnemoHvo1: React.FC = () => {
       {isLoaderVisible && <Loader delay={1000} size={80} />}
       {!isLoading && data && (
         <div className={`${styles.contentContainer} ${!isLoaderVisible ? styles.visible : ''}`}>
-          <Header title="ХВО щит №1" />
+          <div className={styles['hvo-header']}>
+            <Header title="ХВО щит №1" />
+          </div>
 
           <div className={styles['mnemo']}>
             <ControlButtons
