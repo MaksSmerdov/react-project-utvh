@@ -1,6 +1,18 @@
 @use '../../../styles/mixins' as mixins;
 @use '../../../styles/variables' as vars;
 
+.error-message {
+  @include mixins.text-style(26px, 24px, 600, vars.$red);
+  text-align: center;
+  padding: 20px;
+  border: 1px solid vars.$red;
+  background-color: vars.$vanilla-strawberry;
+  margin: 20px 0;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
 .mnemoContainer {
   opacity: 0;
   transition: opacity 0.3s ease-in-out;

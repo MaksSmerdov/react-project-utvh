@@ -60,7 +60,7 @@ const CurrentParameterKotel: React.FC<CurrentParameterKotelProps> = ({ kotelNumb
   }
 
   if (error) {
-    return <div>{error}</div>; // Отображение ошибки, если она есть
+    return <div className={styles['error-message']}>{error}</div>; // Отображение ошибки, если она есть
   }
 
   return (

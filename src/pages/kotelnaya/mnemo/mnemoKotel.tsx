@@ -71,7 +71,7 @@ const MnemoKotel = ({ kotelNumber }: MnemoKotelProps) => {
   const getKotelKey = (key: string) => `${key} котел №${kotelNumber}`;
 
   if (error) {
-    return <div>{error}</div>;
+    return <div className={styles['error-message']}>{error}</div>;
   }
 
   return (
