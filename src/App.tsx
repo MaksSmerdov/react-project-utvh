@@ -11,6 +11,7 @@ import MnemoHvo1 from './pages/hvo/mnemo/mnemo-hvo1';
 import MnemoHvo2 from './pages/hvo/mnemo/mnemo-hvo2';
 import GeneralLevelKotel from './pages/kotelnaya/graphics/general/graphGeneral-level';
 import GeneralParKotel from './pages/kotelnaya/graphics/general/graphGeneral-par';
+import GeneralLevelHvo from './pages/hvo/graphics/graphGeneral-level';
 
 const App: React.FC = () => {
   return (
@@ -42,6 +43,8 @@ const App: React.FC = () => {
 
         <Route path="/mnemo-hvo1" element={<MnemoHvo1 />} />
         <Route path="/mnemo-hvo2" element={<MnemoHvo2 />} />
+
+        <Route path="/graphLevel-hvo" element={<GeneralLevelHvo />} />
 
       </Routes>
     </div>

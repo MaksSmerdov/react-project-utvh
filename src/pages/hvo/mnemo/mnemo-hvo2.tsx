@@ -146,8 +146,8 @@ const MnemoHvo2: React.FC = () => {
             <LevelIndicator
               data={data}
               minLevel={0}
-              maxLevel={1600}
-              totalRange={1600}
+              maxLevel={6000}
+              totalRange={6000}
               levelKeyPrefix="Уровень воды в E2/1 (Титан)"
               dataSource="parameters"
               width="47px"
@@ -164,8 +164,8 @@ const MnemoHvo2: React.FC = () => {
             <LevelIndicator
               data={data}
               minLevel={0}
-              maxLevel={1600}
-              totalRange={1600}
+              maxLevel={6000}
+              totalRange={6000}
               levelKeyPrefix="Уровень воды в E2/1 (Мида)"
               dataSource="parameters"
               width="47px"
@@ -182,8 +182,8 @@ const MnemoHvo2: React.FC = () => {
             <LevelIndicator
               data={data}
               minLevel={0}
-              maxLevel={1600}
-              totalRange={1600}
+              maxLevel={6000}
+              totalRange={6000}
               levelKeyPrefix="Уровень воды в E2/2 (Титан)"
               dataSource="parameters"
               width="47px"
@@ -200,8 +200,8 @@ const MnemoHvo2: React.FC = () => {
             <LevelIndicator
               data={data}
               minLevel={0}
-              maxLevel={1600}
-              totalRange={1600}
+              maxLevel={6000}
+              totalRange={6000}
               levelKeyPrefix="Уровень воды в E2/2 (Мида)"
               dataSource="parameters"
               width="47px"
