@@ -10,6 +10,7 @@ import GeneralLevelKotel from '../kotelnaya/graphics/general/graphGeneral-level'
 import GeneralParKotel from '../kotelnaya/graphics/general/graphGeneral-par';
 import MnemoHvo1 from '../hvo/mnemo/mnemo-hvo1';
 import MnemoHvo2 from '../hvo/mnemo/mnemo-hvo2'; // Импортируем компонент MnemoHvo2
+import GeneralLevelHvo from '../hvo/graphics/graphGeneral-level';
 
 const HomePage: React.FC = () => {
   const [selectedTabIndex, setSelectedTabIndex] = useState<number>(0);
@@ -206,6 +207,10 @@ const HomePage: React.FC = () => {
                 <Tab className={styles['sub-tab']} selectedClassName={styles['sub-tab--selected']}>
                   Текущие параметры
                 </Tab>
+
+                <Tab className={styles['sub-tab']} selectedClassName={styles['sub-tab--selected']}>
+                  Графики
+                </Tab>
               </TabList>
 
               {/* Панель мнемосхемы */}
@@ -219,6 +224,13 @@ const HomePage: React.FC = () => {
               <TabPanel>
                 <div key={`hvo1-params-${selectedSubTabIndex}`} className={styles['sub-tab-content']}>
                   <CurrentParameterHvo1 />
+                </div>
+              </TabPanel>
+
+              {/* Панель графиков */}
+              <TabPanel>
+                <div key={`hvo1-graph-${selectedSubTabIndex}`} className={styles['sub-tab-content']}>
+                  <GeneralLevelHvo />
                 </div>
               </TabPanel>
             </Tabs>
@@ -236,6 +248,9 @@ const HomePage: React.FC = () => {
                 <Tab className={styles['sub-tab']} selectedClassName={styles['sub-tab--selected']}>
                   Текущие параметры
                 </Tab>
+                <Tab className={styles['sub-tab']} selectedClassName={styles['sub-tab--selected']}>
+                  Графики
+                </Tab>
               </TabList>
 
               {/* Панель мнемосхемы */}
@@ -249,6 +264,13 @@ const HomePage: React.FC = () => {
               <TabPanel>
                 <div key={`hvo2-params-${selectedSubTabIndex}`} className={styles['sub-tab-content']}>
                   <CurrentParameterHvo2 />
+                </div>
+              </TabPanel>
+
+              {/* Панель графиков */}
+              <TabPanel>
+                <div key={`hvo2-graph-${selectedSubTabIndex}`} className={styles['sub-tab-content']}>
+                  <GeneralLevelHvo />
                 </div>
               </TabPanel>
             </Tabs>
