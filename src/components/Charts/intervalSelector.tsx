@@ -13,7 +13,6 @@ const IntervalSelector: React.FC = () => {
     { value: 10, label: '10 минут' },
     { value: 30, label: '30 минут' },
     { value: 60, label: '1 час' },
-    { value: 1440, label: '24 часа'}
   ];
 
   const handleIntervalChange = (selectedOption: any) => {
@@ -38,7 +37,7 @@ const IntervalSelector: React.FC = () => {
       <Select
         options={options}
         onChange={handleIntervalChange}
-        defaultValue={options[4]}
+        defaultValue={options[3]}
         classNamePrefix="react-select"
         isSearchable={false}
         onMenuOpen={handleMenuOpen} // Обработчик открытия меню
@@ -53,7 +52,7 @@ const IntervalSelector: React.FC = () => {
             cursor: 'pointer',
             transition: 'box-shadow 0.5s ease',
             width: 'auto',
-            minWidth: '125px', 
+            minWidth: '125px',
             '&:hover': {
               boxShadow: '0 0 4px 2px rgba(0, 128, 0, 0.5)',
               transition: 'box-shadow 0.5s ease',
