@@ -12,6 +12,7 @@ const GeneralParKotel: React.FC = () => {
         title="График давления пара котел №1"
         yMin={-1}
         yMax={10}
+        animationEnabled={false}
         datasets={[
           {
             apiUrl: `${apiBaseUrl}/api/kotel1/data`,
@@ -26,6 +27,7 @@ const GeneralParKotel: React.FC = () => {
         title="График давления пара котел №2"
         yMin={-1}
         yMax={10}
+        animationEnabled={false}
         datasets={[
           {
             apiUrl: `${apiBaseUrl}/api/kotel2/data`,
@@ -40,6 +42,7 @@ const GeneralParKotel: React.FC = () => {
         title="График давления пара котел №3"
         yMin={-1}
         yMax={10}
+        animationEnabled={false}
         datasets={[
           {
             apiUrl: `${apiBaseUrl}/api/kotel3/data`,

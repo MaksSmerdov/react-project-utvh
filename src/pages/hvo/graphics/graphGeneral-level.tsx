@@ -12,6 +12,7 @@ const GeneralLevelHvo: React.FC = () => {
         title="График уровня ХВО №1"
         yMin={0}
         yMax={2000}
+        animationEnabled={false}
         datasets={[
           {
             apiUrl: `${apiBaseUrl}/api/hvo1/data`,
@@ -29,6 +30,7 @@ const GeneralLevelHvo: React.FC = () => {
         title="График уровня ХВО №2"
         yMin={0}
         yMax={6500}
+        animationEnabled={false}
         datasets={[
           {
             apiUrl: `${apiBaseUrl}/api/hvo2/data`,

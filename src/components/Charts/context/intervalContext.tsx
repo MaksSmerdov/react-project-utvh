@@ -16,7 +16,7 @@ export const useInterval = () => {
 };
 
 export const IntervalProvider: React.FC<{ children: React.ReactNode }> = ({ children }) => {
-  const [interval, setInterval] = useState(10);
+  const [interval, setInterval] = useState(1440);
 
   return (
     <IntervalContext.Provider value={{ interval, setInterval }}>

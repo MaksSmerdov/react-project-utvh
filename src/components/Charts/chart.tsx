@@ -21,6 +21,7 @@ import IntervalSelector from './intervalSelector';
 import { useInterval } from './context/intervalContext';
 import { getApiBaseUrl } from '../../utils/apiUtils';
 import Loader from '../Common/Preloader/preloader';
+import Icon from '../Common/CustomIcon/icon';
 
 ChartJS.register(
   LineElement,
@@ -276,15 +277,19 @@ const UniversalChart: React.FC<UniversalChartProps> = ({
 
       <div className={styles['dynamic-graph__btns']}>
         <button className={styles['dynamic-graph__btn']} onClick={handleBackwardWithInteraction}>
+          <Icon name="arrowLeft" />
           Назад
         </button>
         <button className={styles['dynamic-graph__btn']} onClick={handleForwardWithInteraction}>
+          <Icon name="arrowRight" />
           Вперёд
         </button>
         <button className={styles['dynamic-graph__btn']} onClick={handleToggleAll}>
+          <Icon name="eye" />
           {allHidden ? 'Показать все' : 'Скрыть все'}
         </button>
         <button className={styles['dynamic-graph__btn']} onClick={handleReturnToCurrentWithInteraction}>
+          <Icon name="sync" />
           Вернуться к текущим данным
         </button>
       </div>

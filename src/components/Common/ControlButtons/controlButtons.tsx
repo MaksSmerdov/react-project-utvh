@@ -1,5 +1,7 @@
+// controlButtons.tsx
 import React, { useEffect, useState } from 'react';
 import styles from './controlButtons.module.scss';
+import Icon from '../CustomIcon/icon';
 
 interface ControlButtonsProps {
   tooltipsEnabled?: boolean;
@@ -9,8 +11,8 @@ interface ControlButtonsProps {
   left?: string;
   adaptiveTop?: string;
   adaptiveLeft?: string;
-  adaptiveFontSize?: string; // размер шрифта для адаптива
-  adaptiveLineHeight?: string; // высота строки для адаптива
+  adaptiveFontSize?: string;
+  adaptiveLineHeight?: string;
 }
 
 const ControlButtons: React.FC<ControlButtonsProps> = ({
@@ -34,7 +36,7 @@ const ControlButtons: React.FC<ControlButtonsProps> = ({
       setPosition(adaptive ? { top: adaptiveTop, left: adaptiveLeft } : { top, left });
     };
 
-    handleResize(); // Установите начальное значение
+    handleResize();
     window.addEventListener('resize', handleResize);
 
     return () => {
@@ -56,13 +58,11 @@ const ControlButtons: React.FC<ControlButtonsProps> = ({
           className={`${styles.btnReset} ${styles.paramBoxBtn}`}
           style={
             isAdaptive
-              ? {
-                  fontSize: adaptiveFontSize,
-                  lineHeight: adaptiveLineHeight,
-                }
+              ? { fontSize: adaptiveFontSize, lineHeight: adaptiveLineHeight }
               : undefined
           }
         >
+          <Icon name="eye" />
           {tooltipsEnabled ? 'Выключить всплывающие подсказки' : 'Включить всплывающие подсказки'}
         </button>
       )}
@@ -73,13 +73,11 @@ const ControlButtons: React.FC<ControlButtonsProps> = ({
           className={`${styles.btnReset} ${styles.paramBoxBtn}`}
           style={
             isAdaptive
-              ? {
-                  fontSize: adaptiveFontSize,
-                  lineHeight: adaptiveLineHeight,
-                }
+              ? { fontSize: adaptiveFontSize, lineHeight: adaptiveLineHeight }
               : undefined
           }
         >
+          <Icon name="book" />
           Документация
         </button>
       )}

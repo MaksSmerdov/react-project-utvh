@@ -12,6 +12,7 @@ const GeneralLevelKotel: React.FC = () => {
         title="График параметров котла №1"
         yMin={-100}
         yMax={100}
+        animationEnabled={false}
         datasets={[
           {
             apiUrl: `${apiBaseUrl}/api/kotel1/data`,
@@ -37,6 +38,7 @@ const GeneralLevelKotel: React.FC = () => {
         title="График параметров котла №2"
         yMin={-100}
         yMax={100}
+        animationEnabled={false}
         datasets={[
           {
             apiUrl: `${apiBaseUrl}/api/kotel2/data`,
@@ -62,6 +64,7 @@ const GeneralLevelKotel: React.FC = () => {
         title="График параметров котла №3"
         yMin={-100}
         yMax={100}
+        animationEnabled={false}
         datasets={[
           {
             apiUrl: `${apiBaseUrl}/api/kotel3/data`,

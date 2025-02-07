@@ -16,7 +16,7 @@
 
   &__btn {
     margin-right: 10px;
-    height: 27px;
+    padding: 2px 4px;
     @include mixins.text-style(16px, 22px, 600, vars.$hulk);
     border: 1px solid vars.$hulk;
     background-color: transparent;
@@ -71,4 +71,11 @@
     font-size: 18px;
     color: vars.$carbon;
   }
+}
+
+.icon {
+  margin-right: 8px;
+  vertical-align: middle;
+  width: 20px;
+  height: 20px;
 }
