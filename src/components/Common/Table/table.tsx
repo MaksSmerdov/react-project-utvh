@@ -17,7 +17,7 @@ const Table: React.FC<TableProps> = ({ title, items, displayNames, width = "100%
         <th className={styles.table__th}>Значение</th>
       </tr>
     </thead>
-    <tbody>
+    <tbody className={styles.table__body}>
       {Object.entries(items).map(([name, value], index) => (
         <tr key={`${name}-${index}`} className={styles.table__tr}>
           <td className={`${styles.table__td} ${styles.table__left}`}>

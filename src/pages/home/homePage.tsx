@@ -11,6 +11,7 @@ import GeneralParKotel from '../kotelnaya/graphics/general/graphGeneral-par';
 import MnemoHvo1 from '../hvo/mnemo/mnemo-hvo1';
 import MnemoHvo2 from '../hvo/mnemo/mnemo-hvo2'; // Импортируем компонент MnemoHvo2
 import GeneralLevelHvo from '../hvo/graphics/graphGeneral-level';
+import Icon from '../../components/Common/CustomIcon/icon';
 
 const HomePage: React.FC = () => {
   const [selectedTabIndex, setSelectedTabIndex] = useState<number>(0);
@@ -52,15 +53,19 @@ const HomePage: React.FC = () => {
             <Tabs selectedIndex={selectedSubTabIndex} onSelect={handleSubTabChange}>
               <TabList className={styles['sub-tab-list']}>
                 <Tab className={styles['sub-tab']} selectedClassName={styles['sub-tab--selected']}>
+                  <Icon name="wrench" />
                   Мнемосхема
                 </Tab>
                 <Tab className={styles['sub-tab']} selectedClassName={styles['sub-tab--selected']}>
+                  <Icon name="grid" />
                   Текущие параметры
                 </Tab>
                 <Tab className={styles['sub-tab']} selectedClassName={styles['sub-tab--selected']}>
+                  <Icon name="graph" />
                   Графики уровня
                 </Tab>
                 <Tab className={styles['sub-tab']} selectedClassName={styles['sub-tab--selected']}>
+                  <Icon name="graph" />
                   Графики пара
                 </Tab>
               </TabList>
@@ -102,15 +107,19 @@ const HomePage: React.FC = () => {
             <Tabs selectedIndex={selectedSubTabIndex} onSelect={handleSubTabChange}>
               <TabList className={styles['sub-tab-list']}>
                 <Tab className={styles['sub-tab']} selectedClassName={styles['sub-tab--selected']}>
+                  <Icon name="wrench" />
                   Мнемосхема
                 </Tab>
                 <Tab className={styles['sub-tab']} selectedClassName={styles['sub-tab--selected']}>
+                  <Icon name="grid" />
                   Текущие параметры
                 </Tab>
                 <Tab className={styles['sub-tab']} selectedClassName={styles['sub-tab--selected']}>
+                  <Icon name="graph" />
                   Графики уровня
                 </Tab>
                 <Tab className={styles['sub-tab']} selectedClassName={styles['sub-tab--selected']}>
+                  <Icon name="graph" />
                   Графики пара
                 </Tab>
               </TabList>
@@ -152,15 +161,19 @@ const HomePage: React.FC = () => {
             <Tabs selectedIndex={selectedSubTabIndex} onSelect={handleSubTabChange}>
               <TabList className={styles['sub-tab-list']}>
                 <Tab className={styles['sub-tab']} selectedClassName={styles['sub-tab--selected']}>
+                  <Icon name="wrench" />
                   Мнемосхема
                 </Tab>
                 <Tab className={styles['sub-tab']} selectedClassName={styles['sub-tab--selected']}>
+                  <Icon name="grid" />
                   Текущие параметры
                 </Tab>
                 <Tab className={styles['sub-tab']} selectedClassName={styles['sub-tab--selected']}>
+                  <Icon name="graph" />
                   Графики уровня
                 </Tab>
                 <Tab className={styles['sub-tab']} selectedClassName={styles['sub-tab--selected']}>
+                  <Icon name="graph" />
                   Графики пара
                 </Tab>
               </TabList>
@@ -202,13 +215,16 @@ const HomePage: React.FC = () => {
             <Tabs selectedIndex={selectedSubTabIndex} onSelect={handleSubTabChange}>
               <TabList className={styles['sub-tab-list']}>
                 <Tab className={styles['sub-tab']} selectedClassName={styles['sub-tab--selected']}>
+                  <Icon name="wrench" />
                   Мнемосхема
                 </Tab>
                 <Tab className={styles['sub-tab']} selectedClassName={styles['sub-tab--selected']}>
+                  <Icon name="grid" />
                   Текущие параметры
                 </Tab>
 
                 <Tab className={styles['sub-tab']} selectedClassName={styles['sub-tab--selected']}>
+                  <Icon name="graph" />
                   Графики
                 </Tab>
               </TabList>
@@ -243,12 +259,15 @@ const HomePage: React.FC = () => {
             <Tabs selectedIndex={selectedSubTabIndex} onSelect={handleSubTabChange}>
               <TabList className={styles['sub-tab-list']}>
                 <Tab className={styles['sub-tab']} selectedClassName={styles['sub-tab--selected']}>
+                  <Icon name="wrench" />
                   Мнемосхема
                 </Tab>
                 <Tab className={styles['sub-tab']} selectedClassName={styles['sub-tab--selected']}>
+                  <Icon name="grid" />
                   Текущие параметры
                 </Tab>
                 <Tab className={styles['sub-tab']} selectedClassName={styles['sub-tab--selected']}>
+                  <Icon name="graph" />
                   Графики
                 </Tab>
               </TabList>

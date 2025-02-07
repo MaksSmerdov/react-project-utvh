@@ -2,6 +2,7 @@ import React, { useState } from 'react';
 import styles from './chart.module.scss';
 import { useInterval } from './context/intervalContext';
 import Select from 'react-select';
+import Icon from '../Common/CustomIcon/icon';
 
 const IntervalSelector: React.FC = () => {
   const { setInterval } = useInterval();
@@ -31,9 +32,9 @@ const IntervalSelector: React.FC = () => {
     setTimeout(() => setIsMenuOpen(false), 300); // Задержка перед скрытием меню
   };
 
-  return (
+  return (              
     <div className={styles['interval-selector']}>
-      <span className={styles['interval-selector__label']}>Выбор интервала:</span>
+      <span className={styles['interval-selector__label']}>  Выбор интервала:</span>
       <Select
         options={options}
         onChange={handleIntervalChange}
@@ -78,7 +79,7 @@ const IntervalSelector: React.FC = () => {
             transition: 'opacity 0.3s ease', // Анимация opacity
           }),
         }}
-      />
+      /> <Icon name="slider" size={30} color='green' />
     </div>
   );
 };

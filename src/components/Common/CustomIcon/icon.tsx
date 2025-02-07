@@ -1,9 +1,11 @@
 // Icon.tsx
 import React from 'react';
-import { FaArrowLeft, FaArrowRight, FaEye, FaSync, FaBook } from 'react-icons/fa';
+import { FaArrowLeft, FaArrowRight, FaEye, FaSync, FaBook, FaWrench } from 'react-icons/fa';
+import { FaChartLine } from "react-icons/fa6";
+import { FiGrid, FiSliders } from 'react-icons/fi';
 
 // Определяем возможные имена иконок
-export type IconName = 'arrowLeft' | 'arrowRight' | 'eye' | 'sync' | 'book';
+export type IconName = 'arrowLeft' | 'arrowRight' | 'eye' | 'sync' | 'book' | 'graph' | 'grid' | 'wrench' | 'slider';
 
 interface IconProps {
   name: IconName;
@@ -20,6 +22,10 @@ const iconMap: Record<IconName, React.ComponentType<{ className?: string; style?
   eye: FaEye,
   sync: FaSync,
   book: FaBook,
+  graph: FaChartLine,
+  grid: FiGrid,
+  wrench: FaWrench,
+  slider: FiSliders,
 };
 
 const Icon: React.FC<IconProps> = ({ name, style, size = 20, color }) => {

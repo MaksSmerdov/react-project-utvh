@@ -16,10 +16,10 @@ const Header: React.FC<HeaderProps> = ({ title, maxWidth = '100%' }) => {
 
   return (
     <div className={styles.header} style={{ maxWidth }}>
-      <h1 className={styles.header__title}>
+      <div className={styles.header__title}>
         <span className={styles.header__titleSpan}>УТВХ</span>
         {title}
-      </h1>
+      </div>
       <div className={styles.header__box}>
         <span className={styles.header__date}>{currentTime.toLocaleDateString()}</span>
         <span className={styles.header__time}>{currentTime.toLocaleTimeString()}</span>
