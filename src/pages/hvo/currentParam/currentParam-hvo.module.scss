@@ -1,0 +1,15 @@
+// Стили таблиц
+.contentContainer {
+  opacity: 0;
+  transition: opacity 0.5s ease-in-out;
+
+  &.visible {
+    opacity: 1;
+  }
+}
+
+.tables {
+  display: flex;
+  justify-content: space-between;
+  flex-wrap: wrap;
+}
