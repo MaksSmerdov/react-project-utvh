@@ -1,6 +1,5 @@
 // Icon.tsx
 import React from 'react';
-import styles from './icon.module.scss'; // Импортируем стили для иконок
 import { FaArrowLeft, FaArrowRight, FaEye, FaSync, FaBook } from 'react-icons/fa';
 
 // Определяем возможные имена иконок
@@ -23,11 +22,10 @@ const iconMap: Record<IconName, React.ComponentType<{ className?: string; style?
   book: FaBook,
 };
 
-const Icon: React.FC<IconProps> = ({ name, className = '', style, size, color }) => {
+const Icon: React.FC<IconProps> = ({ name, style, size = 20, color }) => {
   const Component = iconMap[name];
   return (
     <Component
-      className={`${styles.icon} ${className}`} // Применяем стили из модуля и объединяем с переданным классом
       style={style}
       size={size}
       color={color}

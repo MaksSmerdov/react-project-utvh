@@ -8,6 +8,10 @@
   align-items: center;
 
   &Btn {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 5px;
     padding: 2px 4px !important;
     border: 1px solid vars.$hulk !important;
     transition: color 0.3s ease-in-out, background-color 0.3s ease-in-out;
