@@ -8,7 +8,7 @@ interface LoaderProps {
 }
 
 const Loader: React.FC<LoaderProps> = ({
-  delay = 1000,
+  delay = 2000,
   size = 60,
   fullpage = true,
 }) => {
