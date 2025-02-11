@@ -1,4 +1,3 @@
-// controlButtons.tsx
 import React, { useEffect, useState } from 'react';
 import styles from './controlButtons.module.scss';
 import Icon from '../CustomIcon/icon';

@@ -11,14 +11,14 @@ interface LevelIndicatorProps {
   dataSource: 'parameters' | 'levels'; // Источник данных, откуда брать значения уровня
   width: string; // Ширина контейнера индикатора уровня
   height: string; // Высота контейнера индикатора уровня
-  bottom: string; // Положение индикатора снизу (CSS-значение, например, '10px')
-  right: string; // Положение индикатора справа (CSS-значение, например, '20px')
-  adaptiveWidth?: string; // Адаптивная ширина для мобильных устройств (опционально)
-  adaptiveHeight?: string; // Адаптивная высота для мобильных устройств (опционально)
-  adaptiveBottom?: string; // Адаптивное положение снизу для мобильных устройств (опционально)
-  adaptiveRight?: string; // Адаптивное положение справа для мобильных устройств (опционально)
-  fillColor?: string; // Цвет фона индикатора уровня, когда значение уровня действительное (по умолчанию '#57b7f7')
-  warningThreshold?: number; // Порог (в процентах), при котором индикатор начинает мигать красным (по умолчанию 25%)
+  bottom: string;
+  right: string; 
+  adaptiveWidth?: string; 
+  adaptiveHeight?: string; 
+  adaptiveBottom?: string; 
+  adaptiveRight?: string;
+  fillColor?: string; // Цвет фона индикатора уровня, когда значение уровня действительное
+  warningThreshold?: number; // Порог (в процентах), при котором индикатор начинает мигать красным
 }
 
 const LevelIndicator: React.FC<LevelIndicatorProps> = ({
@@ -38,11 +38,11 @@ const LevelIndicator: React.FC<LevelIndicatorProps> = ({
   adaptiveBottom,
   adaptiveRight,
   fillColor = '#57b7f7',
-  warningThreshold = 25, // Порог по умолчанию 25%
+  warningThreshold = 25,
 }) => {
   const [dynamicSize, setDynamicSize] = useState({ width, height });
   const [position, setPosition] = useState({ bottom, right });
-  const [isWarning, setIsWarning] = useState(false); // Состояние для мигания красным цветом
+  const [isWarning, setIsWarning] = useState(false);
 
   useEffect(() => {
     const handleResize = () => {
@@ -61,16 +61,12 @@ const LevelIndicator: React.FC<LevelIndicatorProps> = ({
     return () => window.removeEventListener('resize', handleResize);
   }, [width, height, bottom, right, adaptiveWidth, adaptiveHeight, adaptiveBottom, adaptiveRight]);
 
-  // Формируем levelKey в зависимости от наличия objectNumber
   const levelKey = objectNumber !== undefined ? `${levelKeyPrefix}${objectNumber}` : levelKeyPrefix;
 
-  // Получаем значение уровня
   const rawValue = data[dataSource]?.[levelKey];
 
-  // Убираем лишние кавычки и пробелы, если они есть
   const cleanedValue = String(rawValue).replace(/["\s]/g, '');
 
-  // Преобразуем значение в число
   const levelValue = parseFloat(cleanedValue);
   const isValidLevel = !isNaN(levelValue);
 
@@ -79,11 +75,10 @@ const LevelIndicator: React.FC<LevelIndicatorProps> = ({
 
   if (isValidLevel) {
     if (levelValue < minLevel) {
-      fillPercentage = 0; // Уровень ниже минимального значения
+      fillPercentage = 0; 
     } else if (levelValue > maxLevel) {
-      fillPercentage = 100; // Уровень выше максимального значения
+      fillPercentage = 100; 
     } else {
-      // Уровень в пределах шкалы
       fillPercentage = ((levelValue - minLevel) / totalRange) * 100;
     }
   }
@@ -92,12 +87,12 @@ const LevelIndicator: React.FC<LevelIndicatorProps> = ({
   useEffect(() => {
     if (isValidLevel && fillPercentage < warningThreshold) {
       const interval = setInterval(() => {
-        setIsWarning((prev) => !prev); // Переключаем состояние для мигания
-      }, 500); // Интервал мигания: 500 мс
+        setIsWarning((prev) => !prev);
+      }, 500); 
 
-      return () => clearInterval(interval); // Очистка интервала при размонтировании
+      return () => clearInterval(interval); 
     } else {
-      setIsWarning(false); // Отключаем мигание, если уровень выше порога
+      setIsWarning(false); 
     }
   }, [fillPercentage, isValidLevel, warningThreshold]);
 
@@ -120,7 +115,7 @@ const LevelIndicator: React.FC<LevelIndicatorProps> = ({
         style={{
           height: `${fillPercentage}%`,
           backgroundColor: isWarning ? 'red' : isValidLevel ? fillColor : 'transparent',
-          transition: 'background-color 0.5s ease', // Плавное изменение цвета
+          transition: 'background-color 0.5s ease',
         }}
       />
     </div>

@@ -3,7 +3,7 @@ import styles from './header.module.scss';
 
 interface HeaderProps {
   title: string;
-  maxWidth?: string; // Новый проп для max-width
+  maxWidth?: string;
 }
 
 const Header: React.FC<HeaderProps> = ({ title, maxWidth = '100%' }) => {

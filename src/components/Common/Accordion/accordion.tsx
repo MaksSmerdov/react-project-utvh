@@ -13,7 +13,7 @@ interface DocumentationAccordionProps {
   accordionData: {
     [key: string]: { name: string; files: { type: string; href: string }[] }[];
   };
-  titles: { [key: string]: string }; // Новый пропс для заголовков
+  titles: { [key: string]: string }; 
 }
 
 const DocumentationAccordion: React.FC<DocumentationAccordionProps> = ({ accordionData, titles }) => {
@@ -21,7 +21,7 @@ const DocumentationAccordion: React.FC<DocumentationAccordionProps> = ({ accordi
 
   const accordionItems: AccordionItem[] = Object.entries(accordionData).map(([key, items]) => ({
     id: key,
-    title: titles[key] || key, // Заголовок берём из пропсов или используем ключ как fallback
+    title: titles[key] || key,
     content: (
       <ul className={styles['list-reset']}>
         {items.map((item, index) => (

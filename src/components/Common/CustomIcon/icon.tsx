@@ -1,10 +1,8 @@
-// Icon.tsx
 import React from 'react';
 import { FaArrowLeft, FaArrowRight, FaEye, FaSync, FaBook, FaWrench } from 'react-icons/fa';
 import { FaChartLine } from "react-icons/fa6";
 import { FiGrid, FiSliders } from 'react-icons/fi';
 
-// Определяем возможные имена иконок
 export type IconName = 'arrowLeft' | 'arrowRight' | 'eye' | 'sync' | 'book' | 'graph' | 'grid' | 'wrench' | 'slider';
 
 interface IconProps {
@@ -15,7 +13,6 @@ interface IconProps {
   color?: string;
 }
 
-// Маппинг имен иконок на компоненты из react-icons
 const iconMap: Record<IconName, React.ComponentType<{ className?: string; style?: React.CSSProperties; size?: number; color?: string }>> = {
   arrowLeft: FaArrowLeft,
   arrowRight: FaArrowRight,

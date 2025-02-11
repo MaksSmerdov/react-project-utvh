@@ -7,7 +7,6 @@
   padding-bottom: 10px;
   padding-right: 10px;
 
-  // Таргетим глобальные классы Material-UI внутри контейнера
   :global(.MuiAccordion-root) {
     margin-bottom: 10px;
     transition: margin-bottom 0.5s ease, box-shadow 0.5s ease;
@@ -22,15 +21,18 @@
     padding-bottom: 0;
   }
 
-  // Дополнительно: Изменение тени при наведении и раскрытии
+  :global(.MuiAccordionSummary-content) {
+    @include mixins.text-style(16px, null, 600, vars.$hulk);
+  }
+
   :global(.MuiAccordion-root:hover) {
     box-shadow: 0 6px 4px rgba(0, 0, 0, 0.3);
   }
 }
 
 .accordionDetails {
-  overflow: auto; // Добавляет прокрутку, если контент превышает размер
-  max-width: auto; // Установите максимальную высоту, чтобы контролировать размер
+  overflow: auto;
+  max-width: auto;
 }
 
 .list-reset {
