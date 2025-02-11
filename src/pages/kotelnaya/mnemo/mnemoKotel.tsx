@@ -58,14 +58,17 @@ const MnemoKotel = ({ kotelNumber }: MnemoKotelProps) => {
       }
     };
 
+    let interval: NodeJS.Timeout;
+
     const delayLoading = setTimeout(() => {
-      setIsLoading(true);
       fetchData();
-      const interval = setInterval(fetchData, 5000);
-      return () => clearInterval(interval);
+      interval = setInterval(fetchData, 5000);
     }, 1000);
 
-    return () => clearTimeout(delayLoading);
+    return () => {
+      clearTimeout(delayLoading);
+      clearInterval(interval);
+    };
   }, [configKey]);
 
   const getKotelKey = (key: string) => `${key} котел №${kotelNumber}`;
@@ -76,12 +79,7 @@ const MnemoKotel = ({ kotelNumber }: MnemoKotelProps) => {
 
   return (
     <div>
-      {isLoaderVisible && (
-        <Loader
-          delay={1000}
-          size={80}
-        />
-      )}
+      {isLoaderVisible && <Loader delay={1000} size={80} />}
       {!isLoading && data && (
         <div className={`${styles.mnemoContainer} ${!isLoaderVisible ? styles.visible : ''}`}>
           <Header title={title} maxWidth="auto" />
