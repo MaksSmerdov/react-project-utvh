@@ -41,3 +41,9 @@
   outline: none;
   appearance: none;
 }
+
+@media (max-width: 1280px) {
+  .paramBoxBtn {
+    @include mixins.text-style(12px !important, 16px !important);
+  }
+}

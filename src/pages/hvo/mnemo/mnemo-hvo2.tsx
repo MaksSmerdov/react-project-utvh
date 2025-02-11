@@ -137,9 +137,9 @@ const MnemoHvo2: React.FC = () => {
               threshold={5}
               orientation="horizontal"
               top="7.8%"
-              left="65.6%"
+              left="65.2%"
               adaptiveTop="7.8%"
-              adaptiveLeft="65.6%"
+              adaptiveLeft="65.2%"
             />
 
             {/* индикаторы уровней */}
@@ -154,7 +154,7 @@ const MnemoHvo2: React.FC = () => {
               height="91px"
               bottom="74.3%"
               right="35.6%"
-              adaptiveWidth="37px"
+              adaptiveWidth="39px"
               adaptiveHeight="75px"
               adaptiveBottom="74.3%"
               adaptiveRight="35.6%"
@@ -190,7 +190,7 @@ const MnemoHvo2: React.FC = () => {
               height="91px"
               bottom="74.3%"
               right="14.1%"
-              adaptiveWidth="37px"
+              adaptiveWidth="39px"
               adaptiveHeight="75px"
               adaptiveBottom="74.3%"
               adaptiveRight="14.1%"
