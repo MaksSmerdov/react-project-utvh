@@ -44,15 +44,17 @@ const CurrentParameterKotel: React.FC<CurrentParameterKotelProps> = ({ kotelNumb
       }
     };
 
-    // Устанавливаем задержку в 1 секунду перед началом загрузки
+    let interval: NodeJS.Timeout;
+
     const delayLoading = setTimeout(() => {
-      setIsLoading(true);
-      fetchData(); // Первый запрос данных
-      const interval = setInterval(fetchData, 5000); // Обновление данных каждые 5 секунд
-      return () => clearInterval(interval); // Очистка интервала при размонтировании
+      fetchData();
+      interval = setInterval(fetchData, 5000);
     }, 1000);
 
-    return () => clearTimeout(delayLoading); // Очистка таймера при размонтировании
+    return () => {
+      clearTimeout(delayLoading);
+      clearInterval(interval);
+    };
   }, [config.apiUrl, config.defaultData]);
 
   if (!config) {
@@ -65,12 +67,7 @@ const CurrentParameterKotel: React.FC<CurrentParameterKotelProps> = ({ kotelNumb
 
   return (
     <>
-      {isLoaderVisible && (
-        <Loader
-          delay={1000}
-          size={80}
-        />
-      )}
+      {isLoaderVisible && <Loader delay={1000} size={80} />}
       {!isLoading && data && (
         <div className={`${styles.contentContainer} ${!isLoaderVisible ? styles.visible : ''}`}>
           <CurrentParameter

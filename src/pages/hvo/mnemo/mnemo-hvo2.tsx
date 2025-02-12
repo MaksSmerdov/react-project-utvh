@@ -55,15 +55,17 @@ const MnemoHvo2: React.FC = () => {
       }
     };
 
-    // Устанавливаем задержку в 1 секунду перед началом загрузки
+    let interval: NodeJS.Timeout;
+
     const delayLoading = setTimeout(() => {
-      setIsLoading(true);
-      fetchData(); // Первый запрос данных
-      const interval = setInterval(fetchData, 5000); // Обновление данных каждые 5 секунд
-      return () => clearInterval(interval); // Очистка интервала при размонтировании
+      fetchData();
+      interval = setInterval(fetchData, 5000);
     }, 1000);
 
-    return () => clearTimeout(delayLoading); // Очистка таймера при размонтировании
+    return () => {
+      clearTimeout(delayLoading);
+      clearInterval(interval);
+    };
   }, [hvo2Config]);
 
   if (error) {

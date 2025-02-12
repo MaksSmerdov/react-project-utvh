@@ -44,15 +44,17 @@ const CurrentParameterHvo1: React.FC = () => {
       }
     };
 
-    // Устанавливаем задержку в 1 секунду перед началом загрузки
+    let interval: NodeJS.Timeout;
+
     const delayLoading = setTimeout(() => {
-      setIsLoading(true);
       fetchData();
-      const interval = setInterval(fetchData, 5000);
-      return () => clearInterval(interval);
+      interval = setInterval(fetchData, 5000);
     }, 1000);
 
-    return () => clearTimeout(delayLoading);
+    return () => {
+      clearTimeout(delayLoading);
+      clearInterval(interval);
+    };
   }, [apiUrl]);
 
   if (error) {
