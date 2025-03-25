@@ -6,10 +6,13 @@ import MnemoKotel from '../kotelnaya/mnemo/mnemoKotel';
 import CurrentParameterHvo1 from '../hvo/currentParam/currentParam-hvo1';
 import CurrentParameterHvo2 from '../hvo/currentParam/currentParam-hvo2';
 import CurrentParameterKotel from '../kotelnaya/currentParam/currentParam-kotel';
+import GeneralGasKotel from '../kotelnaya/graphics/general/graphGeneral-gas'
 import GeneralLevelKotel from '../kotelnaya/graphics/general/graphGeneral-level';
 import GeneralParKotel from '../kotelnaya/graphics/general/graphGeneral-par';
+import GeneralPressureKotel from '../kotelnaya/graphics/general/graphGeneral-pressure';
+import GeneralVacuumKotel from '../kotelnaya/graphics/general/graphGeneral-vacuum';
 import MnemoHvo1 from '../hvo/mnemo/mnemo-hvo1';
-import MnemoHvo2 from '../hvo/mnemo/mnemo-hvo2'; // Импортируем компонент MnemoHvo2
+import MnemoHvo2 from '../hvo/mnemo/mnemo-hvo2';
 import GeneralLevelHvo from '../hvo/graphics/graphGeneral-level';
 import Icon from '../../components/Common/CustomIcon/icon';
 import Loader from '../../components/Common/Preloader/preloader';
@@ -83,6 +86,18 @@ const HomePage: React.FC = () => {
                     <Icon name="graph" />
                     Графики пара
                   </Tab>
+                  <Tab className={styles['sub-tab']} selectedClassName={styles['sub-tab--selected']}>
+                    <Icon name="graph" />
+                    Графики газа
+                  </Tab>
+                  <Tab className={styles['sub-tab']} selectedClassName={styles['sub-tab--selected']}>
+                    <Icon name="graph" />
+                    Графики воздуха
+                  </Tab>
+                  <Tab className={styles['sub-tab']} selectedClassName={styles['sub-tab--selected']}>
+                    <Icon name="graph" />
+                    Графики разрежения
+                  </Tab>
                 </TabList>
 
                 {/* Панель мнемосхемы */}
@@ -112,6 +127,24 @@ const HomePage: React.FC = () => {
                     <GeneralParKotel />
                   </div>
                 </TabPanel>
+                {/* Панель графиков газа */}
+                <TabPanel>
+                  <div key={`kotel1-charts-${selectedSubTabIndex}`} className={styles['sub-tab-content']}>
+                    <GeneralGasKotel/>
+                  </div>
+                </TabPanel>
+                {/*Панель графиков давления воздуха*/}
+                <TabPanel>
+                  <div key={`kotel1-charts-${selectedSubTabIndex}`} className={styles['sub-tab-content']}>
+                    <GeneralPressureKotel />
+                  </div>
+                </TabPanel>
+                {/*Панель графиков разрежения*/}
+                <TabPanel>
+                  <div key={`kotel1-charts-${selectedSubTabIndex}`} className={styles['sub-tab-content']}>
+                    <GeneralVacuumKotel />
+                  </div>
+                </TabPanel>
               </Tabs>
             </div>
           </TabPanel>
@@ -136,6 +169,18 @@ const HomePage: React.FC = () => {
                   <Tab className={styles['sub-tab']} selectedClassName={styles['sub-tab--selected']}>
                     <Icon name="graph" />
                     Графики пара
+                  </Tab>
+                  <Tab className={styles['sub-tab']} selectedClassName={styles['sub-tab--selected']}>
+                    <Icon name="graph" />
+                    Графики газа
+                  </Tab>
+                  <Tab className={styles['sub-tab']} selectedClassName={styles['sub-tab--selected']}>
+                    <Icon name="graph" />
+                    Графики воздуха
+                  </Tab>
+                  <Tab className={styles['sub-tab']} selectedClassName={styles['sub-tab--selected']}>
+                    <Icon name="graph" />
+                    Графики разрежения
                   </Tab>
                 </TabList>
 
@@ -166,6 +211,25 @@ const HomePage: React.FC = () => {
                     <GeneralParKotel />
                   </div>
                 </TabPanel>
+
+                {/* Панель графиков газа */}
+                <TabPanel>
+                  <div key={`kotel2-charts-${selectedSubTabIndex}`} className={styles['sub-tab-content']}>
+                    <GeneralGasKotel/>
+                  </div>
+                </TabPanel>
+                {/*Панель графиков давления воздуха*/}
+                <TabPanel>
+                  <div key={`kotel2-charts-${selectedSubTabIndex}`} className={styles['sub-tab-content']}>
+                    <GeneralPressureKotel />
+                  </div>
+                </TabPanel>
+                {/*Панель графиков разрежения*/}
+                <TabPanel>
+                  <div key={`kotel2-charts-${selectedSubTabIndex}`} className={styles['sub-tab-content']}>
+                    <GeneralVacuumKotel />
+                  </div>
+                </TabPanel>
               </Tabs>
             </div>
           </TabPanel>
@@ -190,6 +254,18 @@ const HomePage: React.FC = () => {
                   <Tab className={styles['sub-tab']} selectedClassName={styles['sub-tab--selected']}>
                     <Icon name="graph" />
                     Графики пара
+                  </Tab>
+                  <Tab className={styles['sub-tab']} selectedClassName={styles['sub-tab--selected']}>
+                    <Icon name="graph" />
+                    Графики газа
+                  </Tab>
+                  <Tab className={styles['sub-tab']} selectedClassName={styles['sub-tab--selected']}>
+                    <Icon name="graph" />
+                    Графики воздуха
+                  </Tab>
+                  <Tab className={styles['sub-tab']} selectedClassName={styles['sub-tab--selected']}>
+                    <Icon name="graph" />
+                    Графики разрежения
                   </Tab>
                 </TabList>
 
@@ -218,6 +294,27 @@ const HomePage: React.FC = () => {
                 <TabPanel>
                   <div key={`kotel3-charts-${selectedSubTabIndex}`} className={styles['sub-tab-content']}>
                     <GeneralParKotel />
+                  </div>
+                </TabPanel>
+
+                {/* Панель графиков газа */}
+                <TabPanel>
+                  <div key={`kotel3-charts-${selectedSubTabIndex}`} className={styles['sub-tab-content']}>
+                    <GeneralGasKotel/>
+                  </div>
+                </TabPanel>
+
+                {/*Панель графиков давления воздуха*/}
+                <TabPanel>
+                  <div key={`kotel3-charts-${selectedSubTabIndex}`} className={styles['sub-tab-content']}>
+                    <GeneralPressureKotel />
+                  </div>
+                </TabPanel>
+
+                {/*Панель графиков разрежения*/}
+                <TabPanel>
+                  <div key={`kotel3-charts-${selectedSubTabIndex}`} className={styles['sub-tab-content']}>
+                    <GeneralVacuumKotel />
                   </div>
                 </TabPanel>
               </Tabs>
