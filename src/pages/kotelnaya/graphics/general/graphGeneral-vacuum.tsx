@@ -10,8 +10,8 @@ const GeneralVacuumKotel: React.FC = () => {
       <UniversalChart
         id="chart-vacuum-kotel1"
         title="График разрежения котла №1"
-        yMin={-30}
-        yMax={10}
+        yMin={-13}
+        yMax={13}
         animationEnabled={false}
         datasets={[
           {
@@ -25,8 +25,8 @@ const GeneralVacuumKotel: React.FC = () => {
       <UniversalChart
         id="chart-vacuum-kotel2"
         title="График разрежения котла №2"
-        yMin={-30}
-        yMax={10}
+        yMin={-13}
+        yMax={13}
         animationEnabled={false}
         datasets={[
           {
@@ -40,8 +40,8 @@ const GeneralVacuumKotel: React.FC = () => {
       <UniversalChart
         id="chart-vacuum-kotel3"
         title="График разрежения котла №3"
-        yMin={-30}
-        yMax={10}
+        yMin={-13}
+        yMax={13}
         animationEnabled={false}
         datasets={[
           {
